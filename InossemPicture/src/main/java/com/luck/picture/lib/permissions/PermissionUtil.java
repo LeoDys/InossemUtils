@@ -26,6 +26,8 @@ import io.reactivex.functions.Consumer;
 
 public class PermissionUtil {
 
+    private static final String TAG = "";
+
     public interface PermissionCallBackListener {
         /**
          * 是否全部请求成功
@@ -87,35 +89,6 @@ public class PermissionUtil {
                     }
                 });
 
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public static void requestPermissionToSetting(final Activity activity, final PermissionArrayCallBackListener listener
-            , final String... permissions) {
-        if (permissions == null || permissions.length == 0) {
-            return;
-        }
-        if (Build.VERSION.SDK_INT < 23) {
-            listener.permissionListener(true, null);
-            return;
-        }
-        RxPermissions rxPermissions = new RxPermissions(activity);
-        rxPermissions.requestEach(permissions)
-                .subscribe(new Consumer<Permission>() {
-                    @Override
-                    public void accept(Permission permission) throws Exception {
-                        if (permission.granted) {
-                            // 用户已经同意该权限
-                            Log.d(TAG, permission.name + " is granted.");
-                        } else if (permission.shouldShowRequestPermissionRationale) {
-                            // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
-                            Log.d(TAG, permission.name + " is denied. More info should be provided.");
-                        } else {
-                            // 用户拒绝了该权限，并且选中『不再询问』
-                            Log.d(TAG, permission.name + " is denied.");
-                        }
-                    }
-                });
     }
 
     /**
