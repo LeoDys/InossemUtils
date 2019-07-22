@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/InossemPicture/InossemPicture.iml" filepath="$PROJECT_DIR$/InossemPicture/InossemPicture.iml" />
+      <module fileurl="file://$PROJECT_DIR$/InossemTiny/InossemTiny.iml" filepath="$PROJECT_DIR$/InossemTiny/InossemTiny.iml" />
+      <module fileurl="file://$PROJECT_DIR$/InossemUcrop/InossemUcrop.iml" filepath="$PROJECT_DIR$/InossemUcrop/InossemUcrop.iml" />
       <module fileurl="file://$PROJECT_DIR$/InossemUtils.iml" filepath="$PROJECT_DIR$/InossemUtils.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

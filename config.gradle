@@ -1,0 +1,16 @@
+ext {
+    config = [
+            compileSdkVersion    : 27,
+            buildToolsVersion    : "27.1.1",
+            minSdkVersion        : 19,
+            targetSdkVersion     : 27,
+            versionCode          : 1,
+            versionName          : "1.0.1",
+
+            //open version control
+            androidSupportVersion: "27.1.1",
+            glide                : "4.5.0",
+            rxjava               : "2.0.5",
+            rxandroid            : "2.0.1"
+    ]
+}
