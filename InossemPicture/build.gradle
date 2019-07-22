@@ -1,5 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
+// Github maven
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.LeoDys'
 
 android {
     compileSdkVersion config.compileSdkVersion
