@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/InossemUtils.iml" filepath="$PROJECT_DIR$/InossemUtils.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inossem_library/inossem_library.iml" filepath="$PROJECT_DIR$/inossem_library/inossem_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/inossem_picture/InossemPicture.iml" filepath="$PROJECT_DIR$/inossem_picture/InossemPicture.iml" />
       <module fileurl="file://$PROJECT_DIR$/inossem_tiny/InossemTiny.iml" filepath="$PROJECT_DIR$/inossem_tiny/InossemTiny.iml" />
       <module fileurl="file://$PROJECT_DIR$/inossem_ucrop/InossemUcrop.iml" filepath="$PROJECT_DIR$/inossem_ucrop/InossemUcrop.iml" />
