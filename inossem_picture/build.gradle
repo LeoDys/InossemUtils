@@ -26,6 +26,6 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile "io.reactivex.rxjava2:rxjava:${config.rxjava}"
     compile "io.reactivex.rxjava2:rxandroid:${config.rxandroid}"
-    implementation project(':inossem_tiny')
+    implementation project(':inossem_compress')
     implementation project(':inossem_ucrop')
 }

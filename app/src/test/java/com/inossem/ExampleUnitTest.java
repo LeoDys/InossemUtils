@@ -1,4 +1,4 @@
-package framework.inossem.com.inossemutils;
+package com.inossem;
 
 import org.junit.Test;
 

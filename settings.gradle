@@ -1,1 +1,1 @@
-include ':app', ':inossem_ucrop', ':inossem_tiny', ':inossem_picture', ':inossem_library'
+include ':app', ':inossem_ucrop', ':inossem_compress', ':inossem_picture', ':inossem_library'

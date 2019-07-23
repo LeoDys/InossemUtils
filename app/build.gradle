@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion config.compileSdkVersion
+    compileSdkVersion 27
     defaultConfig {
-        applicationId "framework.inossem.com.inossemutils"
-        minSdkVersion config.minSdkVersion
-        targetSdkVersion config.targetSdkVersion
-        versionCode config.versionCode
-        versionName config.versionName
+        applicationId "com.inossem"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
     }
     buildTypes {
         release {

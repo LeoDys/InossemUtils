@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://C:\Project\Github\InossemUtils\inossem_picture\InossemPicture.iml" filepath="C:\Project\Github\InossemUtils\inossem_picture\InossemPicture.iml" />
+      <module fileurl="file://C:\Project\Github\InossemUtils\inossem_tiny\InossemTiny.iml" filepath="C:\Project\Github\InossemUtils\inossem_tiny\InossemTiny.iml" />
+      <module fileurl="file://C:\Project\Github\InossemUtils\inossem_ucrop\InossemUcrop.iml" filepath="C:\Project\Github\InossemUtils\inossem_ucrop\InossemUcrop.iml" />
       <module fileurl="file://$PROJECT_DIR$/InossemUtils.iml" filepath="$PROJECT_DIR$/InossemUtils.iml" />
+      <module fileurl="file://C:\Project\Github\InossemUtils\InossemUtils.iml" filepath="C:\Project\Github\InossemUtils\InossemUtils.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inossem_compress/inossem_compress.iml" filepath="$PROJECT_DIR$/inossem_compress/inossem_compress.iml" />
       <module fileurl="file://$PROJECT_DIR$/inossem_library/inossem_library.iml" filepath="$PROJECT_DIR$/inossem_library/inossem_library.iml" />
-      <module fileurl="file://$PROJECT_DIR$/inossem_picture/InossemPicture.iml" filepath="$PROJECT_DIR$/inossem_picture/InossemPicture.iml" />
-      <module fileurl="file://$PROJECT_DIR$/inossem_tiny/InossemTiny.iml" filepath="$PROJECT_DIR$/inossem_tiny/InossemTiny.iml" />
-      <module fileurl="file://$PROJECT_DIR$/inossem_ucrop/InossemUcrop.iml" filepath="$PROJECT_DIR$/inossem_ucrop/InossemUcrop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inossem_picture/inossem_picture.iml" filepath="$PROJECT_DIR$/inossem_picture/inossem_picture.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inossem_ucrop/inossem_ucrop.iml" filepath="$PROJECT_DIR$/inossem_ucrop/inossem_ucrop.iml" />
     </modules>
   </component>
 </project>
