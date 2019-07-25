@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.StyleRes;
 
+import com.inossem_library.callback.LibraryLinstener;
 import com.luck.picture.lib.R;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.tools.PictureFileUtils;
@@ -72,6 +73,8 @@ public final class PictureSelectionConfig implements Parcelable {
     public boolean cameraTakingCrop;
     public boolean cameraAdjustLight;
     public boolean takedImmediatelyReturnBack;
+
+    public LibraryLinstener libraryLinstener = null;
 
     private void reset() {
         mimeType = PictureConfig.TYPE_IMAGE;

@@ -18,6 +18,9 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api "com.android.support:appcompat-v7:${config.androidSupportVersion}"
+    api project(':inossem_library')
+    api project(':inossem_compress')
+    api project(':inossem_picture')
 }

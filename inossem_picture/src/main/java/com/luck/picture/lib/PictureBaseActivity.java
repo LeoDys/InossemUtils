@@ -10,15 +10,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 
-import com.luck.picture.lib.compress.Luban;
-import com.luck.picture.lib.compress.OnCompressListener;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.config.PictureSelectionConfig;
+import com.luck.picture.lib.crop.UCrop;
+import com.luck.picture.lib.crop.UCropMulti;
 import com.luck.picture.lib.dialog.PictureDialog;
 import com.luck.picture.lib.entity.EventEntity;
 import com.luck.picture.lib.entity.LocalMedia;
@@ -29,21 +28,10 @@ import com.luck.picture.lib.tools.AttrsUtils;
 import com.luck.picture.lib.tools.DateUtils;
 import com.luck.picture.lib.tools.DoubleUtils;
 import com.luck.picture.lib.tools.PictureFileUtils;
-import com.yalantis.ucrop.UCrop;
-import com.yalantis.ucrop.UCropMulti;
-import com.zxy.tiny.common.TinyUtil;
-import com.zxy.util.TinyCompressUtils;
-import com.zxy.util.TinyConfig;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import io.reactivex.Flowable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author：luck
@@ -256,16 +244,19 @@ public class PictureBaseActivity extends FragmentActivity {
 //                        }
 //                    }).launch();
 //        }
-        TinyConfig tinyConfig = new TinyConfig(mContext);
-        tinyConfig.setCompressDirectory(config.compressSavePath);
-        tinyConfig.setFileSize(config.minimumCompressSize);
-        tinyConfig.setQuality(config.cropCompressQuality);
-        TinyCompressUtils.filesCallBack(getFiles(result), tinyConfig, new TinyCompressUtils.TidyCompressFilesListener() {
-            @Override
-            public void compressCallBack(List<String> outfiles) {
-                tinyHandleCompressCallBack(result, outfiles);
-            }
-        });
+//        TinyConfig tinyConfig = new TinyConfig(mContext);
+//        tinyConfig.setCompressDirectory(config.compressSavePath);
+//        tinyConfig.setFileSize(config.minimumCompressSize);
+//        tinyConfig.setQuality(config.cropCompressQuality);
+//        TinyCompressUtils.filesCallBack(getFiles(result), tinyConfig, new TinyCompressUtils.TidyCompressFilesListener() {
+//            @Override
+//            public void compressCallBack(List<String> outfiles) {
+//                tinyHandleCompressCallBack(result, outfiles);
+//            }
+//        });
+        if (config.libraryLinstener != null) {
+            tinyHandleCompressCallBack(result, config.libraryLinstener.compressPicCallBack(getFiles(result)));
+        }
     }
 
     /**

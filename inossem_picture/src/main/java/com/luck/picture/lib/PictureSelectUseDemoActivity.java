@@ -27,7 +27,7 @@ public class PictureSelectUseDemoActivity extends Activity {
         InossemPictureConfig configBean = InossemPictureConfig
                 .getInstance()
                 .initActivity(PictureSelectUseDemoActivity.this)
-                .setCompress(true)
+                .setEnableCrop(true)
                 .setStartCustomCamera(true);
 
         PicSelectUtil.activitySelectPictureActivity(configBean);

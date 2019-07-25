@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 
+import com.inossem_library.callback.LibraryLinstener;
 import com.luck.picture.lib.constant.PictureSelectContants;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.exception.InossemPictureSelectException;
@@ -73,6 +74,8 @@ public class InossemPictureConfig {
     // 拍照后不再图片选择页面直接返回  不涉及压缩和裁剪  设置失效
     private boolean takedImmediatelyReturnBack;
 
+    private LibraryLinstener libraryLinstener;
+
     /**
      * 私有构造
      */
@@ -130,7 +133,7 @@ public class InossemPictureConfig {
         this.requestCode = PictureSelectContants.DEFAULT_PICTURE_REQUEST_CODE;
         this.maxSelect = PictureSelectContants.DEFAULT_PICTURE_MAX_SIZE;
         this.enableCrop = false;
-        this.compress = true;
+        this.compress = false;
         this.startCustomCamera = false;
         this.cameraTakingCrop = false;
         this.cameraAdjustLight = false;
@@ -206,7 +209,7 @@ public class InossemPictureConfig {
      * @param compress
      * @return
      */
-    public InossemPictureConfig setCompress(boolean compress) {
+    private InossemPictureConfig setCompress(boolean compress) {
         this.compress = compress;
         return this;
     }
@@ -582,7 +585,28 @@ public class InossemPictureConfig {
         return takedImmediatelyReturnBack;
     }
 
+    /**
+     * 获取解耦接口对象
+     *
+     * @return 解耦接口对象
+     */
+    public LibraryLinstener getLibraryLinstener() {
+        return libraryLinstener;
+    }
 
+    /**
+     * 设置解耦接口对象
+     *
+     * @param libraryLinstener 解耦接口对象
+     * @return 当前类
+     */
+    public InossemPictureConfig setLibraryLinstener(LibraryLinstener libraryLinstener) {
+        this.libraryLinstener = libraryLinstener;
+        if (this.libraryLinstener != null) {
+            setCompress(true);
+        }
+        return this;
+    }
 
     /**
      * 默认压缩存储地址

@@ -106,6 +106,7 @@ public class PicSelectUtil {
                 .cameraAdjustLight(configBean.isCameraAdjustLight())
                 .cameraCrop(configBean.isCameraTakingCrop())
                 .takedImmediatelyReturnBack(configBean.isTakedImmediatelyReturnBack())
+                .setLibraryListener(configBean.getLibraryLinstener())
                 // 视频录制质量 0 or 1
                 //.videoQuality()
                 //显示多少秒以内的视频or音频也可适用

@@ -22,8 +22,8 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="sensor" />
         <activity android:name=".PictureExternalPreviewActivity" />
-        <activity android:name="com.yalantis.ucrop.UCropActivity" />
-        <activity android:name="com.yalantis.ucrop.PictureMultiCuttingActivity" />
+        <activity android:name=".crop.UCropActivity" />
+        <activity android:name=".crop.PictureMultiCuttingActivity" />
         <activity android:name=".PicturePlayAudioActivity" />
         <activity android:name=".camera.camera.InossemCameraActivity" />
     </application>

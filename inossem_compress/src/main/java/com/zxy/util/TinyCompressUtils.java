@@ -98,28 +98,13 @@ public class TinyCompressUtils {
      */
     public static void fileCallBack(File file, TinyConfig config, final TidyCompressSingleFileListener listener) {
         Tiny.FileCompressOptions options = new Tiny.FileCompressOptions();
-        setOptions(config, options);
+        Utils.setOptions(config, options);
         Tiny.getInstance().source(file).asFile().withOptions(options).compress(new FileCallback() {
             @Override
             public void callback(boolean isSuccess, String outfile, Throwable t) {
                 listener.compressCallBack(outfile);
             }
         });
-    }
-
-    /**
-     * 设置自定义属性值
-     *
-     * @param config  自定义属性类
-     * @param options TIny属性类
-     */
-    private static void setOptions(TinyConfig config, Tiny.FileCompressOptions options) {
-        options.size = config.getFileSize();
-        options.width = config.getMaxWidth();
-        options.height = config.getMaxHeight();
-        options.isKeepSampling = config.isKeepSampling();
-        options.quality = config.getQuality();
-        options.compressDirectory = config.getCompressDirectory();
     }
 
     /**
@@ -133,11 +118,11 @@ public class TinyCompressUtils {
         if (config == null) {
             throw new InossemCompressException("TinyConfig null,please check");
         }
-        File[] fileArray = getFilesArray(files);
+        File[] fileArray = Utils.getFilesArray(files);
         if (fileArray == null) return;
 
         Tiny.FileCompressOptions options = new Tiny.FileCompressOptions();
-        setOptions(config, options);
+        Utils.setOptions(config, options);
         Tiny.getInstance().source(fileArray).batchAsFile().withOptions(options).batchCompress(new FileBatchCallback() {
             @Override
             public void callback(boolean isSuccess, String[] outfiles, Throwable t) {
@@ -148,21 +133,5 @@ public class TinyCompressUtils {
                 }
             }
         });
-    }
-
-    /**
-     * 获取文件数组
-     *
-     * @param files 文件list
-     * @return 文件数组
-     */
-    private static File[] getFilesArray(List<File> files) {
-        File[] fileArray = null;
-        if (files == null || files.isEmpty()) {
-            return null;
-        } else {
-            fileArray = files.toArray(new File[files.size()]);
-        }
-        return fileArray;
     }
 }

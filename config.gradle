@@ -11,6 +11,12 @@ ext {
             androidSupportVersion: "27.1.1",
             glide                : "4.5.0",
             rxjava               : "2.0.5",
-            rxandroid            : "2.0.1"
+            rxandroid            : "2.0.1",
+            retrofit             : "2.6.0",
+            gson                 : "2.8.5",
+            rxandroid            : "2.0.1",
+            superToast           : "2.0",
+            logger               : "2.2.0",
+            niftyDialogEffects   : "v1.0.3"
     ]
 }

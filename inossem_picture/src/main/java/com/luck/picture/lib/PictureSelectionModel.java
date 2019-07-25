@@ -7,6 +7,7 @@ import android.support.annotation.IntRange;
 import android.support.annotation.StyleRes;
 import android.support.v4.app.Fragment;
 
+import com.inossem_library.callback.LibraryLinstener;
 import com.luck.picture.lib.config.PictureSelectionConfig;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.tools.DoubleUtils;
@@ -479,6 +480,16 @@ public class PictureSelectionModel {
      */
     public PictureSelectionModel takedImmediatelyReturnBack(boolean takedImmediatelyReturnBack) {
         selectionConfig.takedImmediatelyReturnBack = takedImmediatelyReturnBack;
+        return this;
+    }
+
+
+    /**
+     * @param libraryListener 解耦回調
+     * @return
+     */
+    public PictureSelectionModel setLibraryListener(LibraryLinstener libraryListener) {
+        selectionConfig.libraryLinstener = libraryListener;
         return this;
     }
 

@@ -46,13 +46,19 @@ import java.util.Locale;
  */
 
 public class PictureFileUtils {
-    private static String DEFAULT_CACHE_DIR = "picture_cache";
-
     public static final String POSTFIX = ".JPEG";
     public static final String POST_VIDEO = ".mp4";
     public static final String APP_NAME = "InossemCamera";
     public static final String CAMERA_PATH = "/" + APP_NAME + "/";
     public static final String CROP_PATH = "/" + APP_NAME + "/CropPicture/";
+    /**
+     * TAG for log messages.
+     */
+    static final String TAG = "PictureFileUtils";
+    private static String DEFAULT_CACHE_DIR = "picture_cache";
+
+    private PictureFileUtils() {
+    }
 
     /**
      * @param context
@@ -102,15 +108,6 @@ public class PictureFileUtils {
                 break;
         }
         return tmpFile;
-    }
-
-
-    /**
-     * TAG for log messages.
-     */
-    static final String TAG = "PictureFileUtils";
-
-    private PictureFileUtils() {
     }
 
     /**
@@ -210,7 +207,7 @@ public class PictureFileUtils {
 
     /**
      * Get a file path from a Uri. This will get the the path for Storage Access
-     * Framework Documents, as well as the _data field for the MediaStore and
+     * Framework documents, as well as the _data field for the MediaStore and
      * other file-based ContentProviders.<br>
      * <br>
      * Callers should check whether the path is local before assuming it
