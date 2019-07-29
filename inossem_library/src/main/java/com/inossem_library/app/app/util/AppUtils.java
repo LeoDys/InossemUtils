@@ -148,7 +148,7 @@ public final class AppUtils {
     }
 
     /**
-     * 判断 App 是否在内核运行
+     * 判断 App 是否在后台运行
      *
      * @param context     上下文
      * @param packageName 包名
@@ -720,18 +720,6 @@ public final class AppUtils {
     }
 
     /**
-     * 如果字符为空白字符，则返回 true;否则返回 false.
-     */
-    private static boolean isSpace(@NonNull final String s) {
-        for (int i = 0, len = s.length(); i < len; ++i) {
-            if (!Character.isWhitespace(s.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
      * 获取哈希
      *
      * @param data      数据
@@ -928,6 +916,19 @@ public final class AppUtils {
 
         public void setSystem(boolean system) {
             isSystem = system;
+        }
+
+        @Override
+        public String toString() {
+            return "AppInfo{" +
+                    "packageName='" + packageName + '\'' +
+                    ", name='" + name + '\'' +
+                    ", icon=" + icon +
+                    ", packagePath='" + packagePath + '\'' +
+                    ", versionName='" + versionName + '\'' +
+                    ", versionCode=" + versionCode +
+                    ", isSystem=" + isSystem +
+                    '}';
         }
     }
 }

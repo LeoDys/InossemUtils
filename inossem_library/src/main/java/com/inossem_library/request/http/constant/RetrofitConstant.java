@@ -2,6 +2,12 @@ package com.inossem_library.request.http.constant;
 
 import java.nio.charset.Charset;
 
+/**
+ * @author 詹建宇
+ * @time on 2019/7/25
+ * @email jianyu.zhan@inossem.com
+ * @describe Retrofit请求框架 常量
+ */
 public class RetrofitConstant {
 
     /*
@@ -19,6 +25,10 @@ public class RetrofitConstant {
     public final static String READ_TIMEOUT = "read_timeout";
     //写超时时间
     public final static String WRITE_TIMEOUT = "write_timeout";
+    //是否打印日志
+    public final static String IS_PRINT_LOG = "is_print_log";
+    //是否保存日志
+    public final static String IS_SAVE_LOG = "is_save_log";
 
     /*
     时间格式相关
@@ -37,6 +47,10 @@ public class RetrofitConstant {
     public final static Long DEFAULT_READ = 20 * 1000L;
     //默认写时间(单位:毫秒)
     public final static Long DEFAULT_WRITE = 20 * 10000L;
+    //默认是否打印日志
+    public final static Boolean DEFAULT_PRINT_LOG = true;
+    //默认是否保存日志
+    public final static Boolean DEFAULT_SAVE_LOG = true;
 
     /*
     可能会用到的字符集
@@ -48,5 +62,4 @@ public class RetrofitConstant {
     public final static String CHARSET_CAPITAL_ISO88591 = "ISO-8859-1";
     public final static Charset UTF8 = Charset.forName(CHARSET_CAPITAL_UTF8);
     public final static Charset ISO88591 = Charset.forName(CHARSET_CAPITAL_ISO88591);
-
 }

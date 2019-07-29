@@ -16,7 +16,10 @@ import retrofit2.http.POST;
  */
 public interface LogInApiService {
 
+    @POST("user/login")
+    Call<BaseBean<LogInBean>> loginCommon(@Body LogInRequestBean bean);
+
     @POST("TestServlet")
-    Call<BaseBean<LogInBean>> login(@Body LogInRequestBean bean);
+    Call<BaseBean<LogInBean>> loginDealWithData(@Body LogInRequestBean bean);
 
 }

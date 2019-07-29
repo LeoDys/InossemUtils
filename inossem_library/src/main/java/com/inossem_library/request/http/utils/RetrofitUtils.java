@@ -43,10 +43,12 @@ public class RetrofitUtils {
      * @param connectTimeout 连接时间
      * @param readTimeout    读取时间
      * @param writeTimeout   写入时间
+     * @param isPrintLog     是否打印日志
+     * @param isSaveLog      是否保存日志
      * @throws Exception 异常
      */
     public static void set(Context context, String url, Map<String, String> header, Long connectTimeout,
-                           Long readTimeout, Long writeTimeout) throws Exception {
+                           Long readTimeout, Long writeTimeout, Boolean isPrintLog, Boolean isSaveLog) throws Exception {
         if (null == context) throw new Exception("context can`t null");
         SharedPreferences.Editor editor = getSettingSp(context).edit();
         if (!TextUtils.isEmpty(url)) {
@@ -73,6 +75,14 @@ public class RetrofitUtils {
             //[写入时间]不为空时 保存[写入时间]
             editor.putLong(RetrofitConstant.WRITE_TIMEOUT, writeTimeout);
         }
+        if (null != isPrintLog) {
+            //[是否打印日志]不为空时 保存[是否打印日志]
+            editor.putBoolean(RetrofitConstant.IS_PRINT_LOG, isPrintLog);
+        }
+        if (null != isSaveLog) {
+            //[是否保存日志]不为空时 保存[是否保存日志]
+            editor.putBoolean(RetrofitConstant.IS_SAVE_LOG, isSaveLog);
+        }
         editor.apply();
     }
 
@@ -84,7 +94,7 @@ public class RetrofitUtils {
      * @throws Exception 异常
      */
     public static void setUrl(Context context, String url) throws Exception {
-        set(context, url, null, null, null, null);
+        set(context, url, null, null, null, null, null, null);
     }
 
     /**
@@ -95,7 +105,7 @@ public class RetrofitUtils {
      * @throws Exception
      */
     public static void setHeader(Context context, Map<String, String> header) throws Exception {
-        set(context, null, header, null, null, null);
+        set(context, null, header, null, null, null, null, null);
     }
 
     /**
@@ -106,7 +116,7 @@ public class RetrofitUtils {
      * @throws Exception 异常
      */
     public static void setConnectTimeout(Context context, Long connectTimeout) throws Exception {
-        set(context, null, null, connectTimeout, null, null);
+        set(context, null, null, connectTimeout, null, null, null, null);
     }
 
     /**
@@ -117,7 +127,7 @@ public class RetrofitUtils {
      * @throws Exception 异常
      */
     public static void setRadTimeout(Context context, Long readTimeout) throws Exception {
-        set(context, null, null, null, readTimeout, null);
+        set(context, null, null, null, readTimeout, null, null, null);
     }
 
     /**
@@ -128,7 +138,29 @@ public class RetrofitUtils {
      * @throws Exception 异常
      */
     public static void setWriteTimeout(Context context, Long writeTimeout) throws Exception {
-        set(context, null, null, null, null, writeTimeout);
+        set(context, null, null, null, null, writeTimeout, null, null);
+    }
+
+    /**
+     * 设置是否打印日志
+     *
+     * @param context    上下文
+     * @param isPrintLog 是否打印日志
+     * @throws Exception 异常
+     */
+    public static void setIsPrintLog(Context context, Boolean isPrintLog) throws Exception {
+        set(context, null, null, null, null, null, isPrintLog, null);
+    }
+
+    /**
+     * 设置是否保存日志
+     *
+     * @param context   上下文
+     * @param isSaveLog 是否打印日志
+     * @throws Exception 异常
+     */
+    public static void setIsSaveLog(Context context, Boolean isSaveLog) throws Exception {
+        set(context, null, null, null, null, null, isSaveLog, null);
     }
 
     /**

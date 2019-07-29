@@ -1,4 +1,4 @@
-package com.inossem.phone;
+package com.inossem.app;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -49,6 +49,7 @@ public class PhoneRelatedActivity extends BaseActivity {
                                 startActivity(new Intent(PhoneRelatedActivity.this, DeviceActivity.class));
                             }
                         });
+                        break;
                     case 2:
                         button.setText("键盘相关");
                         button.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +58,7 @@ public class PhoneRelatedActivity extends BaseActivity {
                                 startActivity(new Intent(PhoneRelatedActivity.this, KeyboardActivity.class));
                             }
                         });
+                        break;
                     case 3:
                         button.setText("语言相关");
                         button.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +67,7 @@ public class PhoneRelatedActivity extends BaseActivity {
                                 startActivity(new Intent(PhoneRelatedActivity.this, SupportLanguageActivity.class));
                             }
                         });
+                        break;
                     case 4:
                         button.setText("闪光灯相关");
                         button.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +76,7 @@ public class PhoneRelatedActivity extends BaseActivity {
                                 startActivity(new Intent(PhoneRelatedActivity.this, FlashlightActivity.class));
                             }
                         });
+                        break;
                     case 5:
                         button.setText("网络相关");
                         button.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +103,7 @@ public class PhoneRelatedActivity extends BaseActivity {
                                 startActivity(new Intent(PhoneRelatedActivity.this, ScreenActivity.class));
                             }
                         });
+                        break;
                 }
             }
         });

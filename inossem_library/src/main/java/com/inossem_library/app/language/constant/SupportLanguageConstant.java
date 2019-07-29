@@ -4,6 +4,11 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ * 语言相关
+ *
+ * @author Lin
+ */
 public class SupportLanguageConstant {
     /**
      * 各国的命名规范

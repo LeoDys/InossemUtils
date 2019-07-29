@@ -26,7 +26,7 @@ import static android.Manifest.permission.WRITE_SETTINGS;
 /**
  * 屏幕相关
  *
- * @author Lin
+ * @author LinH
  */
 public final class ScreenUtils {
     /**
@@ -119,7 +119,7 @@ public final class ScreenUtils {
     }
 
     /**
-     * 获取屏幕密度 DPI
+     * 获取屏幕密度DPI
      *
      * @return 屏幕密度 DPI
      */

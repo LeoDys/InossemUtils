@@ -2,11 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.inossem">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:name=".InossemApplication"
         android:allowBackup="true"
@@ -15,36 +10,102 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".other.OtherActivity" />
-        <activity android:name=".other.push.PushActivity" />
-        <activity android:name=".other.convert.ConvertActivity" />
-        <activity android:name=".other.sp.SPActivity" />
-        <activity android:name=".other.regex.RegexActivity" />
-        <activity android:name=".other.string.StringActivity" />
-        <activity android:name=".other.time.TimeActivity" />
-        <activity android:name=".request.socket.SocketActivity" />
-        <activity android:name=".request.RequestActivity" />
-        <activity android:name=".request.http.HttpActivity" />
-        <activity android:name=".tips.dialog.DialogActivity" />
-        <activity android:name=".tips.logcat.LogcatActivity" />
-        <activity android:name=".tips.Toast.ToastActivity" />
-        <activity android:name=".phone.PhoneRelatedActivity" />
-        <activity android:name=".app.app.AppActivity" />
-        <activity android:name=".app.device.DeviceActivity" />
-        <activity android:name=".app.keyboard.KeyboardActivity" />
-        <activity android:name=".app.language.SupportLanguageActivity" />
-        <activity android:name=".app.light.FlashlightActivity" />
-        <activity android:name=".app.network.NetworkActivity" />
-        <activity android:name=".app.path.PathActivity" />
-        <activity android:name=".app.screen.ScreenActivity" />
-        <activity android:name=".other_framework.OtherFrameworkActivity"></activity>
-        <activity android:name=".other_framework.picture.PictureActivity"></activity>
+        <activity
+            android:name=".other.OtherActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".other.push.PushActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".other.convert.ConvertActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".other.sp.SPActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".other.regex.RegexActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".other.string.StringActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".other.time.TimeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".request.socket.SocketActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".request.RequestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".request.http.HttpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tips.dialog.DialogActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tips.logcat.LogcatActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tips.toast.ToastActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".app.PhoneRelatedActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".app.app.AppActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".app.device.DeviceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".app.keyboard.KeyboardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".app.language.SupportLanguageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".app.light.FlashlightActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".app.network.NetworkActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".app.path.PathActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".app.screen.ScreenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".other_framework.OtherFrameworkActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".other_framework.picture.PictureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".other.permission.PermissionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tips.TipsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".encrypt.en_decrypt.DecryptActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".encrypt.EncryptActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".other.clean.CleanActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

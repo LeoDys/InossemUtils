@@ -2,6 +2,8 @@ package com.inossem_library.request.socket.util;
 
 import android.util.Log;
 
+import com.inossem_library.tips.logcat.util.LogUtils;
+
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
@@ -42,7 +44,7 @@ public class MinaConnectorHandler extends IoHandlerAdapter {
     @Override
     public void messageReceived(IoSession session, Object message) throws Exception {
         String msg = message.toString();
-        Log.i("MinaConnectorHandler", "接收到网关发送指令,指令信息为:" + msg);
+        LogUtils.i("接收到网关发送指令,指令信息为:" + msg);
         super.messageReceived(session, message);
         mCallBack.messageReceived(msg);
     }
@@ -52,7 +54,7 @@ public class MinaConnectorHandler extends IoHandlerAdapter {
      */
     @Override
     public void sessionClosed(IoSession session) throws Exception {
-        Log.i("MinaConnectorHandler", "网络层关闭session连接,停止网络服务");
+        LogUtils.i("网络层关闭session连接,停止网络服务");
         super.sessionClosed(session);
         MinaConnector.isCon = false;
         mCallBack.sessionClosed(false);
@@ -63,7 +65,7 @@ public class MinaConnectorHandler extends IoHandlerAdapter {
      */
     @Override
     public void messageSent(IoSession session, Object message) throws Exception {
-        Log.i("MinaConnectorHandler", "检测到正在向网关发送字符串：" + message);
+        LogUtils.i("检测到正在向网关发送字符串：" + message);
         super.messageSent(session, message);
     }
 
@@ -72,7 +74,7 @@ public class MinaConnectorHandler extends IoHandlerAdapter {
      */
     @Override
     public void sessionOpened(IoSession session) throws Exception {
-        Log.i("MinaConnectorHandler", "网络层已开启session");
+        LogUtils.i("网络层已开启session");
         super.sessionOpened(session);
     }
 
@@ -85,9 +87,9 @@ public class MinaConnectorHandler extends IoHandlerAdapter {
         if (exception instanceof PortUnreachableException) {
             MinaConnector.isCon = false;
             mCallBack.sessionClosed(false);
-            Log.e("MinaConnectorHandler", "网络故障！！！！！！！！！");
+            LogUtils.e("网络故障！！！！！！！！！");
         }
-        Log.e("MinaConnectorHandler", "session出现异常", exception);
+        LogUtils.e("session出现异常" + exception);
     }
 
     /**
@@ -95,7 +97,7 @@ public class MinaConnectorHandler extends IoHandlerAdapter {
      */
     @Override
     public void sessionIdle(IoSession session, IdleStatus idle) throws Exception {
-        Log.i("MinaConnectorHandler", "服务器进入空闲状态");
+        LogUtils.i("服务器进入空闲状态");
         super.sessionIdle(session, idle);
     }
 }

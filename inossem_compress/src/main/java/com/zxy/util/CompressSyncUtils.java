@@ -1,5 +1,8 @@
 package com.zxy.util;
 
+import android.os.Looper;
+import android.util.Log;
+
 import com.zxy.custom_compress.exception.InossemCompressException;
 import com.zxy.tiny.Tiny;
 import com.zxy.tiny.callback.FileBatchCallback;
@@ -33,22 +36,33 @@ public class CompressSyncUtils {
         if (config == null) {
             throw new InossemCompressException("TinyConfig null,please check");
         }
-        File[] fileArray = Utils.getFilesArray(files);
+        final File[] fileArray = Utils.getFilesArray(files);
         if (fileArray == null || fileArray.length == 0) return null;
 
-        Tiny.FileCompressOptions options = new Tiny.FileCompressOptions();
+        final Tiny.FileCompressOptions options = new Tiny.FileCompressOptions();
         Utils.setOptions(config, options);
         filePaths = new ArrayList<>();
         // 创建一个初始值为5的倒数计数器
         countDownLatch = new CountDownLatch(1);
-        Tiny.getInstance().source(fileArray).batchAsFile().withOptions(options).batchCompress(new FileBatchCallback() {
+        Log.i("tag", "外部：" + Thread.currentThread().getId());
+
+        new Thread(new Runnable() {
             @Override
-            public void callback(boolean isSuccess, String[] outfiles, Throwable t) {
-                // 倒数器减1
-                filePaths = Arrays.asList(outfiles);
-                countDownLatch.countDown();
+            public void run() {
+
+                Tiny.getInstance().source(fileArray).batchAsFile().withOptions(options).batchCompress(new FileBatchCallback() {
+                    @Override
+                    public void callback(boolean isSuccess, String[] outfiles, Throwable t) {
+                        Log.i("tag", "内部：" + Thread.currentThread().getId());
+                        // 倒数器减1
+                        Looper.prepare();
+                        filePaths = Arrays.asList(outfiles);
+                        countDownLatch.countDown();
+                        Looper.loop();
+                    }
+                });
             }
-        });
+        }).start();
 
         try {
             // 阻塞当前线程，直到倒数计数器倒数到0

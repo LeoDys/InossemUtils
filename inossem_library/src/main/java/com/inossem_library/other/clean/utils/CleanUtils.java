@@ -1,4 +1,4 @@
-package com.inossem_library.other.clean;
+package com.inossem_library.other.clean.utils;
 
 import android.content.Context;
 import android.os.Environment;
@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 
 import com.inossem_library.exception.ExceptionEnum;
 import com.inossem_library.exception.InossemException;
+import com.inossem_library.other.clean.constant.CleanConstant;
 
 import java.io.File;
 
@@ -15,17 +16,13 @@ import java.io.File;
  * @author LinH
  */
 public class CleanUtils {
-    /**
-     * 内部SP路径
-     */
-    public static final String SHARED_PREFS = "shared_prefs";
-    /**
-     * 内部数据库路径
-     */
-    public static final String DATABASES = "databases";
 
     /**
      * 清除内部缓存
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
+     *
+     * @return 是否删除成功
      */
     public static boolean cleanInternalCache(@NonNull Context context) {
         if (context == null) {
@@ -36,6 +33,10 @@ public class CleanUtils {
 
     /**
      * 清理内部文件
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
+     *
+     * @return 是否删除成功
      */
     public static boolean cleanInternalFiles(@NonNull Context context) {
         if (context == null) {
@@ -46,26 +47,38 @@ public class CleanUtils {
 
     /**
      * 清理内部数据库
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
+     *
+     * @return 是否删除成功
      */
     public static boolean cleanInternalDbs(@NonNull Context context) {
         if (context == null) {
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "context can not null");
         }
-        return deleteFilesInDir(new File(context.getFilesDir().getParent(), DATABASES));
+        return deleteFilesInDir(new File(context.getFilesDir().getParent(), CleanConstant.DATABASES));
     }
 
     /**
      * 清除内部SP
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
+     *
+     * @return 是否删除成功
      */
     public static boolean cleanInternalSp(@NonNull Context context) {
         if (context == null) {
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "context can not null");
         }
-        return deleteFilesInDir(new File(context.getFilesDir().getParent(), SHARED_PREFS));
+        return deleteFilesInDir(new File(context.getFilesDir().getParent(), CleanConstant.SHARED_PREFS));
     }
 
     /**
      * 清除外部缓存
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
+     *
+     * @return 是否删除成功
      * Environment.MEDIA_MOUNTED 存储媒体(包含卡与内存储存)已经挂载，并且挂载点可读/写
      * Environment.getExternalStorageState()返回主共享/外部存储媒体的当前状态。
      */
@@ -78,6 +91,10 @@ public class CleanUtils {
 
     /**
      * 删除目录中的文件
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
+     *
+     * @return 是否删除成功
      */
     private static boolean deleteFilesInDir(final File dir) {
         // File为空，则返回false
@@ -108,6 +125,10 @@ public class CleanUtils {
 
     /**
      * 全部删除
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
+     *
+     * @return 是否删除成功
      */
     private static boolean deleteDir(final File dir) {
         if (dir == null) {

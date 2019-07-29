@@ -9,5 +9,12 @@ package com.inossem_library.tips.dialog.constant;
  */
 
 public enum DialogTypeEnum {
-    INFO, WARMING, ERROR, JUDGE;
+    //普通提示信息
+    INFO,
+    //警告信息
+    WARMING,
+    //错误信息
+    ERROR,
+    //判定信息
+    JUDGE;
 }

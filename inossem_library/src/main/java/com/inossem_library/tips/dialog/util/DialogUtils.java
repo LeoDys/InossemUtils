@@ -16,7 +16,9 @@ import android.widget.TextView;
 import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 import com.inossem_library.R;
-import com.inossem_library.tips.dialog.constant.DialogConstant;
+import com.inossem_library.exception.ExceptionEnum;
+import com.inossem_library.exception.InossemException;
+import com.inossem_library.tips.dialog.constant.DialogConstants;
 import com.inossem_library.tips.dialog.constant.DialogTypeEnum;
 
 /**
@@ -26,10 +28,11 @@ import com.inossem_library.tips.dialog.constant.DialogTypeEnum;
  */
 public class DialogUtils {
 
-    private static final int DURATION = 500;
-
     private NiftyDialogBuilder dialogBuilder;
 
+    /**
+     * 构造方法
+     */
     private DialogUtils() {
 
     }
@@ -56,7 +59,7 @@ public class DialogUtils {
      * @return
      */
     public Dialog showInfoDialog(Context context, String mInfo) {
-        return showInfoDialog(context, null, mInfo, true, null);
+        return showInfoDialog(context, null, mInfo, true, true ,null);
     }
 
     /**
@@ -66,10 +69,11 @@ public class DialogUtils {
      * @param mInfo  提示信息
      * @param haveButton  是否有按钮
      * @param confirmListener  按钮点击事件
+     * @param isCancelableOnTouchOutside 点击dialog外部是否消失
      * @return
      */
-    public Dialog showInfoDialog(Context context, String mTitle, String mInfo, boolean haveButton, View.OnClickListener confirmListener) {
-        return showDialog(context, null, mTitle, mInfo, DialogTypeEnum.INFO, haveButton, null , confirmListener, null);
+    public Dialog showInfoDialog(Context context, String mTitle, String mInfo, boolean haveButton, Boolean isCancelableOnTouchOutside ,View.OnClickListener confirmListener) {
+        return showDialog(context, null, mTitle, mInfo, DialogTypeEnum.INFO, haveButton, null ,isCancelableOnTouchOutside , confirmListener, null);
     }
 
     /**
@@ -79,7 +83,18 @@ public class DialogUtils {
      * @return
      */
     public Dialog showWarmingDialog(Context context, String mInfo) {
-        return showWarmingDialog(context, null, mInfo, true, null);
+        return showWarmingDialog(context, null, mInfo, true, true ,null);
+    }
+    /**
+     * 显示警告信息
+     * @param context  上下文
+     * @param mInfo  提示信息
+     *  @param effectstype  动画效果  Effectstype.Fadein(默认效果)  Effectstype.Slideleft(左侧划入)  Effectstype.Slidetop(上部划入)   Effectstype.SlideBottom(底部划入)   Effectstype.Slideright(右侧划入)   Effectstype.Fall(缩放)
+     *            Effectstype.Newspager(左右旋转)   Effectstype.Fliph(上下翻转)  Effectstype.RotateBottom(从下部翻转划入)  Effectstype.RotateLeft(从左侧翻转划入)   Effectstype.Slit(翻转)  Effectstype.Shake(抖动)  Effectstype.Shake(Sidefill)
+     * @return
+     */
+    public Dialog showWarmingDialog(Context context, String mInfo , Effectstype effectstype) {
+        return showWarmingDialog(context, null, mInfo, effectstype ,true, true ,null);
     }
     /**
      * 显示警告信息
@@ -88,12 +103,37 @@ public class DialogUtils {
      * @param mInfo  提示信息
      * @param haveButton  是否有按钮
      * @param confirmListener  按钮点击事件
+     * @param isCancelableOnTouchOutside 点击dialog外部是否消失
      * @return
      */
-    public Dialog showWarmingDialog(Context context, String mTitle, String mInfo, boolean haveButton, View.OnClickListener confirmListener) {
-        return showDialog(context, null, mTitle, mInfo, DialogTypeEnum.WARMING, haveButton, null , confirmListener, null);
+    public Dialog showWarmingDialog(Context context, String mTitle, String mInfo, boolean haveButton,Boolean isCancelableOnTouchOutside , View.OnClickListener confirmListener) {
+        return showDialog(context, null, mTitle, mInfo, DialogTypeEnum.WARMING, haveButton, null ,isCancelableOnTouchOutside , confirmListener, null);
+    }
+    /**
+     * 显示警告信息
+     * @param context  上下文
+     * @param mTitle  标题
+     * @param mInfo  提示信息
+     * @param haveButton  是否有按钮
+     * @param confirmListener  按钮点击事件
+     * @param isCancelableOnTouchOutside 点击dialog外部是否消失
+     * @return
+     */
+    public Dialog showWarmingDialog(Context context, String mTitle, String mInfo  , Effectstype effectstype, boolean haveButton,Boolean isCancelableOnTouchOutside , View.OnClickListener confirmListener) {
+        return showDialog(context, null, mTitle, mInfo, DialogTypeEnum.WARMING, haveButton, effectstype ,isCancelableOnTouchOutside , confirmListener, null);
     }
 
+    /**
+     * 显示错误信息
+     * @param context  上下文
+     * @param mInfo  提示信息
+     * @param effectstype  动画效果  Effectstype.Fadein(默认效果)  Effectstype.Slideleft(左侧划入)  Effectstype.Slidetop(上部划入)   Effectstype.SlideBottom(底部划入)   Effectstype.Slideright(右侧划入)   Effectstype.Fall(缩放)
+     *            Effectstype.Newspager(左右旋转)   Effectstype.Fliph(上下翻转)  Effectstype.RotateBottom(从下部翻转划入)  Effectstype.RotateLeft(从左侧翻转划入)   Effectstype.Slit(翻转)  Effectstype.Shake(抖动)  Effectstype.Shake(Sidefill)
+     * @return
+     */
+    public Dialog showErrorDialog(Context context, String mInfo , Effectstype effectstype) {
+        return showErrorDialog(context, null, mInfo, true,effectstype ,true , null);
+    }
     /**
      * 显示错误信息
      * @param context  上下文
@@ -101,7 +141,22 @@ public class DialogUtils {
      * @return
      */
     public Dialog showErrorDialog(Context context, String mInfo) {
-        return showErrorDialog(context, null, mInfo, true, null);
+        return showErrorDialog(context, null, mInfo, true , null,true , null);
+    }
+    /**
+     * 显示错误信息
+     * @param context  上下文
+     * @param mTitle  标题
+     * @param mInfo  提示信息
+     * @param haveButton  是否有按钮
+     * @param effectstype  动画效果  Effectstype.Fadein(默认效果)  Effectstype.Slideleft(左侧划入)  Effectstype.Slidetop(上部划入)   Effectstype.SlideBottom(底部划入)   Effectstype.Slideright(右侧划入)   Effectstype.Fall(缩放)
+     *                     Effectstype.Newspager(左右旋转)   Effectstype.Fliph(上下翻转)  Effectstype.RotateBottom(从下部翻转划入)  Effectstype.RotateLeft(从左侧翻转划入)   Effectstype.Slit(翻转)  Effectstype.Shake(抖动)  Effectstype.Shake(Sidefill)
+     * @param isCancelableOnTouchOutside 点击dialog外部是否消失
+     * @param confirmListener  按钮点击事件
+     * @return
+     */
+    public Dialog showErrorDialog(Context context, String mTitle, String mInfo, boolean haveButton,Effectstype effectstype ,Boolean isCancelableOnTouchOutside , View.OnClickListener confirmListener) {
+        return showDialog(context, null, mTitle, mInfo, DialogTypeEnum.ERROR, haveButton, effectstype == null ? Effectstype.Shake : effectstype , isCancelableOnTouchOutside , confirmListener, null);
     }
     /**
      * 显示错误信息
@@ -112,8 +167,8 @@ public class DialogUtils {
      * @param confirmListener  按钮点击事件
      * @return
      */
-    public Dialog showErrorDialog(Context context, String mTitle, String mInfo, boolean haveButton, View.OnClickListener confirmListener) {
-        return showDialog(context, null, mTitle, mInfo, DialogTypeEnum.ERROR, haveButton,null ,  confirmListener, null);
+    public Dialog showErrorDialog(Context context, String mTitle, String mInfo, boolean haveButton,View.OnClickListener confirmListener) {
+        return showErrorDialog(context, mTitle, mInfo, haveButton, null ,true ,  confirmListener);
     }
 
     /**
@@ -136,7 +191,7 @@ public class DialogUtils {
      * @return
      */
     public Dialog showJudgeDialog(Context context, String mTitle, String mInfo, boolean haveButton, View.OnClickListener confirmListener, View.OnClickListener cancelListener) {
-        return showDialog(context, null, mTitle, mInfo, DialogTypeEnum.JUDGE, haveButton, null , confirmListener, cancelListener);
+        return showDialog(context, null, mTitle, mInfo, DialogTypeEnum.JUDGE, haveButton, null ,  false , confirmListener,cancelListener);
     }
 
     /**
@@ -149,18 +204,19 @@ public class DialogUtils {
      * @param haveButton  是否有按钮
      * @param effectstype  动画效果  Effectstype.Fadein(默认效果)  Effectstype.Slideleft(左侧划入)  Effectstype.Slidetop(上部划入)   Effectstype.SlideBottom(底部划入)   Effectstype.Slideright(右侧划入)   Effectstype.Fall(缩放)
      *                     Effectstype.Newspager(左右旋转)   Effectstype.Fliph(上下翻转)  Effectstype.RotateBottom(从下部翻转划入)  Effectstype.RotateLeft(从左侧翻转划入)   Effectstype.Slit(翻转)  Effectstype.Shake(抖动)  Effectstype.Shake(Sidefill)
+     * @param isCancelableOnTouchOutside 点击dialog外部是否消失
      * @param confirmListener  确定按钮点击事件
      * @param cancelListener  取消按钮点击事件
      * @return
      */
-    private Dialog showDialog(Context mContext, Bitmap mIcon, String mTitle, String mInfo, DialogTypeEnum dialogTypeEnum, boolean haveButton, Effectstype effectstype , View.OnClickListener confirmListener, View.OnClickListener cancelListener) {
+    private Dialog showDialog(Context mContext, Bitmap mIcon, String mTitle, String mInfo, DialogTypeEnum dialogTypeEnum, boolean haveButton, Effectstype effectstype , Boolean isCancelableOnTouchOutside ,View.OnClickListener confirmListener, View.OnClickListener cancelListener) {
         if (mContext == null) {
-            throw new NullPointerException(DialogConstant.EXCEPTION_INFO);
+            throw new InossemException(ExceptionEnum.NULL_PARAMS , DialogConstants.EXCEPTION_INFO);
         }
         if (effectstype == null){
             effectstype = Effectstype.Fadein ;
         }
-        boolean isCancelableOnTouchOutside = true;
+        Boolean mIsCancelableOnTouchOutside = isCancelableOnTouchOutside == null ?  true : isCancelableOnTouchOutside;
         dialogBuilder = NiftyDialogBuilder.getInstance(mContext);
         View niftyDialogEffectsView = LayoutInflater.from(mContext).inflate(R.layout.dialog_nifty_base, null);
         RelativeLayout head = niftyDialogEffectsView.findViewById(R.id.head);
@@ -195,7 +251,6 @@ public class DialogUtils {
                 if (mIcon == null) {
                     mIcon = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.ico_judge);
                 }
-                isCancelableOnTouchOutside = false;
                 cancel.setVisibility(View.VISIBLE);
                 cancel.setText(mContext.getResources().getString(R.string.tips_dialog_cancel));
                 break;
@@ -255,13 +310,32 @@ public class DialogUtils {
         } else {
             cancel.setOnClickListener(cancelListener);
         }
+        return showDialog(mContext , niftyDialogEffectsView , mIsCancelableOnTouchOutside , effectstype);
+    }
+    /**
+     * dialog基础方法
+     * @param mContext  上下文
+     * @param view dialog布局
+     * @param isCancelableOnTouchOutside 点击dialog外部是否消失
+     * @param effectstype  动画效果  Effectstype.Fadein(默认效果)  Effectstype.Slideleft(左侧划入)  Effectstype.Slidetop(上部划入)   Effectstype.SlideBottom(底部划入)   Effectstype.Slideright(右侧划入)   Effectstype.Fall(缩放)
+     *                     Effectstype.Newspager(左右旋转)   Effectstype.Fliph(上下翻转)  Effectstype.RotateBottom(从下部翻转划入)  Effectstype.RotateLeft(从左侧翻转划入)   Effectstype.Slit(翻转)  Effectstype.Shake(抖动)  Effectstype.Shake(Sidefill)
+'     * @return
+     */
+    private Dialog showDialog(Context mContext, View view , Boolean isCancelableOnTouchOutside ,Effectstype effectstype) {
+        if (mContext == null) {
+            throw new InossemException(ExceptionEnum.NULL_PARAMS , DialogConstants.EXCEPTION_INFO);
+        }
+        if (effectstype == null){
+            effectstype = Effectstype.Fadein ;
+        }
+        dialogBuilder = NiftyDialogBuilder.getInstance(mContext);
         dialogBuilder
                 .withTitle(null)
                 .withMessage(null)
                 .isCancelableOnTouchOutside(isCancelableOnTouchOutside)
-                .withDuration(DURATION)
+                .withDuration(DialogConstants.DURATION)
                 .withEffect(effectstype)
-                .setCustomView(niftyDialogEffectsView, mContext);
+                .setCustomView(view, mContext);
         LinearLayout linearLayout = dialogBuilder.findViewById(R.id.parentPanel);
         linearLayout.setBackgroundResource(R.drawable.dialog_corners);
         dialogBuilder.show();

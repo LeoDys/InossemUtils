@@ -12,6 +12,7 @@ import android.support.annotation.RequiresPermission;
 import android.telephony.TelephonyManager;
 import android.text.format.Formatter;
 
+import com.inossem_library.app.network.constant.NetworkTypeEnum;
 import com.inossem_library.exception.ExceptionEnum;
 import com.inossem_library.exception.InossemException;
 
@@ -30,7 +31,7 @@ import static android.content.Context.WIFI_SERVICE;
 /**
  * 网络相关
  *
- * @author Lin
+ * @author LinH
  */
 public final class NetworkUtils {
     /**
@@ -107,7 +108,7 @@ public final class NetworkUtils {
     }
 
     /**
-     * 判断网络是否是 4G
+     * 判断网络是否是4G
      * {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />}访问网络状态权限
      *
      * @return True连接 False断开
@@ -128,7 +129,7 @@ public final class NetworkUtils {
     }
 
     /**
-     * 判断 wifi 是否打开
+     * 判断WIFI是否打开
      * {@code <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />}访问WIFI状态权限
      *
      * @return True连接 False断开
@@ -168,7 +169,7 @@ public final class NetworkUtils {
     }
 
     /**
-     * 判断 wifi 是否连接状态
+     * 判断WIFI是否连接状态
      * {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />}访问网络状态权限
      *
      * @return True连接 False断开
@@ -211,17 +212,17 @@ public final class NetworkUtils {
      * @return 网络类型
      */
     @RequiresPermission(ACCESS_NETWORK_STATE)
-    public static NetworkType getNetworkType(@NonNull Context context) {
+    public static NetworkTypeEnum getNetworkType(@NonNull Context context) {
         if (context == null) {
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "context can not null");
         }
         if (isEthernet(context)) {
-            return NetworkType.NETWORK_ETHERNET;
+            return NetworkTypeEnum.NETWORK_ETHERNET;
         }
         NetworkInfo info = getActiveNetworkInfo(context);
         if (info != null && info.isAvailable()) {
             if (info.getType() == ConnectivityManager.TYPE_WIFI) {
-                return NetworkType.NETWORK_WIFI;
+                return NetworkTypeEnum.NETWORK_WIFI;
             } else if (info.getType() == ConnectivityManager.TYPE_MOBILE) {
                 switch (info.getSubtype()) {
                     /* 返回网络类型的一般类，如“3G”或“4G”*/
@@ -231,7 +232,7 @@ public final class NetworkUtils {
                     case TelephonyManager.NETWORK_TYPE_EDGE:
                     case TelephonyManager.NETWORK_TYPE_1xRTT:
                     case TelephonyManager.NETWORK_TYPE_IDEN:
-                        return NetworkType.NETWORK_2G;
+                        return NetworkTypeEnum.NETWORK_2G;
                     case TelephonyManager.NETWORK_TYPE_TD_SCDMA:
                     case TelephonyManager.NETWORK_TYPE_EVDO_A:
                     case TelephonyManager.NETWORK_TYPE_UMTS:
@@ -242,24 +243,24 @@ public final class NetworkUtils {
                     case TelephonyManager.NETWORK_TYPE_EVDO_B:
                     case TelephonyManager.NETWORK_TYPE_EHRPD:
                     case TelephonyManager.NETWORK_TYPE_HSPAP:
-                        return NetworkType.NETWORK_3G;
+                        return NetworkTypeEnum.NETWORK_3G;
                     case TelephonyManager.NETWORK_TYPE_IWLAN:
                     case TelephonyManager.NETWORK_TYPE_LTE:
-                        return NetworkType.NETWORK_4G;
+                        return NetworkTypeEnum.NETWORK_4G;
                     default:
                         /*获得类型名称*/
                         String subtypeName = info.getSubtypeName();
                         if ("TD-SCDMA".equalsIgnoreCase(subtypeName)) {
-                            return NetworkType.NETWORK_3G;
+                            return NetworkTypeEnum.NETWORK_3G;
                         } else if ("CDMA2000".equalsIgnoreCase(subtypeName)) {
-                            return NetworkType.NETWORK_3G;
+                            return NetworkTypeEnum.NETWORK_3G;
                         } else if ("WCDMA".equalsIgnoreCase(subtypeName)) {
-                            return NetworkType.NETWORK_3G;
+                            return NetworkTypeEnum.NETWORK_3G;
                         }
                 }
             }
         }
-        return NetworkType.NETWORK_UNKNOWN;
+        return NetworkTypeEnum.NETWORK_UNKNOWN;
     }
 
     /**
@@ -269,7 +270,7 @@ public final class NetworkUtils {
      * @return True连接 False断开
      */
     @RequiresPermission(ACCESS_NETWORK_STATE)
-    private static boolean isEthernet(@NonNull Context context) {
+    public static boolean isEthernet(@NonNull Context context) {
         if (context == null) {
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "context can not null");
         }
@@ -291,7 +292,7 @@ public final class NetworkUtils {
      * @return 网络信息
      */
     @RequiresPermission(ACCESS_NETWORK_STATE)
-    private static NetworkInfo getActiveNetworkInfo(@NonNull Context context) {
+    public static NetworkInfo getActiveNetworkInfo(@NonNull Context context) {
         if (context == null) {
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "context can not null");
         }
@@ -304,7 +305,7 @@ public final class NetworkUtils {
     }
 
     /**
-     * 获取 IP地址
+     * 获取IP地址
      * {@code <uses-permission android:name="android.permission.INTERNET" />}因特网权限
      *
      * @param useIPv4 True使用ipv4 False不使用ipv4
@@ -348,21 +349,7 @@ public final class NetworkUtils {
     }
 
     /**
-     * 获取域名 IP地址
-     * {@code <uses-permission android:name="android.permission.INTERNET" />}因特网权限
-     *
-     * @param domain 域名
-     * @return IP地址
-     */
-    @RequiresPermission(INTERNET)
-    public static String getDomainAddress(final String domain) throws Throwable {
-        InetAddress inetAddress = InetAddress.getByName(domain);
-        // getHostAddress 以文本形式返回IP地址字符串
-        return inetAddress.getHostAddress();
-    }
-
-    /**
-     * 根据WIFI获取网络 IP地址
+     * 根据WIFI获取网络IP地址
      *
      * @return IP地址
      */
@@ -433,23 +420,5 @@ public final class NetworkUtils {
             return "";
         }
         return Formatter.formatIpAddress(wm.getDhcpInfo().serverAddress);
-    }
-
-    /**
-     * 网络类型
-     */
-    public enum NetworkType {
-        // 以太网
-        NETWORK_WIFI,
-        // WIFI
-        NETWORK_4G,
-        // 4G
-        NETWORK_3G,
-        // 3G
-        NETWORK_2G,
-        // 2G
-        NETWORK_UNKNOWN,
-        // 未知网络
-        NETWORK_ETHERNET,
     }
 }

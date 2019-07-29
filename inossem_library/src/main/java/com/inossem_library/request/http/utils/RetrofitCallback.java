@@ -3,6 +3,13 @@ package com.inossem_library.request.http.utils;
 import android.app.Dialog;
 import android.support.annotation.NonNull;
 
+import com.inossem_library.request.http.constant.RetrofitCallBackError;
+import com.inossem_library.request.http.constant.RetrofitCallBackErrorEnum;
+
+import java.lang.reflect.UndeclaredThrowableException;
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,12 +32,11 @@ public abstract class RetrofitCallback<T> implements Callback<T> {
     public abstract void httpError(Response<T> response);
 
     //连接超时等连接错误
-    //TODO 错误
-    public abstract void failure(Throwable t);
+    public abstract void failure(RetrofitCallBackError error);
 
     /**
      * 构造方法1
-     *
+     * <p>
      * 用此方法没有请求时的加载框
      */
     public RetrofitCallback() {
@@ -86,8 +92,25 @@ public abstract class RetrofitCallback<T> implements Callback<T> {
     public void onFailure(@NonNull Call call, @NonNull Throwable t) {
         //关闭dialog
         dialogDismiss();
-        //连接超时 等连接错误
-        failure(t);
+
+        //超时 等连接错误
+        RetrofitCallBackErrorEnum errorEnum;
+
+        if (t instanceof SocketTimeoutException) {
+            //超时
+            errorEnum = RetrofitCallBackErrorEnum.TIME_OUT;
+        } else if (t instanceof ConnectException) {
+            //连接错误
+            errorEnum = RetrofitCallBackErrorEnum.CONNECT_FAIL;
+        } else if (t instanceof UnknownError) {
+            //未找到主机
+            errorEnum = RetrofitCallBackErrorEnum.FIND_NULL;
+        } else {
+            //其它错误
+            errorEnum = RetrofitCallBackErrorEnum.OTHER;
+        }
+
+        failure(new RetrofitCallBackError(t, errorEnum.getErrorCode(), errorEnum.getErrorMSgCN(), getErrorMSgUS(t)));
     }
 
     /**
@@ -97,6 +120,25 @@ public abstract class RetrofitCallback<T> implements Callback<T> {
         if (null != dialog && dialog.isShowing()) {
             dialog.dismiss();
         }
+    }
+
+    /**
+     * 获取错误信息
+     *
+     * @param e 异常
+     * @return 错误信息
+     */
+    private String getErrorMSgUS(Throwable e) {
+        String msg = null;
+        if (e instanceof UndeclaredThrowableException) {
+            Throwable targetEx = ((UndeclaredThrowableException) e).getUndeclaredThrowable();
+            if (targetEx != null) {
+                msg = targetEx.getMessage();
+            }
+        } else {
+            msg = e.getMessage();
+        }
+        return msg;
     }
 
 }

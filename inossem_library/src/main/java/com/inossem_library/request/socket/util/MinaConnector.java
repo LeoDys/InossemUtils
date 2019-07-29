@@ -1,7 +1,9 @@
 package com.inossem_library.request.socket.util;
 
 import com.inossem_library.request.socket.constant.SocketConstants;
+import com.inossem_library.tips.logcat.util.LogUtils;
 
+import org.apache.mina.core.RuntimeIoException;
 import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.future.ConnectFuture;
 import org.apache.mina.core.session.IoSession;
@@ -120,8 +122,14 @@ public class MinaConnector implements INetConnector {
         // 连结到服务器:
         ConnectFuture cf = connectorudp.connect(new InetSocketAddress(host, port));
         cf.awaitUninterruptibly();
-        session = cf.getSession();
-        isCon = session.isConnected();
+        try {
+            session = cf.getSession();
+            isCon = true;
+        } catch (RuntimeIoException e) {
+            e.printStackTrace();
+            LogUtils.e(e.getMessage());
+            isCon = false;
+        }
         return isCon;
     }
 
@@ -142,8 +150,14 @@ public class MinaConnector implements INetConnector {
         // 连结到服务器
         ConnectFuture cf = connectortcp.connect(new InetSocketAddress(host, port));
         cf.awaitUninterruptibly();
-        session = cf.getSession();
-        isCon = session.isConnected();
+        try {
+            session = cf.getSession();
+            isCon = true;
+        } catch (RuntimeIoException e) {
+            e.printStackTrace();
+            LogUtils.e(e.getMessage());
+            isCon = false;
+        }
         return isCon;
     }
 
@@ -173,7 +187,7 @@ public class MinaConnector implements INetConnector {
             in.get(bytes);
             //目前后台发送的数据前面都会有2个字符的无用数据，换成16进制后包括空格就是6位 不包括空格是4位
 //            out.write(ConvertUtils.hexStr2Str(ConvertUtils.bytes2HexString(bytes)));
-            out.write(new String(bytes));
+            out.write(new String(bytes, "GBK"));
         }
     }
 

@@ -7,8 +7,8 @@ package com.inossem.request.http.bean;
  * @describe 基础bean类
  */
 public class BaseBean<T> {
-    private String returnCode;
-    private String returnMsg;
+    private String errorCode;
+    private String errorMsg;
     private T data;
 
     public T getData() {
@@ -19,19 +19,19 @@ public class BaseBean<T> {
         this.data = data;
     }
 
-    public String getReturnCode() {
-        return returnCode;
+    public String getErrorCode() {
+        return errorCode;
     }
 
-    public void setReturnCode(String returnCode) {
-        this.returnCode = returnCode;
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
     }
 
-    public String getReturnMsg() {
-        return returnMsg;
+    public String getErrorMsg() {
+        return errorMsg;
     }
 
-    public void setReturnMsg(String returnMsg) {
-        this.returnMsg = returnMsg;
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
     }
 }

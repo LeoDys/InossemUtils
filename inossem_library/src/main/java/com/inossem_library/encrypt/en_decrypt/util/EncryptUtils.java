@@ -1,6 +1,7 @@
 package com.inossem_library.encrypt.en_decrypt.util;
 
 import android.security.keystore.KeyProperties;
+import android.text.TextUtils;
 import android.util.Base64;
 
 import com.inossem_library.encrypt.en_decrypt.constant.EncryptConstant;
@@ -35,42 +36,7 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public final class EncryptUtils {
     // TODO: 哈希加密
-    // TODO: MD2加密
-
-    /**
-     * MD2 加密
-     *
-     * @param data 数据
-     * @return MD2加密的十六进制字符串
-     */
-    public static String encryptMD2ToString(final String data) throws Throwable {
-        if (data == null || data.length() == 0) {
-            return "";
-        }
-        return encryptMD2ToString(data.getBytes());
-    }
-
-    /**
-     * MD2 加密
-     *
-     * @param data 数据
-     * @return MD2加密的十六进制字符串
-     */
-    public static String encryptMD2ToString(final byte[] data) throws Throwable {
-        return bytes2HexString(encryptMD2(data));
-    }
-
     // TODO: MD5加密
-
-    /**
-     * MD2 加密
-     *
-     * @param data 数据
-     * @return MD2加密的byte[]
-     */
-    public static byte[] encryptMD2(final byte[] data) throws Throwable {
-        return hashTemplate(data, "MD2");
-    }
 
     /**
      * MD5加密
@@ -79,7 +45,7 @@ public final class EncryptUtils {
      * @return MD5加密的十六进制字符串
      */
     public static String encryptMD5ToString(final String data) throws Throwable {
-        if (data == null || data.length() == 0) {
+        if (TextUtils.isEmpty(data)) {
             return "";
         }
         return encryptMD5ToString(data.getBytes());
@@ -181,8 +147,6 @@ public final class EncryptUtils {
         return bytes2HexString(encryptMD5File(file));
     }
 
-    // TODO: SHA1加密
-
     /**
      * MD5加密
      *
@@ -220,6 +184,7 @@ public final class EncryptUtils {
             }
         }
     }
+    // TODO: SHA1加密
 
     /**
      * SHA1加密
@@ -228,7 +193,7 @@ public final class EncryptUtils {
      * @return SHA1加密的十六进制字符串
      */
     public static String encryptSHA1ToString(final String data) throws Throwable {
-        if (data == null || data.length() == 0) {
+        if (TextUtils.isEmpty(data)) {
             return "";
         }
         return encryptSHA1ToString(data.getBytes());
@@ -244,8 +209,6 @@ public final class EncryptUtils {
         return bytes2HexString(encryptSHA1(data));
     }
 
-    // TODO: SHA224加密
-
     /**
      * SHA1加密
      *
@@ -255,6 +218,7 @@ public final class EncryptUtils {
     public static byte[] encryptSHA1(final byte[] data) throws Throwable {
         return hashTemplate(data, "SHA-1");
     }
+    // TODO: SHA224加密
 
     /**
      * SHA224加密
@@ -263,7 +227,7 @@ public final class EncryptUtils {
      * @return 十六进制串的SHA224加密
      */
     public static String encryptSHA224ToString(final String data) throws Throwable {
-        if (data == null || data.length() == 0) {
+        if (TextUtils.isEmpty(data)) {
             return "";
         }
         return encryptSHA224ToString(data.getBytes());
@@ -279,8 +243,6 @@ public final class EncryptUtils {
         return bytes2HexString(encryptSHA224(data));
     }
 
-    // TODO: SHA256加密
-
     /**
      * SHA224加密
      *
@@ -290,6 +252,7 @@ public final class EncryptUtils {
     public static byte[] encryptSHA224(final byte[] data) throws Throwable {
         return hashTemplate(data, "SHA224");
     }
+    // TODO: SHA256加密
 
     /**
      * SHA256加密
@@ -298,7 +261,7 @@ public final class EncryptUtils {
      * @return SHA256加密的十六进制字符串
      */
     public static String encryptSHA256ToString(final String data) throws Throwable {
-        if (data == null || data.length() == 0) {
+        if (TextUtils.isEmpty(data)) {
             return "";
         }
         return encryptSHA256ToString(data.getBytes());
@@ -314,8 +277,6 @@ public final class EncryptUtils {
         return bytes2HexString(encryptSHA256(data));
     }
 
-    // TODO: SHA384加密
-
     /**
      * SHA256加密
      *
@@ -325,6 +286,7 @@ public final class EncryptUtils {
     public static byte[] encryptSHA256(final byte[] data) throws Throwable {
         return hashTemplate(data, "SHA-256");
     }
+    // TODO: SHA384加密
 
     /**
      * SHA384加密
@@ -333,7 +295,7 @@ public final class EncryptUtils {
      * @return SHA384加密的十六进制字符串
      */
     public static String encryptSHA384ToString(final String data) throws Throwable {
-        if (data == null || data.length() == 0) {
+        if (TextUtils.isEmpty(data)) {
             return "";
         }
         return encryptSHA384ToString(data.getBytes());
@@ -349,8 +311,6 @@ public final class EncryptUtils {
         return bytes2HexString(encryptSHA384(data));
     }
 
-    // TODO: SHA512加密
-
     /**
      * SHA384加密
      *
@@ -360,6 +320,7 @@ public final class EncryptUtils {
     public static byte[] encryptSHA384(final byte[] data) throws Throwable {
         return hashTemplate(data, "SHA-384");
     }
+    // TODO: SHA512加密
 
     /**
      * SHA512加密
@@ -368,7 +329,7 @@ public final class EncryptUtils {
      * @return 十六进制字符串SHA512加密
      */
     public static String encryptSHA512ToString(final String data) throws Throwable {
-        if (data == null || data.length() == 0) {
+        if (TextUtils.isEmpty(data)) {
             return "";
         }
         return encryptSHA512ToString(data.getBytes());
@@ -384,8 +345,6 @@ public final class EncryptUtils {
         return bytes2HexString(encryptSHA512(data));
     }
 
-    // TODO: 哈希加密
-
     /**
      * SHA512加密
      *
@@ -395,8 +354,6 @@ public final class EncryptUtils {
     public static byte[] encryptSHA512(final byte[] data) throws Throwable {
         return hashTemplate(data, "SHA-512");
     }
-
-    // TODO: hmac加密
 
     /**
      * 哈希加密
@@ -413,6 +370,7 @@ public final class EncryptUtils {
         md.update(data);
         return md.digest();
     }
+    // TODO: hmac加密
 
     /**
      * HmacMD5加密
@@ -439,8 +397,6 @@ public final class EncryptUtils {
         return bytes2HexString(encryptHmacMD5(data, key));
     }
 
-    // TODO: HmacSHA1加密
-
     /**
      * HmacMD5加密
      *
@@ -451,6 +407,7 @@ public final class EncryptUtils {
     public static byte[] encryptHmacMD5(final byte[] data, final byte[] key) throws Throwable {
         return hmacTemplate(data, key, "HmacMD5");
     }
+    // TODO: HmacSHA1加密
 
     /**
      * HmacSHA1加密
@@ -477,8 +434,6 @@ public final class EncryptUtils {
         return bytes2HexString(encryptHmacSHA1(data, key));
     }
 
-    // TODO: HmacSHA224加密
-
     /**
      * HmacSHA1加密
      *
@@ -489,6 +444,7 @@ public final class EncryptUtils {
     public static byte[] encryptHmacSHA1(final byte[] data, final byte[] key) throws Throwable {
         return hmacTemplate(data, key, "HmacSHA1");
     }
+    // TODO: HmacSHA224加密
 
     /**
      * HmacSHA224加密
@@ -515,8 +471,6 @@ public final class EncryptUtils {
         return bytes2HexString(encryptHmacSHA224(data, key));
     }
 
-    // TODO: HmacSHA256加密
-
     /**
      * HmacSHA224加密
      *
@@ -527,6 +481,7 @@ public final class EncryptUtils {
     public static byte[] encryptHmacSHA224(final byte[] data, final byte[] key) throws Throwable {
         return hmacTemplate(data, key, "HmacSHA224");
     }
+    // TODO: HmacSHA256加密
 
     /**
      * HmacSHA256加密
@@ -553,8 +508,6 @@ public final class EncryptUtils {
         return bytes2HexString(encryptHmacSHA256(data, key));
     }
 
-    // TODO: HmacSHA384加密
-
     /**
      * HmacSHA256加密
      *
@@ -565,6 +518,7 @@ public final class EncryptUtils {
     public static byte[] encryptHmacSHA256(final byte[] data, final byte[] key) throws Throwable {
         return hmacTemplate(data, key, "HmacSHA256");
     }
+    // TODO: HmacSHA384加密
 
     /**
      * HmacSHA384加密
@@ -591,8 +545,6 @@ public final class EncryptUtils {
         return bytes2HexString(encryptHmacSHA384(data, key));
     }
 
-    // TODO: HmacSHA512加密
-
     /**
      * HmacSHA384加密
      *
@@ -603,6 +555,7 @@ public final class EncryptUtils {
     public static byte[] encryptHmacSHA384(final byte[] data, final byte[] key) throws Throwable {
         return hmacTemplate(data, key, "HmacSHA384");
     }
+    // TODO: HmacSHA512加密
 
     /**
      * HmacSHA512加密
@@ -629,8 +582,6 @@ public final class EncryptUtils {
         return bytes2HexString(encryptHmacSHA512(data, key));
     }
 
-    // TODO: hmac加密
-
     /**
      * HmacSHA512加密
      *
@@ -641,8 +592,6 @@ public final class EncryptUtils {
     public static byte[] encryptHmacSHA512(final byte[] data, final byte[] key) throws Throwable {
         return hmacTemplate(data, key, "HmacSHA512");
     }
-
-    // TODO: DES加密
 
     /**
      * hmac加密
@@ -661,14 +610,15 @@ public final class EncryptUtils {
         mac.init(secretKey);
         return mac.doFinal(data);
     }
+    // TODO: DES加密
 
     /**
      * DES加密
      *
-     * @param data           数据
-     * @param key            密钥
+     * @param data           数据 需要为8位
+     * @param key            密钥 需要为8位
      * @param transformation 块加密的模式以及数据填充
-     *                       <p>样例"DES/CBC/PKCS5Padding
+     *                       <p>样例"DES/CBC/PKCS5Padding"
      *                       Cipher加密器初始化需要一个字符串,字符串里提供了三种设置.
      *                       <p>一是,加解密算法;二是,加解密模式;三是,是否需要填充.
      *                       <p>
@@ -712,6 +662,8 @@ public final class EncryptUtils {
     /**
      * DES加密
      *
+     * @param key 需要为8位
+     * @param iv  需要为8位
      * @return DES加密的十六进制字符串
      * @see EncryptUtils#encryptDES2Base64(byte[], byte[], String, byte[]) 参数详情
      */
@@ -719,21 +671,24 @@ public final class EncryptUtils {
         return bytes2HexString(encryptDES(data, key, transformation, iv));
     }
 
-    // TODO: DES解密
-
     /**
      * DES加密
      *
+     * @param key 需要为8位
+     * @param iv  需要为8位
      * @return DES加密的byte[]
      * @see EncryptUtils#encryptDES2Base64(byte[], byte[], String, byte[]) 参数详情
      */
     public static byte[] encryptDES(final byte[] data, final byte[] key, final String transformation, final byte[] iv) throws Throwable {
         return symmetricTemplate(data, key, "DES", transformation, iv, true);
     }
+    // TODO: DES解密
 
     /**
      * DES解密
      *
+     * @param key 需要为8位
+     * @param iv  需要为8位
      * @return 使用了base64编码的DES解密byte[]
      * @see EncryptUtils#encryptDES2Base64(byte[], byte[], String, byte[]) 参数详情
      */
@@ -744,6 +699,8 @@ public final class EncryptUtils {
     /**
      * DES解密
      *
+     * @param key 需要为8位
+     * @param iv  需要为8位
      * @return 十六进制字符串的DES解密byte[]
      * @see EncryptUtils#encryptDES2Base64(byte[], byte[], String, byte[]) 参数详情
      */
@@ -751,11 +708,11 @@ public final class EncryptUtils {
         return decryptDES(hexString2Bytes(data), key, transformation, iv);
     }
 
-    // TODO: 3DES加密
-
     /**
      * DES解密
      *
+     * @param key 需要为8位
+     * @param iv  需要为8位
      * @return DES解密的byte[]
      * @see EncryptUtils#encryptDES2Base64(byte[], byte[], String, byte[]) 参数详情
      */
@@ -763,79 +720,13 @@ public final class EncryptUtils {
         return symmetricTemplate(data, key, "DES", transformation, iv, false);
     }
 
-    /**
-     * 3DES加密
-     *
-     * @param transformation DESede/CBC/PKCS5Padding
-     * @return 3DES加密的base64编码byte[]
-     * @see EncryptUtils#encryptDES2Base64(byte[], byte[], String, byte[]) 参数详情
-     */
-    public static byte[] encrypt3DES2Base64(final byte[] data, final byte[] key, final String transformation, final byte[] iv) throws Throwable {
-        return base64Encode(encrypt3DES(data, key, transformation, iv));
-    }
-
-    /**
-     * 3DES加密
-     *
-     * @param transformation DESede/CBC/PKCS5Padding
-     * @return 3DES加密的十六进制字符串
-     * @see EncryptUtils#encryptDES2Base64(byte[], byte[], String, byte[]) 参数详情
-     */
-    public static String encrypt3DES2HexString(final byte[] data, final byte[] key, final String transformation, final byte[] iv) throws Throwable {
-        return bytes2HexString(encrypt3DES(data, key, transformation, iv));
-    }
-
-    // TODO: 3DES解密
-
-    /**
-     * 3DES加密
-     *
-     * @param transformation DESede/CBC/PKCS5Padding
-     * @return 3DES加密的byte[]
-     * @see EncryptUtils#encryptDES2Base64(byte[], byte[], String, byte[]) 参数详情
-     */
-    public static byte[] encrypt3DES(final byte[] data, final byte[] key, final String transformation, final byte[] iv) throws Throwable {
-        return symmetricTemplate(data, key, "DESede", transformation, iv, true);
-    }
-
-    /**
-     * 3DES解密
-     *
-     * @param transformation DESede/CBC/PKCS5Padding
-     * @return 用于base64编码byte[]的3DES解密byte[]
-     * @see EncryptUtils#encryptDES2Base64(byte[], byte[], String, byte[]) 参数详情
-     */
-    public static byte[] decryptBase64_3DES(final byte[] data, final byte[] key, final String transformation, final byte[] iv) throws Throwable {
-        return decrypt3DES(base64Decode(data), key, transformation, iv);
-    }
-
-    /**
-     * 3DES解密
-     *
-     * @param transformation DESede/CBC/PKCS5Padding
-     * @return 十六进制字符串的3DES解密byte[]
-     * @see EncryptUtils#encryptDES2Base64(byte[], byte[], String, byte[]) 参数详情
-     */
-    public static byte[] decryptHexString3DES(final String data, final byte[] key, final String transformation, final byte[] iv) throws Throwable {
-        return decrypt3DES(hexString2Bytes(data), key, transformation, iv);
-    }
-
     // TODO: AES加密
-
-    /**
-     * 3DES解密
-     *
-     * @param transformation DESede/CBC/PKCS5Padding
-     * @return 对十六进制字符串的解密
-     * @see EncryptUtils#encryptDES2Base64(byte[], byte[], String, byte[]) 参数详情
-     */
-    public static byte[] decrypt3DES(final byte[] data, final byte[] key, final String transformation, final byte[] iv) throws Throwable {
-        return symmetricTemplate(data, key, "DESede", transformation, iv, false);
-    }
 
     /**
      * AES加密
      *
+     * @param key            需要为16位
+     * @param iv             需要为16位
      * @param transformation AES/CBC/PKCS5Padding
      * @return AES加密的base64编码byte[]
      * @see EncryptUtils#encryptDES2Base64(byte[], byte[], String, byte[]) 参数详情
@@ -847,6 +738,8 @@ public final class EncryptUtils {
     /**
      * AES加密
      *
+     * @param key            需要为16位
+     * @param iv             需要为16位
      * @param transformation AES/CBC/PKCS5Padding
      * @return AES加密的十六进制字符串
      * @see EncryptUtils#encryptDES2Base64(byte[], byte[], String, byte[]) 参数详情
@@ -855,11 +748,11 @@ public final class EncryptUtils {
         return bytes2HexString(encryptAES(data, key, transformation, iv));
     }
 
-    // TODO: AES解密
-
     /**
      * AES加密
      *
+     * @param key            需要为16位
+     * @param iv             需要为16位
      * @param transformation AES/CBC/PKCS5Padding
      * @return AES加密的byte[]
      * @see EncryptUtils#encryptDES2Base64(byte[], byte[], String, byte[]) 参数详情
@@ -867,10 +760,13 @@ public final class EncryptUtils {
     public static byte[] encryptAES(final byte[] data, final byte[] key, final String transformation, final byte[] iv) throws Throwable {
         return symmetricTemplate(data, key, "AES", transformation, iv, true);
     }
+    // TODO: AES解密
 
     /**
      * AES解密
      *
+     * @param key            需要为16位
+     * @param iv             需要为16位
      * @param transformation AES/CBC/PKCS5Padding
      * @return 用于base64编码byte[]的AES解密byte[]
      * @see EncryptUtils#encryptDES2Base64(byte[], byte[], String, byte[]) 参数详情
@@ -882,6 +778,8 @@ public final class EncryptUtils {
     /**
      * AES解密
      *
+     * @param key            需要为16位
+     * @param iv             需要为16位
      * @param transformation AES/CBC/PKCS5Padding
      * @return 十六进制字符串的AES解密byte[]
      * @see EncryptUtils#encryptDES2Base64(byte[], byte[], String, byte[]) 参数详情
@@ -893,6 +791,8 @@ public final class EncryptUtils {
     /**
      * AES解密
      *
+     * @param key            需要为16位
+     * @param iv             需要为16位
      * @param transformation AES/CBC/PKCS5Padding
      * @return AES解密的byte[]
      * @see EncryptUtils#encryptDES2Base64(byte[], byte[], String, byte[]) 参数详情
@@ -900,8 +800,6 @@ public final class EncryptUtils {
     public static byte[] decryptAES(final byte[] data, final byte[] key, final String transformation, final byte[] iv) throws Throwable {
         return symmetricTemplate(data, key, "AES", transformation, iv, false);
     }
-
-    // TODO: RSA加密
 
     /**
      * 对称加密或解密的byte[]
@@ -931,6 +829,7 @@ public final class EncryptUtils {
         }
         return cipher.doFinal(data);
     }
+    // TODO: RSA加密
 
     /**
      * RSA加密
@@ -956,8 +855,6 @@ public final class EncryptUtils {
         return bytes2HexString(encryptRSA(data, key, isPublicKey, transformation));
     }
 
-    // TODO: RSA解密
-
     /**
      * RSA加密
      *
@@ -969,6 +866,7 @@ public final class EncryptUtils {
     public static byte[] encryptRSA(final byte[] data, final byte[] key, final boolean isPublicKey, final String transformation) throws Throwable {
         return rsaTemplate(data, key, isPublicKey, transformation, true);
     }
+    // TODO: RSA解密
 
     /**
      * RSA解密
@@ -1005,8 +903,6 @@ public final class EncryptUtils {
     public static byte[] decryptRSA(final byte[] data, final byte[] key, final boolean isPublicKey, final String transformation) throws Throwable {
         return rsaTemplate(data, key, isPublicKey, transformation, false);
     }
-
-    // TODO: 其他加密方法
 
     /**
      * RSA加密或解密
@@ -1143,7 +1039,7 @@ public final class EncryptUtils {
      * @param input 数据
      * @return 解密数据
      */
-    private static byte[] base64Decode(final byte[] input) {
+    public static byte[] base64Decode(final byte[] input) {
         return Base64.decode(input, Base64.NO_WRAP);
     }
 

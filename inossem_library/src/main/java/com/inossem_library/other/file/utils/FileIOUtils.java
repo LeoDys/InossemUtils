@@ -1,4 +1,6 @@
-package com.inossem_library.other.file;
+package com.inossem_library.other.file.utils;
+
+import com.inossem_library.other.file.constant.FileIOConstant;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -24,13 +26,11 @@ import java.util.List;
  * @author Lin
  */
 public final class FileIOUtils {
-    /**
-     * 缓冲区大小
-     */
-    private static int sBufferSize = 524288;
 
     /**
      * 将输入流写入文件
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param filePath 文件的路径
      * @param is       输入流
@@ -42,6 +42,8 @@ public final class FileIOUtils {
 
     /**
      * 将输入流写入文件
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param filePath 文件的路径
      * @param is       输入流
@@ -54,6 +56,8 @@ public final class FileIOUtils {
 
     /**
      * 将输入流写入文件
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file 文件
      * @param is   输入流
@@ -65,6 +69,8 @@ public final class FileIOUtils {
 
     /**
      * 将输入流写入文件
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file   文件
      * @param is     输入流
@@ -78,7 +84,7 @@ public final class FileIOUtils {
         OutputStream os = null;
         try {
             os = new BufferedOutputStream(new FileOutputStream(file, append));
-            byte[] data = new byte[sBufferSize];
+            byte[] data = new byte[FileIOConstant.sBufferSize];
             for (int len; (len = is.read(data)) != -1; ) {
                 /*
                  *  b     数据
@@ -110,6 +116,8 @@ public final class FileIOUtils {
 
     /**
      * 将字节数组写入文件
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param filePath 文件的路径
      * @param bytes    字节数组
@@ -133,6 +141,8 @@ public final class FileIOUtils {
 
     /**
      * 将字节数组写入文件
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file  文件
      * @param bytes 字节数组
@@ -144,6 +154,8 @@ public final class FileIOUtils {
 
     /**
      * 将字节数组写入文件
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file   文件
      * @param bytes  字节数组
@@ -176,6 +188,8 @@ public final class FileIOUtils {
 
     /**
      * 将字节数组写入文件(可强制)
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param filePath 文件的路径
      * @param bytes    字节数组
@@ -188,6 +202,8 @@ public final class FileIOUtils {
 
     /**
      * 将字节数组写入文件(可强制)
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param filePath 文件的路径
      * @param bytes    字节数组
@@ -201,6 +217,8 @@ public final class FileIOUtils {
 
     /**
      * 将字节数组写入文件(可强制)
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file    文件
      * @param bytes   字节数组
@@ -213,6 +231,8 @@ public final class FileIOUtils {
 
     /**
      * 将字节数组写入文件(可强制)
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file    文件
      * @param bytes   字节数组
@@ -255,6 +275,8 @@ public final class FileIOUtils {
 
     /**
      * 将字节数组写入文件
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param filePath 文件的路径
      * @param bytes    字节数组
@@ -267,6 +289,8 @@ public final class FileIOUtils {
 
     /**
      * 将字节数组写入文件
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param filePath 文件的路径
      * @param bytes    字节数组
@@ -280,6 +304,8 @@ public final class FileIOUtils {
 
     /**
      * 将字节数组写入文件
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file    文件
      * @param bytes   字节数组
@@ -292,6 +318,8 @@ public final class FileIOUtils {
 
     /**
      * 将字节数组写入文件
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file    文件
      * @param bytes   字节数组
@@ -334,6 +362,8 @@ public final class FileIOUtils {
 
     /**
      * 将字符串写入文件
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param filePath 文件的路径
      * @param content  上下文
@@ -345,6 +375,8 @@ public final class FileIOUtils {
 
     /**
      * 将字符串写入文件
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param filePath 文件的路径
      * @param content  上下文
@@ -357,6 +389,8 @@ public final class FileIOUtils {
 
     /**
      * 将字符串写入文件
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file    文件
      * @param content The string of content.
@@ -368,6 +402,8 @@ public final class FileIOUtils {
 
     /**
      * 将字符串写入文件
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file    文件
      * @param content 上下文
@@ -402,6 +438,8 @@ public final class FileIOUtils {
 
     /**
      * 读取文件到字符串链表中
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param filePath 文件的路径
      * @return 文件中的行
@@ -412,6 +450,8 @@ public final class FileIOUtils {
 
     /**
      * 读取文件到字符串链表中
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param filePath    文件路径
      * @param charsetName 字符集
@@ -423,6 +463,8 @@ public final class FileIOUtils {
 
     /**
      * 读取文件到字符串链表中
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file 文件
      * @return 文件中的行
@@ -433,6 +475,8 @@ public final class FileIOUtils {
 
     /**
      * 读取文件到字符串链表中
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file        文件
      * @param charsetName 字符集
@@ -444,6 +488,8 @@ public final class FileIOUtils {
 
     /**
      * 读取文件到字符串链表中
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param filePath 文件的路径
      * @param st       这一行开始的下标
@@ -456,6 +502,8 @@ public final class FileIOUtils {
 
     /**
      * 读取文件到字符串链表中
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param filePath    文件路径
      * @param st          这一行开始的下标
@@ -469,6 +517,8 @@ public final class FileIOUtils {
 
     /**
      * 读取文件到字符串链表中
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file 文件
      * @param st   这一行开始的下标
@@ -481,6 +531,8 @@ public final class FileIOUtils {
 
     /**
      * 读取文件到字符串链表中
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file        文件
      * @param st          这一行开始的下标
@@ -531,6 +583,8 @@ public final class FileIOUtils {
 
     /**
      * 读取文件中的字符串
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param filePath 文件的路径
      * @return 文件中的字符串
@@ -541,6 +595,8 @@ public final class FileIOUtils {
 
     /**
      * 读取文件中的字符串
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param filePath    文件路径
      * @param charsetName 字符集
@@ -552,6 +608,8 @@ public final class FileIOUtils {
 
     /**
      * 读取文件中的字符串
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file 文件
      * @return 文件中的字符串
@@ -562,6 +620,8 @@ public final class FileIOUtils {
 
     /**
      * 读取文件中的字符串
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file        文件
      * @param charsetName 字符集
@@ -581,6 +641,8 @@ public final class FileIOUtils {
 
     /**
      * 读取文件到字节数组中
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param filePath 文件的路径
      * @return 文件中的byte[]
@@ -591,6 +653,8 @@ public final class FileIOUtils {
 
     /**
      * 读取文件到字节数组中
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file 文件
      * @return 文件中的byte[]
@@ -604,6 +668,8 @@ public final class FileIOUtils {
 
     /**
      * 读取文件路径到字节数组中
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param filePath 文件的路径
      * @return 文件中的byte[]
@@ -614,6 +680,8 @@ public final class FileIOUtils {
 
     /**
      * 读取文件路径到字节数组中
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file 文件
      * @return 文件中的byte[]
@@ -677,15 +745,19 @@ public final class FileIOUtils {
 
     /**
      * 设置缓冲区的大小 默认大小等于8192字节
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param bufferSize 缓冲区的大小
      */
     public static void setBufferSize(final int bufferSize) {
-        sBufferSize = bufferSize;
+        FileIOConstant.sBufferSize = bufferSize;
     }
 
     /**
      * 根据文件路径获取文件
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param filePath 文件路径
      * @return 文件
@@ -696,6 +768,8 @@ public final class FileIOUtils {
 
     /**
      * 判断文件是否存在
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file 文件
      * @return 是否存在
@@ -715,6 +789,8 @@ public final class FileIOUtils {
 
     /**
      * 判断目录是否存在
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file 文件
      * @return 是否存在
@@ -725,6 +801,8 @@ public final class FileIOUtils {
 
     /**
      * 判断文件是否存在
+     * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
+     * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
      * @param file 文件
      * @return 是否存在
@@ -761,9 +839,9 @@ public final class FileIOUtils {
         ByteArrayOutputStream os = null;
         try {
             os = new ByteArrayOutputStream();
-            byte[] b = new byte[sBufferSize];
+            byte[] b = new byte[FileIOConstant.sBufferSize];
             int len;
-            while ((len = is.read(b, 0, sBufferSize)) != -1) {
+            while ((len = is.read(b, 0, FileIOConstant.sBufferSize)) != -1) {
                 os.write(b, 0, len);
             }
             return os.toByteArray();

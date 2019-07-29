@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import com.inossem.BaseActivity;
 import com.inossem.R;
+import com.inossem.other.clean.CleanActivity;
 import com.inossem.other.convert.ConvertActivity;
+import com.inossem.other.permission.PermissionActivity;
 import com.inossem.other.push.PushActivity;
 import com.inossem.other.regex.RegexActivity;
 import com.inossem.other.sp.SPActivity;
@@ -90,6 +92,33 @@ public class OtherActivity extends BaseActivity {
                             @Override
                             public void onClick(View v) {
                                 startActivity(new Intent(OtherActivity.this, SPActivity.class));
+                            }
+                        });
+                        break;
+                    case 6:
+                        button.setText("权限");
+                        button.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(OtherActivity.this, PermissionActivity.class));
+                            }
+                        });
+                        break;
+                    case 7:
+                        button.setText("清理");
+                        button.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(OtherActivity.this, CleanActivity.class));
+                            }
+                        });
+                        break;
+                    case 8:
+                        button.setText("图片相关");
+                        button.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+//                                startActivity(new Intent(OtherActivity.this, CleanActivity.class));
                             }
                         });
                         break;

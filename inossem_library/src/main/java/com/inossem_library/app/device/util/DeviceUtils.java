@@ -32,12 +32,14 @@ import static android.Manifest.permission.INTERNET;
 /**
  * 设备相关
  *
- * @author Lin
+ * @author LinH
  */
 public final class DeviceUtils {
 
     /**
      * 判断设备是否ROOT
+     *
+     * @return 是否ROOT
      * <a>https://blog.csdn.net/applek_Case/article/details/79491166</a>
      */
     public static boolean isDeviceRooted() {
@@ -55,6 +57,8 @@ public final class DeviceUtils {
 
     /**
      * 判断设备ADB是否可用
+     *
+     * @return ADB是否可用
      */
     public static boolean isAdbEnabled(@NonNull Context context) {
         if (context == null) {
@@ -66,6 +70,8 @@ public final class DeviceUtils {
 
     /**
      * 获取设备系统版本号
+     *
+     * @return 设备系统版本号
      */
     public static String getSDKVersionName() {
         // RELEASE 用户可见的版本字符串
@@ -74,6 +80,8 @@ public final class DeviceUtils {
 
     /**
      * 获取设备系统版本码
+     *
+     * @return 设备系统版本码
      */
     public static int getSDKVersionCode() {
         // SDK_INT 当前在此硬件设备上运行的软件的SDK版本
@@ -82,6 +90,8 @@ public final class DeviceUtils {
 
     /**
      * 获取设备 AndroidID,但是如果返厂的手机,或者被 root 的手机,可能会变
+     *
+     * @return AndroidID
      */
     @SuppressLint("HardwareIds")
     public static String getAndroidID(@NonNull Context context) {
@@ -93,7 +103,9 @@ public final class DeviceUtils {
     }
 
     /**
-     * 获取设备 MAC 地址
+     * 获取设备MAC地址
+     *
+     * @return MAC地址
      * 必须的权限 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
      */
     @RequiresPermission(allOf = {ACCESS_WIFI_STATE, INTERNET})
@@ -114,6 +126,8 @@ public final class DeviceUtils {
 
     /**
      * Android 6.0 之前（不包括6.0）获取mac地址
+     *
+     * @return MAC地址
      * 必须的权限 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
      */
     @SuppressLint("HardwareIds")
@@ -141,6 +155,8 @@ public final class DeviceUtils {
 
     /**
      * Android 6.0-Android 7.0 获取mac地址
+     *
+     * @return MAC地址
      */
     private static String getMacAddres() throws Throwable {
         // 获取文件中的MAC地址
@@ -149,6 +165,8 @@ public final class DeviceUtils {
 
     /**
      * Android 7.0之后获取Mac地址
+     *
+     * @return MAC地址
      * 遍历循环所有的网络接口,找到接口是 wlan0
      * 必须的权限 <uses-permission android:name="android.permission.INTERNET"></uses-permission>
      */
@@ -177,6 +195,8 @@ public final class DeviceUtils {
 
     /**
      * 获取设备厂商
+     *
+     * @return 设备厂商
      */
     public static String getManufacturer() {
         // MANUFACTURER 产品/硬件的制造商
@@ -185,6 +205,8 @@ public final class DeviceUtils {
 
     /**
      * 获取设备型号
+     *
+     * @return 设备型号
      */
     public static String getModel() {
         String model = Build.MODEL;
@@ -198,6 +220,8 @@ public final class DeviceUtils {
 
     /**
      * 获取设备ABIs(CPU)
+     *
+     * @return 设备ABIs(CPU)
      */
     public static String[] getABIs() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -212,6 +236,8 @@ public final class DeviceUtils {
 
     /**
      * 判断是否是平板
+     *
+     * @return 是否是平板
      * screenLayout 屏幕布局
      * <p>
      * 位掩码的屏幕的总体布局。目前有四个
@@ -231,6 +257,8 @@ public final class DeviceUtils {
 
     /**
      * 判断是否是模拟器
+     *
+     * @return 是否是模拟器
      */
     public static boolean isEmulator(@NonNull Context context) {
         if (context == null) {

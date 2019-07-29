@@ -10,27 +10,24 @@ import android.util.Log;
 import com.inossem_library.exception.ExceptionEnum;
 import com.inossem_library.exception.InossemException;
 
+import java.io.IOException;
+
 import static android.hardware.Camera.Parameters.FLASH_MODE_OFF;
 import static android.hardware.Camera.Parameters.FLASH_MODE_TORCH;
 
 /**
- * 闪光灯工具类
+ * 语言相关
  *
  * @author Lin
  */
 public final class FlashlightUtils {
-    /**
-     * 相机
-     */
     private static Camera mCamera;
-    /**
-     * 以OpenGL ES纹理的形式从图像流中捕获帧。
-     * 初始化相机用
-     */
     private static SurfaceTexture mSurfaceTexture;
 
     /**
-     * 判断设备是否支持闪光灯
+     * 返回设备是否支持闪光灯
+     *
+     * @return 是否支持闪光灯
      */
     public static boolean isFlashlightEnable(@NonNull Context context) {
         if (context == null) {
@@ -40,39 +37,36 @@ public final class FlashlightUtils {
     }
 
     /**
-     * 判断闪光灯是否打开
+     * 返回手电筒是否工作
+     *
+     * @return 手电筒是否工作
      */
     public static boolean isFlashlightOn() {
-        if (!init()) {
-            return false;
-        }
+        if (!init()) return false;
         Camera.Parameters parameters = mCamera.getParameters();
-        // FLASH_MODE_TORCH 闪光灯常亮
         return FLASH_MODE_TORCH.equals(parameters.getFlashMode());
     }
 
     /**
-     * 设置闪光灯状态
+     * 打开或关掉手电筒
      *
-     * @param isOn True是打开,False是关闭
+     * @param isOn 打开或关掉手电筒
      */
-    public static void setFlashlightStatus(final boolean isOn) throws Throwable {
-        if (!init()) {
-            return;
-        }
+    public static void setFlashlightStatus(final boolean isOn) {
+        if (!init()) return;
         final Camera.Parameters parameters = mCamera.getParameters();
         if (isOn) {
-            // FLASH_MODE_TORCH 闪光灯常亮
             if (!FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
-                // 打开相机 图像流
-                mCamera.setPreviewTexture(mSurfaceTexture);
-                // 开始预览
-                mCamera.startPreview();
-                parameters.setFlashMode(FLASH_MODE_TORCH);
-                mCamera.setParameters(parameters);
+                try {
+                    mCamera.setPreviewTexture(mSurfaceTexture);
+                    mCamera.startPreview();
+                    parameters.setFlashMode(FLASH_MODE_TORCH);
+                    mCamera.setParameters(parameters);
+                } catch (IOException e) {
+                    Log.e("FlashlightUtils", "setFlashlightStatusOn: ", e);
+                }
             }
         } else {
-            // FLASH_MODE_OFF 闪光灯关闭
             if (!FLASH_MODE_OFF.equals(parameters.getFlashMode())) {
                 parameters.setFlashMode(FLASH_MODE_OFF);
                 mCamera.setParameters(parameters);
@@ -81,30 +75,30 @@ public final class FlashlightUtils {
     }
 
     /**
-     * 销毁
+     * 销毁手电筒
      */
     public static void destroy() {
-        if (mCamera == null) {
-            return;
-        }
+        if (mCamera == null) return;
         mCamera.release();
         mSurfaceTexture = null;
         mCamera = null;
     }
 
     /**
-     * 闪光灯初始化
-     *
-     * @return 是否初始化成功
+     * 初始化摄像头
      */
     private static boolean init() {
         if (mCamera == null) {
-            // CAMERA_FACING_BACK 主照相机
-            mCamera = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
-            mSurfaceTexture = new SurfaceTexture(0);
+            try {
+                mCamera = Camera.open(0);
+                mSurfaceTexture = new SurfaceTexture(0);
+            } catch (Throwable t) {
+                Log.e("FlashlightUtils", "init failed: ", t);
+                return false;
+            }
         }
         if (mCamera == null) {
-            Log.e("闪光灯工具类", "初始化失败");
+            Log.e("FlashlightUtils", "init failed.");
             return false;
         }
         return true;

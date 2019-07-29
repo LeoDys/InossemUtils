@@ -32,8 +32,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
+ * 相机activity
  * Created by wen40 on 2019/7/8.
- *
  */
 
 public class InossemCameraActivity extends Activity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
@@ -48,6 +48,7 @@ public class InossemCameraActivity extends Activity implements View.OnClickListe
     private RelativeLayout rlCameraOption;
     private LinearLayout llCameraResult;
     private TextView mViewFocusingTips;
+    // 屏幕宽高
     private float screenWidth;
     private float screenHeight;
 
@@ -57,7 +58,9 @@ public class InossemCameraActivity extends Activity implements View.OnClickListe
     private Bitmap mTakeCropBitmap;
 
     private float mLum = 1f;
+    // 亮度调整默认值
     private static final int MID_VALUE = 128;
+    // 处理完成后的bitmap
     private Bitmap mResultBitmap;
     // 拍照的时候是否有裁剪框
     private boolean isCropBox = false;
@@ -90,7 +93,7 @@ public class InossemCameraActivity extends Activity implements View.OnClickListe
 
     private void getExtra(Intent intent) {
         // TODO
-        if (intent !=null) {
+        if (intent != null) {
             isCropBox = intent.getBooleanExtra(InossemCustomCamera.IS_CROP_BOX, false);
             isLight = intent.getBooleanExtra(InossemCustomCamera.IS_CHANGE_LIGHT, false);
             takePhotoSavePath = intent.getStringExtra(InossemCustomCamera.TAKE_PHOTO_PATH);

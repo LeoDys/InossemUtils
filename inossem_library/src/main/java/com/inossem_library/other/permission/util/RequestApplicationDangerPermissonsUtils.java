@@ -58,7 +58,7 @@ public class RequestApplicationDangerPermissonsUtils {
      * @param checkList
      * @return
      */
-    public static List<String> noHavePermission(Context mContexts, String packName, String permission, List<String> checkList) {
+    public static List<String> noHavePermission(Context mContexts, String packName, List<String> checkList) {
         List<String> noHavePermission = new ArrayList<>();
         for (String per : checkList) {
             if (!isHasPermission(mContexts, packName, per)) {
@@ -73,32 +73,55 @@ public class RequestApplicationDangerPermissonsUtils {
      *
      * @return 所有的危险权限集合
      */
-    public static List<String> dangerPermission() {
+    private static List<String> dangerPermission() {
         List<String> dangerPermissionList = new ArrayList<>();
+        // 写入联系人
         dangerPermissionList.add("android.permission.WRITE_CONTACTS");
+        // 访问GMail账户列表
         dangerPermissionList.add("android.permission.GET_ACCOUNTS");
+        // 允许程序读取用户联系人数据
         dangerPermissionList.add("android.permission.READ_CONTACTS");
+        //
         dangerPermissionList.add("android.permission.READ_CALL_LOG");
+        // 手机状态
         dangerPermissionList.add("android.permission.READ_PHONE_STATE");
+        // 直接打电话
         dangerPermissionList.add("android.permission.CALL_PHONE");
+        //
         dangerPermissionList.add("android.permission.WRITE_CALL_LOG");
+        //
         dangerPermissionList.add("android.permission.USE_SIP");
+        // 允许程序监视、修改有关播出电话
         dangerPermissionList.add("android.permission.PROCESS_OUTGOING_CALLS");
+        //
         dangerPermissionList.add("com.android.voicemail.permission.ADD_VOICEMAIL");
+        // 允许程序读取用户日历数据
         dangerPermissionList.add("android.permission.READ_CALENDAR");
+        // 允许一个程序写入但不读取用户日历数据
         dangerPermissionList.add("android.permission.WRITE_CALENDAR");
+        // 相机
         dangerPermissionList.add("android.permission.CAMERA");
+        // 传感器
         dangerPermissionList.add("android.permission.BODY_SENSORS");
+        // 通过GPS芯片接收卫星的定位信息，定位精度达10米以内
         dangerPermissionList.add("android.permission.ACCESS_FINE_LOCATION");
+        // 允许一个程序访问CellID或WiFi热点来获取粗略的位置
         dangerPermissionList.add("android.permission.ACCESS_COARSE_LOCATION");
+        // 读sd卡
         dangerPermissionList.add("android.permission.READ_EXTERNAL_STORAGE");
+        // 写入sd卡
         dangerPermissionList.add("android.permission.WRITE_EXTERNAL_STORAGE");
+        // 录音
         dangerPermissionList.add("android.permission.RECORD_AUDIO");
+        // 允许程序读取短信息
         dangerPermissionList.add("android.permission.READ_SMS");
+        // 允许程序监控将收到WAP PUSH信息
         dangerPermissionList.add("android.permission.RECEIVE_WAP_PUSH");
+        // 允许一个程序监控将收到MMS彩信,记录或处理
         dangerPermissionList.add("android.permission.RECEIVE_MMS");
-        dangerPermissionList.add("android.permission.RECEIVE_MMS");
+        // 发短信
         dangerPermissionList.add("android.permission.SEND_SMS");
+        //
         dangerPermissionList.add("android.permission.READ_CELL_BROADCASTS");
         return dangerPermissionList;
     }
@@ -123,8 +146,8 @@ public class RequestApplicationDangerPermissonsUtils {
      * @return true-有  false-没有
      */
     private static boolean lackPermission1(Context mContexts, String permission) {
-        return ContextCompat.checkSelfPermission(mContexts, permission) ==
-                PackageManager.PERMISSION_DENIED;
+        return !(ContextCompat.checkSelfPermission(mContexts, permission) ==
+                PackageManager.PERMISSION_DENIED);
     }
 
     /**

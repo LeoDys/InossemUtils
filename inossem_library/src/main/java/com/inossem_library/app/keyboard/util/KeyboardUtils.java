@@ -9,11 +9,14 @@ import android.os.Handler;
 import android.os.ResultReceiver;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 
+import com.inossem_library.app.keyboard.constant.KeyboardConstant;
 import com.inossem_library.exception.ExceptionEnum;
 import com.inossem_library.exception.InossemException;
 
@@ -86,18 +89,20 @@ public final class KeyboardUtils {
      *
      * @param activity 当前activity
      */
-    public static void hideSoftInput(@NonNull Context context, final Activity activity) {
-        if (activity == null) {
-            throw new InossemException(ExceptionEnum.NULL_PARAMS, "activity can not null");
-        }
-        if (context == null) {
-            throw new InossemException(ExceptionEnum.NULL_PARAMS, "context can not null");
-        }
+    public static void hideSoftInput(@NonNull final Activity activity) {
         View view = activity.getCurrentFocus();
         if (view == null) {
-            view = new View(activity);
+            View focusView = activity.getWindow().getDecorView().findViewWithTag("keyboardTagView");
+            if (focusView == null) {
+                view = new EditText(activity);
+                view.setTag("keyboardTagView");
+            } else {
+                view = focusView;
+            }
+            ((ViewGroup) activity.getWindow().getDecorView()).addView(view, 0, 0);
+            view.requestFocus();
         }
-        hideSoftInput(context, view);
+        hideSoftInput(activity, view);
     }
 
     /**
@@ -105,19 +110,14 @@ public final class KeyboardUtils {
      *
      * @param view 点击的view
      */
-    public static void hideSoftInput(@NonNull final Context context, final View view) {
-        if (context == null) {
-            throw new InossemException(ExceptionEnum.NULL_PARAMS, "context can not null");
-        }
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm == null) {
-            return;
-        }
+    public static void hideSoftInput(@NonNull final Activity activity, final View view) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm == null) return;
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0, new ResultReceiver(new Handler()) {
             @Override
             protected void onReceiveResult(int resultCode, Bundle resultData) {
                 if (resultCode == InputMethodManager.RESULT_UNCHANGED_SHOWN || resultCode == InputMethodManager.RESULT_SHOWN) {
-                    toggleSoftInput(context);
+                    toggleSoftInput(activity);
                 }
             }
         });
@@ -150,9 +150,9 @@ public final class KeyboardUtils {
     }
 
     /**
-     * Android获取窗口可视区域大小
+     * 软键盘可视区域大小
      */
-    private static int getDecorViewInvisibleHeight(@NonNull final Window window) {
+    public static int getDecorViewInvisibleHeight(@NonNull final Window window) {
         final View decorView = window.getDecorView();
         if (decorView == null) {
             return 0;
@@ -206,12 +206,12 @@ public final class KeyboardUtils {
     }
 
     /**
-     * 获取内容视图的遮挡高度(系统屏幕内导航导航)
+     * 获取内容视图的遮挡高度(系统屏幕内导航)
      *
      * @param window 当前屏幕 activity.getWindow()
      * @return 遮挡高度
      */
-    private static int getContentViewInvisibleHeight(final Window window) {
+    public static int getContentViewInvisibleHeight(final Window window) {
         final View contentView = window.findViewById(android.R.id.content);
         if (contentView == null) {
             return 0;
@@ -233,14 +233,11 @@ public final class KeyboardUtils {
      *
      * @param activity 调用的activity
      */
-    public static void fixSoftInputLeaks(@NonNull Context context, @NonNull final Activity activity) throws Throwable {
+    public static void fixSoftInputLeaks(@NonNull final Activity activity) throws Throwable {
         if (activity == null) {
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "activity can not null");
         }
-        if (context == null) {
-            throw new InossemException(ExceptionEnum.NULL_PARAMS, "context can not null");
-        }
-        fixSoftInputLeaks(context, activity.getWindow());
+        fixSoftInputLeaks(activity, activity.getWindow());
     }
 
     /**
@@ -257,7 +254,7 @@ public final class KeyboardUtils {
         if (imm == null) {
             return;
         }
-        String[] leakViews = new String[]{"mLastSrvView", "mCurRootView", "mServedView", "mNextServedView"};
+        String[] leakViews = new String[]{KeyboardConstant.M_LAST_SRV_VIEW, KeyboardConstant.M_CUR_ROOT_VIEW, KeyboardConstant.M_SERVED_VIEW, KeyboardConstant.M_NEXT_SERVED_VIEW};
         for (String leakView : leakViews) {
             Field leakViewField = InputMethodManager.class.getDeclaredField(leakView);
             if (leakViewField == null) {
@@ -318,10 +315,10 @@ public final class KeyboardUtils {
      *
      * @return 状态栏的高度
      */
-    private static int getStatusBarHeight() {
+    public static int getStatusBarHeight() {
         Resources resources = Resources.getSystem();
         // status_bar_height 状态栏的高度
-        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+        int resourceId = resources.getIdentifier(KeyboardConstant.STATUS_BAR_HEIGHT, KeyboardConstant.DIMEN, KeyboardConstant.ANDROID);
         return resources.getDimensionPixelSize(resourceId);
     }
 
@@ -330,10 +327,10 @@ public final class KeyboardUtils {
      *
      * @return 导航栏的高度
      */
-    private static int getNavBarHeight() {
+    public static int getNavBarHeight() {
         Resources res = Resources.getSystem();
         // navigation_bar_height 导航栏的高度
-        int resourceId = res.getIdentifier("navigation_bar_height", "dimen", "android");
+        int resourceId = res.getIdentifier(KeyboardConstant.NAVIGATION_BAR_HEIGHT, KeyboardConstant.DIMEN, KeyboardConstant.ANDROID);
         if (resourceId != 0) {
             return res.getDimensionPixelSize(resourceId);
         } else {

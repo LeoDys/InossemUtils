@@ -11,11 +11,13 @@ import android.widget.TextView;
 import com.inossem.BaseActivity;
 import com.inossem.R;
 import com.inossem.util.Utils;
+import com.inossem_library.callback.LibraryLinstener;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.InossemPictureConfig;
 import com.luck.picture.lib.constant.PictureSelectContants;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.tools.PicSelectUtil;
+import com.zxy.util.CompressSyncUtils;
 import com.zxy.util.TinyCompressUtils;
 import com.zxy.util.TinyConfig;
 
@@ -88,18 +90,23 @@ public class PictureActivity extends BaseActivity {
                     // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
                     // 如果裁剪并压缩了，已取压缩路径为准，因为是先裁剪后压缩的
                     List<LocalMedia> localMedia = PictureSelector.obtainMultipleResult(data);
-                    Log.e("LocalMedia", localMedia.toString());
+                    Log.e("LocalMedia-path", localMedia.toString());
                     List<File> files = new ArrayList<>();
                     for (LocalMedia media : localMedia) {
                         files.add(new File(media.getPath()));
                     }
 
+                    Log.i("LocalMedia-compress", "内部：" + Thread.currentThread().getId());
+
                     TinyCompressUtils.filesCallBack(files, new TinyConfig(PictureActivity.this), new TinyCompressUtils.TidyCompressFilesListener() {
                         @Override
                         public void compressCallBack(List<String> outfiles) {
-                            Log.e("LocalMedia", outfiles.toString());
+                            Log.i("LocalMedia-compress", "内部：" + Thread.currentThread().getId());
+                            Log.e("LocalMedia-compress", outfiles.toString());
                         }
                     });
+
+                    Log.e("LocalMedia-return", "11111111");
 
                     break;
 

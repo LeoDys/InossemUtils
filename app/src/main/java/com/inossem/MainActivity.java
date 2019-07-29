@@ -7,13 +7,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.inossem.app.PhoneRelatedActivity;
+import com.inossem.encrypt.EncryptActivity;
 import com.inossem.other.OtherActivity;
-import com.inossem.phone.PhoneRelatedActivity;
 import com.inossem.other_framework.OtherFrameworkActivity;
 import com.inossem.request.RequestActivity;
-import com.inossem.tips.Toast.ToastActivity;
-import com.inossem.tips.dialog.DialogActivity;
-import com.inossem.tips.logcat.LogcatActivity;
+import com.inossem.tips.TipsActivity;
 import com.inossem.util.Utils;
 
 /**
@@ -53,13 +52,13 @@ public class MainActivity extends BaseActivity {
                         button.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-//                                  startActivity(new Intent(MainActivity.this, RequestActivity.class));
+                                startActivity(new Intent(MainActivity.this, TipsActivity.class));
                             }
                         });
                         break;
 
                     case 2:
-                        button.setText("内容解析");
+                        button.setText("内容解析XML Excel?");
                         button.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -72,7 +71,7 @@ public class MainActivity extends BaseActivity {
                         button.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-//                                startActivity(new Intent(MainActivity.this, null));
+                                startActivity(new Intent(MainActivity.this, EncryptActivity.class));
                             }
                         });
                         break;
@@ -100,33 +99,6 @@ public class MainActivity extends BaseActivity {
                             @Override
                             public void onClick(View v) {
                                 startActivity(new Intent(MainActivity.this, OtherFrameworkActivity.class));
-                            }
-                        });
-                        break;
-                    case 7:
-                        button.setText("Dialog");
-                        button.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                startActivity(new Intent(MainActivity.this, DialogActivity.class));
-                            }
-                        });
-                        break;
-                    case 8:
-                        button.setText("logcat");
-                        button.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                startActivity(new Intent(MainActivity.this, LogcatActivity.class));
-                            }
-                        });
-                        break;
-                    case 9:
-                        button.setText("Toast");
-                        button.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                startActivity(new Intent(MainActivity.this, ToastActivity.class));
                             }
                         });
                         break;

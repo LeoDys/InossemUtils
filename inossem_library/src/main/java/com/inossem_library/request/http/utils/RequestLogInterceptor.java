@@ -2,10 +2,10 @@ package com.inossem_library.request.http.utils;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.inossem_library.request.http.constant.RetrofitConstant;
+import com.inossem_library.request.http.constant.RetrofitLogConstant;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -17,6 +17,12 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okio.Buffer;
 
+/**
+ * @author 詹建宇
+ * @time on 2019/7/25
+ * @email jianyu.zhan@inossem.com
+ * @describe Retrofit拦截器(请求)
+ */
 @SuppressWarnings("unchecked")
 public class RequestLogInterceptor implements Interceptor {
 
@@ -78,8 +84,11 @@ public class RequestLogInterceptor implements Interceptor {
         //请求头
         String headers = new Gson().toJson(request.headers());
 
-        //TODO 打印日志
-        Log.i("RequestLogInterceptor", method + "/" + urls + "/" + headers + "/" + body);
+        //拼接日志
+        String requestLog = RetrofitLogWriter.getRequestLogMsg(android, java, module, function,
+                urls, method, headers, body);
+        //处理日志
+        RetrofitLogWriter.log(context, RetrofitLogConstant.REQUEST, requestLog);
 
         return chain.proceed(request);
     }

@@ -2,9 +2,9 @@ package com.inossem_library.request.http.utils;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.inossem_library.request.http.constant.RetrofitConstant;
+import com.inossem_library.request.http.constant.RetrofitLogConstant;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -19,11 +19,10 @@ import okio.Buffer;
 import okio.BufferedSource;
 
 /**
- * Retrofit拦截器(接收)
- *
  * @author 詹建宇
- * @time on 2018/11/20 11:13
+ * @time on 2019/7/25
  * @email jianyu.zhan@inossem.com
+ * @describe Retrofit拦截器(响应)
  */
 @SuppressWarnings("unchecked")
 public class ReceiveLogInterceptor implements Interceptor {
@@ -85,8 +84,11 @@ public class ReceiveLogInterceptor implements Interceptor {
             //返回Json
             String body = buffer.clone().readString(charset);
 
-            //TODO 打印日志
-            Log.i("ReceiveLogInterceptor", responseCode + "/" + url + "/" + body);
+            //拼接日志
+            String responseLog = RetrofitLogWriter.getResponseLogMsg(android, java, module, function,
+                    url, responseCode, body);
+            //处理日志
+            RetrofitLogWriter.log(context, RetrofitLogConstant.RESPONSE, responseLog);
         }
 
         return response;

@@ -1,5 +1,10 @@
 package com.inossem_library.app.app.constant;
 
+/**
+ * App相关Constant
+ *
+ * @author LinH
+ */
 public class AppConstant {
     /**
      * 十六进制数字

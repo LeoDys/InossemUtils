@@ -1,5 +1,10 @@
 package com.inossem_library.encrypt.en_decrypt.constant;
 
+/**
+ * 加密解密相关
+ *
+ * @author LinH
+ */
 public class EncryptConstant {
     /**
      * 十六进制数字

@@ -1,4 +1,4 @@
-package com.inossem_library.request.http.utils.dealWithData;
+package com.inossem_library.other.compress;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

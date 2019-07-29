@@ -5,6 +5,10 @@ import android.util.Log;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
+import static com.inossem_library.tips.logcat.constant.LogcatConstants.LOG_LEVEL;
+import static com.inossem_library.tips.logcat.constant.LogcatConstants.TAG_INOSSEM;
+import static com.inossem_library.tips.logcat.constant.LogcatConstants.TAG_LOG;
+
 /**
  * @author 王斯宇
  * @time on 2019/7/16 16:31
@@ -12,11 +16,6 @@ import com.orhanobut.logger.Logger;
  */
 public class LogUtils {
 
-    private static final int LOG_LEVEL = 8; // 当LOG_LEVEL等于0时所有日志将不再输出
-
-    public static final String TAG_INOSSEM = "INOSSEM";
-
-    public static final String TAG_LOG = "LOG";
 
 //-----------------------------------------------------------系统Log----------------------------------------------------------
     /**

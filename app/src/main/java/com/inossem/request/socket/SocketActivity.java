@@ -3,8 +3,9 @@ package com.inossem.request.socket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.StrictMode;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,12 +15,12 @@ import android.widget.Toast;
 
 import com.inossem.BaseActivity;
 import com.inossem.R;
-import com.inossem.other.string.StringActivity;
 import com.inossem.util.Utils;
 import com.inossem_library.other.push.util.BroadcastUtils;
 import com.inossem_library.request.socket.constant.SocketConstants;
 import com.inossem_library.request.socket.util.MinaCallBack;
 import com.inossem_library.request.socket.util.SocketUtils;
+
 /**
  * @author 郭晓龙
  * @time on 2019/7/25
@@ -70,18 +71,17 @@ public class SocketActivity extends BaseActivity {
      */
     private void initSocket() {
         //打开TCP连接
-        boolean result = SocketUtils.getConnect("192.168.3.102", 60000, new MySocketCallBack());
+        boolean result = SocketUtils.getConnect("192.168.3.59", 60000, new MySocketCallBack());
         if (result) {
-            //发送数据
-//            SocketUtils.send("123");
+            //
+//            SocketUtils.send("123");发送数据
         } else {
-            try {
-                //连接失败10秒重连
-                Thread.sleep(SocketConstants.RECONNECT_TIME);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            initSocket();
+            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    initSocket();
+                }
+            }, SocketConstants.RECONNECT_TIME);
         }
     }
 
@@ -99,13 +99,13 @@ public class SocketActivity extends BaseActivity {
 
         @Override
         public void sessionClosed(boolean isCon) {
-            try {
-                //掉线10秒重连
-                Thread.sleep(SocketConstants.RECONNECT_TIME);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            initSocket();
+            //掉线10秒重连
+            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    initSocket();
+                }
+            }, SocketConstants.RECONNECT_TIME);
         }
     }
 
