@@ -15,7 +15,7 @@ import android.support.annotation.RequiresPermission;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
-import com.inossem_library.exception.ExceptionEnum;
+import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.exception.InossemException;
 
 import java.io.BufferedReader;

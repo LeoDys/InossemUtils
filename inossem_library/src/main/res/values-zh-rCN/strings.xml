@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">inossem_library</string>
+
+    <string name="time_constants_string_msec">毫秒</string>
+    <string name="time_constants_string_sec">秒</string>
+    <string name="time_constants_string_min">分钟</string>
+    <string name="time_constants_string_hour">小时</string>
+    <string name="time_constants_string_day">天</string>
+
+    <string name="time_constants_before_msec">刚刚</string>
+    <string name="time_constants_before_sec">%d秒前</string>
+    <string name="time_constants_before_min">%d分钟前</string>
+    <string name="time_constants_before_hour">今天%tR</string>
+    <string name="time_constants_before_day">昨天%tR</string>
+    <string name="common_sure">确定</string>
+    <string name="common_cancel">取消</string>
+
+    <string name="time_picker_select">时间选择</string>
+
+    <string name="time_picker_select_year">年</string>
+    <string name="time_picker_select_month">月</string>
+    <string name="time_picker_select_day">日</string>
+    <string name="time_picker_select_hour">时</string>
+    <string name="time_picker_select_minute">分</string>
+
+</resources>

@@ -13,7 +13,7 @@ import android.telephony.TelephonyManager;
 import android.text.format.Formatter;
 
 import com.inossem_library.app.network.constant.NetworkTypeEnum;
-import com.inossem_library.exception.ExceptionEnum;
+import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.exception.InossemException;
 
 import java.lang.reflect.Method;

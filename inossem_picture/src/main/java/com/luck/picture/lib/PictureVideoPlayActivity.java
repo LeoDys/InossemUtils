@@ -97,7 +97,6 @@ public class PictureVideoPlayActivity extends PictureBaseActivity implements Med
             iv_play.setVisibility(View.INVISIBLE);
         }
     }
-
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(new ContextWrapper(newBase) {

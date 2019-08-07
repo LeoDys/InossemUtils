@@ -12,7 +12,14 @@
     <string name="time_constants_before_min">%d分钟前</string>
     <string name="time_constants_before_hour">今天%tR</string>
     <string name="time_constants_before_day">昨天%tR</string>
-    <string name="tips_dialog_sure">确定</string>
-    <string name="tips_dialog_cancel">取消</string>
+    <string name="common_sure">确定</string>
+    <string name="common_cancel">取消</string>
 
+    <string name="time_picker_select">时间选择</string>
+
+    <string name="time_picker_select_year">年</string>
+    <string name="time_picker_select_month">月</string>
+    <string name="time_picker_select_day">日</string>
+    <string name="time_picker_select_hour">时</string>
+    <string name="time_picker_select_minute">分</string>
 </resources>

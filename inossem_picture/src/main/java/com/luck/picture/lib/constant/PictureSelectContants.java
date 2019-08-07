@@ -21,6 +21,4 @@ public class PictureSelectContants {
     // glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
     public static final int DEFAULT_PICTURE_GLIDE_WIDTH = 160;
     public static final int DEFAULT_PICTURE_GLIDE_HEIGHT = 160;
-
-
 }

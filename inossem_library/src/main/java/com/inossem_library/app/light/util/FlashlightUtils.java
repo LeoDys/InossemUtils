@@ -7,7 +7,7 @@ import android.hardware.Camera;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.inossem_library.exception.ExceptionEnum;
+import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.exception.InossemException;
 
 import java.io.IOException;

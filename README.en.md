@@ -1,7 +1,7 @@
 # InossemUtils
 
 #### Description
-Inossem底层开发库
+Inoosem底层开发库
 
 #### Software Architecture
 Software architecture description

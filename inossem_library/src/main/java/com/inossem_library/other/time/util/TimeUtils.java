@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.inossem_library.R;
-import com.inossem_library.exception.ExceptionEnum;
+import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.exception.InossemException;
 import com.inossem_library.other.string.util.StringUtils;
 import com.inossem_library.other.time.constant.TimeConstants;

@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 
-import com.inossem_library.exception.ExceptionEnum;
+import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.exception.InossemException;
 import com.inossem_library.other.string.util.StringUtils;
 

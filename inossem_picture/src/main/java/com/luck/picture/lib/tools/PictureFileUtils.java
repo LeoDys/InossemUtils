@@ -70,8 +70,7 @@ public class PictureFileUtils {
     public static File createCameraFile(Context context, int type, String outputCameraPath, String format) {
         String path = !TextUtils.isEmpty(outputCameraPath)
                 ? outputCameraPath : CAMERA_PATH;
-
-        return createMediaFile(context, path, type, format);
+        return createMediaFile(context, "/" + path + "/", type, format);
     }
 
     /**

@@ -11,15 +11,13 @@ import android.widget.TextView;
 import com.inossem.BaseActivity;
 import com.inossem.R;
 import com.inossem.util.Utils;
-import com.inossem_library.callback.LibraryLinstener;
+import com.inossem_library.other.compress.config.CompressConfig;
+import com.inossem_library.other.compress.util.CompressUtils;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.InossemPictureConfig;
 import com.luck.picture.lib.constant.PictureSelectContants;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.tools.PicSelectUtil;
-import com.zxy.util.CompressSyncUtils;
-import com.zxy.util.TinyCompressUtils;
-import com.zxy.util.TinyConfig;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -63,7 +61,7 @@ public class PictureActivity extends BaseActivity {
                                             @Override
                                             public List<String> compressPicCallBack(List<File> files) {
                                                 // 压缩
-                                                return CompressSyncUtils.filesCallBack(files, new TinyConfig(PictureActivity.this));
+                                                return CompressSyncUtils.filesCallBack(files, new CompressConfig(PictureActivity.this));
                                             }
                                         })*/
                                         .setEnableCrop(true)
@@ -98,7 +96,7 @@ public class PictureActivity extends BaseActivity {
 
                     Log.i("LocalMedia-compress", "内部：" + Thread.currentThread().getId());
 
-                    TinyCompressUtils.filesCallBack(files, new TinyConfig(PictureActivity.this), new TinyCompressUtils.TidyCompressFilesListener() {
+                    CompressUtils.filesCallBack(files, new CompressConfig(PictureActivity.this), new CompressUtils.TidyCompressFilesListener() {
                         @Override
                         public void compressCallBack(List<String> outfiles) {
                             Log.i("LocalMedia-compress", "内部：" + Thread.currentThread().getId());

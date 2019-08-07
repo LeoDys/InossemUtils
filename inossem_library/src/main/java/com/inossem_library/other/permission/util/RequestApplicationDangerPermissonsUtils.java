@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
+
+import com.inossem_library.exception.constant.ExceptionEnum;
+import com.inossem_library.exception.InossemException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +31,18 @@ public class RequestApplicationDangerPermissonsUtils {
      * @param context     上下文
      * @param packageName 应用包名
      * @return 申请的危险权限集合
+     * @throws PackageManager.NameNotFoundException 没有找到这个包名的应用
+     * @version 1.0.0
+     * @since 1.0.0
      */
     public static List<String> getManifestDangerPermission(Context context, String packageName) {
+        // 上下文或者包名是null的情况 直接抛出异常给开发使用者
+        if (context == null) {
+            throw new InossemException(ExceptionEnum.NULL_PARAMS, "context can not null");
+        }
+        if (TextUtils.isEmpty(packageName)) {
+            throw new InossemException(ExceptionEnum.NULL_PARAMS, "packageName can not null");
+        }
         // 获取包管理器对象
         pManager = context.getPackageManager();
         List<String> list = new ArrayList<>();
@@ -37,12 +51,14 @@ public class RequestApplicationDangerPermissonsUtils {
             PackageInfo pack = pManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
             // 获取该应用下的所有权限
             String[] permissionStrings = pack.requestedPermissions;
+            // 获取危险权限列表
+            List<String> dangerPermissionList = dangerPermission();
             for (int i = 0; i < permissionStrings.length; i++) {
                 // 区分危险权限
-                for (int j = 0; j < dangerPermission().size(); j++) {
-                    if (permissionStrings[i].equals(dangerPermission().get(j))) {
-                        list.add(permissionStrings[i]);
-                    }
+                if (dangerPermissionList.contains(permissionStrings[i])) {
+                    list.add(permissionStrings[i]);
+                } else {
+                    continue;
                 }
             }
             return list;

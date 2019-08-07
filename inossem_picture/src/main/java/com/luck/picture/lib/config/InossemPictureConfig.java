@@ -1,15 +1,17 @@
 package com.luck.picture.lib.config;
 
 import android.app.Activity;
-import android.os.Environment;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 
 import com.inossem_library.callback.LibraryLinstener;
+import com.inossem_library.exception.InossemException;
+import com.inossem_library.exception.constant.ExceptionEnum;
+import com.inossem_library.other.compress.constant.CompressConstant;
 import com.luck.picture.lib.constant.PictureSelectContants;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.exception.InossemPictureSelectException;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,8 +56,8 @@ public class InossemPictureConfig {
     private boolean openClickSound;
     // 是否传入已选图片
     private List<LocalMedia> selectionMedia;
-    // 小于100kb的图片不压缩
-    private int minimumCompressSize;
+    // 压缩到多少kb
+    private int compressToSize;
     // 裁剪压缩质量 默认100 质量压缩  改变位深大小改变  尺寸不变
     private int cropCompressQuality;
     // 0是activity对象  1是fragment对象
@@ -133,7 +135,7 @@ public class InossemPictureConfig {
         this.requestCode = PictureSelectContants.DEFAULT_PICTURE_REQUEST_CODE;
         this.maxSelect = PictureSelectContants.DEFAULT_PICTURE_MAX_SIZE;
         this.enableCrop = false;
-        this.compress = false;
+        this.compress = true;
         this.startCustomCamera = false;
         this.cameraTakingCrop = false;
         this.cameraAdjustLight = false;
@@ -143,12 +145,12 @@ public class InossemPictureConfig {
         this.isCamera = true;
         this.imageFormat = PictureMimeType.JPEG;
         this.outputCameraPath = PictureSelectContants.DEFAULT_PICTURE_INOSSEM_CAMERA;
-        this.compressSavePath = getPath();
+        this.compressSavePath = CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH;
         this.isGif = false;
         this.circleDimmedLayer = false;
         this.openClickSound = false;
         this.selectionMedia = new ArrayList<>();
-        this.minimumCompressSize = PictureSelectContants.DEFAULT_PICTURE_MIN_NOT_COMPRESS_SIZE;
+        this.compressToSize = PictureSelectContants.DEFAULT_PICTURE_MIN_NOT_COMPRESS_SIZE;
         this.cropCompressQuality = PictureSelectContants.DEFAULT_PICTURE_COMPRESS_QUALITY;
     }
 
@@ -177,6 +179,9 @@ public class InossemPictureConfig {
      * @return
      */
     public InossemPictureConfig setRequestCode(int requestCode) {
+        if (requestCode <= 0) {
+            throw new InossemException(ExceptionEnum.ILLEGAL_PARAMS_RANGE, "requestCode must bigger than zero");
+        }
         this.requestCode = requestCode;
         return this;
     }
@@ -188,6 +193,9 @@ public class InossemPictureConfig {
      * @return
      */
     public InossemPictureConfig setMaxSelect(int maxSelect) {
+        if (maxSelect <= 0) {
+            throw new InossemException(ExceptionEnum.ILLEGAL_PARAMS_RANGE, "maxSelect must bigger than zero");
+        }
         this.maxSelect = maxSelect;
         return this;
     }
@@ -209,7 +217,7 @@ public class InossemPictureConfig {
      * @param compress
      * @return
      */
-    private InossemPictureConfig setCompress(boolean compress) {
+    public InossemPictureConfig setCompress(boolean compress) {
         this.compress = compress;
         return this;
     }
@@ -221,6 +229,12 @@ public class InossemPictureConfig {
      * @return
      */
     public InossemPictureConfig setOpenGallery(int openGallery) {
+        if (!(openGallery == PictureMimeType.ofAll()
+                || openGallery == PictureMimeType.ofImage()
+                || openGallery == PictureMimeType.ofVideo()
+                || openGallery == PictureMimeType.ofAudio())) {
+            throw new InossemException(ExceptionEnum.ILLEGAL_PARAMS_RANGE, "openGallery must between 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()");
+        }
         this.openGallery = openGallery;
         return this;
     }
@@ -232,6 +246,10 @@ public class InossemPictureConfig {
      * @return
      */
     public InossemPictureConfig setSelectionMode(int selectionMode) {
+        if (!(selectionMode == PictureConfig.MULTIPLE
+                || selectionMode == PictureConfig.SINGLE)) {
+            throw new InossemException(ExceptionEnum.ILLEGAL_PARAMS_RANGE, "selectionMode must between 多选:PictureConfig.MULTIPLE  单选:PictureConfig.SINGLE");
+        }
         this.selectionMode = selectionMode;
         return this;
     }
@@ -262,32 +280,53 @@ public class InossemPictureConfig {
      * 拍照保存图片格式后缀,默认jpeg
      *
      * @param imageFormat
-     * @return
+     * @return 当前类
+     * @see PictureConfig.POSTFIX_PNG
+     * @see PictureConfig.POSTFIX_WEBP
+     * @see PictureConfig.POSTFIX_JPEG
+     * @see PictureConfig.POSTFIX_JPG
      */
     public InossemPictureConfig setImageFormat(String imageFormat) {
+        if (TextUtils.isEmpty(imageFormat) || imageFormat.trim().length() == 0) {
+            throw new InossemException(ExceptionEnum.NULL_PARAMS, "imageFormat can not be null");
+        }
+        if (!(imageFormat.equalsIgnoreCase(PictureConfig.POSTFIX_PNG) ||
+                imageFormat.equalsIgnoreCase(PictureConfig.POSTFIX_WEBP) ||
+                imageFormat.equalsIgnoreCase(PictureConfig.POSTFIX_JPEG) ||
+                imageFormat.equalsIgnoreCase(PictureConfig.POSTFIX_JPG))) {
+            throw new InossemException(ExceptionEnum.ILLEGAL_PARAMS_RANGE, "imageFormat must between PictureConfig.POSTFIX_PNG\n" +
+                    "PictureConfig.POSTFIX_WEBP\n" +
+                    "PictureConfig.POSTFIX_JPEG\n" +
+                    "PictureConfig.POSTFIX_JPG");
+        }
         this.imageFormat = imageFormat;
         return this;
     }
 
     /**
-     * 自定义拍照保存路径
+     * 自定义拍照保存文件夹的名字
      *
-     * @param outputCameraPath
+     * @param outputCameraPath 保存路径的文件夹名  默认InossemCamera
      * @return
      */
     public InossemPictureConfig setOutputCameraPath(String outputCameraPath) {
-        // TODO
+        if (TextUtils.isEmpty(outputCameraPath) || outputCameraPath.trim().length() == 0) {
+            throw new InossemException(ExceptionEnum.NULL_PARAMS, "outputCameraPath can not be null");
+        }
         this.outputCameraPath = outputCameraPath;
         return this;
     }
 
     /**
-     * 压缩图片保存地址
+     * 压缩图片保存文件夹名称
      *
      * @param compressSavePath
      * @return
      */
     public InossemPictureConfig setCompressSavePath(String compressSavePath) {
+        if (TextUtils.isEmpty(compressSavePath) || compressSavePath.trim().length() == 0) {
+            throw new InossemException(ExceptionEnum.NULL_PARAMS, "compressSavePath can not be null");
+        }
         this.compressSavePath = compressSavePath;
         return this;
     }
@@ -337,13 +376,16 @@ public class InossemPictureConfig {
     }
 
     /**
-     * 小于 minimumCompressSize kb的图片不压缩
+     * 小于 compressToSize kb的图片不压缩
      *
-     * @param minimumCompressSize
+     * @param compressToSize
      * @return
      */
-    public InossemPictureConfig setMinimumCompressSize(int minimumCompressSize) {
-        this.minimumCompressSize = minimumCompressSize;
+    public InossemPictureConfig setCompressToSize(int compressToSize) {
+        if (compressToSize <= 0) {
+            throw new InossemException(ExceptionEnum.ILLEGAL_PARAMS_RANGE, "compressToSize must bigger than zero");
+        }
+        this.compressToSize = compressToSize;
         return this;
     }
 
@@ -354,6 +396,9 @@ public class InossemPictureConfig {
      * @return
      */
     public InossemPictureConfig setCropCompressQuality(int cropCompressQuality) {
+        if (cropCompressQuality <= 0 || cropCompressQuality > 100) {
+            cropCompressQuality = CompressConstant.DEFAULT_QUALITY_SIZE;
+        }
         this.cropCompressQuality = cropCompressQuality;
         return this;
     }
@@ -508,8 +553,8 @@ public class InossemPictureConfig {
         return selectionMedia;
     }
 
-    public int getMinimumCompressSize() {
-        return minimumCompressSize;
+    public int getCompressToSize() {
+        return compressToSize;
     }
 
     public int getCropCompressQuality() {
@@ -600,7 +645,7 @@ public class InossemPictureConfig {
      * @param libraryLinstener 解耦接口对象
      * @return 当前类
      */
-    public InossemPictureConfig setLibraryLinstener(LibraryLinstener libraryLinstener) {
+    private InossemPictureConfig setLibraryLinstener(LibraryLinstener libraryLinstener) {
         this.libraryLinstener = libraryLinstener;
         if (this.libraryLinstener != null) {
             setCompress(true);
@@ -613,13 +658,12 @@ public class InossemPictureConfig {
      *
      * @return 压缩文件存储地址
      */
-    private String getPath() {
-        String path = Environment.getExternalStorageDirectory() + PictureSelectContants.DEFAULT_PICTURE_INOSSEM_COMPRESS;
-        File file = new File(path);
-        if (file.mkdirs()) {
-            return path;
-        }
-        return path;
-    }
-
+//    private String getPath() {
+//        String path = Environment.getExternalStorageDirectory() + PictureSelectContants.DEFAULT_PICTURE_INOSSEM_COMPRESS;
+//        File file = new File(path);
+//        if (file.mkdirs()) {
+//            return path;
+//        }
+//        return path;
+//    }
 }

@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 import com.inossem_library.R;
-import com.inossem_library.exception.ExceptionEnum;
+import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.exception.InossemException;
 import com.inossem_library.tips.dialog.constant.DialogConstants;
 import com.inossem_library.tips.dialog.constant.DialogTypeEnum;
@@ -252,11 +252,11 @@ public class DialogUtils {
                     mIcon = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.ico_judge);
                 }
                 cancel.setVisibility(View.VISIBLE);
-                cancel.setText(mContext.getResources().getString(R.string.tips_dialog_cancel));
+                cancel.setText(mContext.getResources().getString(R.string.common_cancel));
                 break;
         }
         confirm.setVisibility(View.VISIBLE);
-        confirm.setText(mContext.getResources().getString(R.string.tips_dialog_sure));
+        confirm.setText(mContext.getResources().getString(R.string.common_sure));
 
         //判断是否有标题
         if (TextUtils.isEmpty(mTitle)) {

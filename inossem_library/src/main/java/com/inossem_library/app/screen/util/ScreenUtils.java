@@ -18,7 +18,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.inossem_library.exception.ExceptionEnum;
+import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.exception.InossemException;
 
 import static android.Manifest.permission.WRITE_SETTINGS;

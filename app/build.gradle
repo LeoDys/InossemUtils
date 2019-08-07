@@ -8,6 +8,9 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+        ndk {
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'arm64-v8a', 'x86'
+        }
     }
     buildTypes {
         release {
@@ -21,6 +24,5 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     api "com.android.support:appcompat-v7:${config.androidSupportVersion}"
     api project(':inossem_library')
-    api project(':inossem_compress')
     api project(':inossem_picture')
 }

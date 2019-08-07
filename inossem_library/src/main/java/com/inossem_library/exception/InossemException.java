@@ -2,6 +2,8 @@ package com.inossem_library.exception;
 
 import android.text.TextUtils;
 
+import com.inossem_library.exception.constant.ExceptionEnum;
+
 /**
  * 异常封装
  *

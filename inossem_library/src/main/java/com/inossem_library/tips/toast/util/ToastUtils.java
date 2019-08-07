@@ -8,7 +8,7 @@ import android.view.Gravity;
 import com.github.johnpersano.supertoasts.library.Style;
 import com.github.johnpersano.supertoasts.library.SuperActivityToast;
 import com.inossem_library.R;
-import com.inossem_library.exception.ExceptionEnum;
+import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.exception.InossemException;
 import com.inossem_library.tips.toast.constant.ToastConstants;
 

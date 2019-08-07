@@ -25,10 +25,12 @@ public final class PictureConfig {
     public final static String IMAGE = "image";
     public final static String VIDEO = "video";
 
-
-    public final static int UPDATE_FLAG = 2774;// 预览界面更新选中数据 标识
-    public final static int CLOSE_PREVIEW_FLAG = 2770;// 关闭预览界面 标识
-    public final static int PREVIEW_DATA_FLAG = 2771;// 预览界面图片 标识
+    // 预览界面更新选中数据 标识
+    public final static int UPDATE_FLAG = 2774;
+    // 关闭预览界面 标识
+    public final static int CLOSE_PREVIEW_FLAG = 2770;
+    // 预览界面图片 标识
+    public final static int PREVIEW_DATA_FLAG = 2771;
     public final static int TYPE_ALL = 0;
     public final static int TYPE_IMAGE = 1;
     public final static int TYPE_VIDEO = 2;
@@ -37,12 +39,25 @@ public final class PictureConfig {
     public static final int MAX_COMPRESS_SIZE = 100;
     public static final int TYPE_CAMERA = 1;
     public static final int TYPE_PICTURE = 2;
-
+    /**
+     * 单选还是多选
+     */
     public final static int SINGLE = 1;
     public final static int MULTIPLE = 2;
 
+    /**
+     * 各种onActivityresult回调码
+     */
     public final static int CHOOSE_REQUEST = 188;
     public final static int REQUEST_CAMERA = 909;
     public final static int READ_EXTERNAL_STORAGE = 0x01;
     public final static int CAMERA = 0x02;
+    /**
+     * 拍照保存的格式
+     */
+    public static final String POSTFIX_JPEG = ".JPEG";
+    public static final String POSTFIX_PNG = ".PNG";
+    public static final String POSTFIX_WEBP = ".WEBP";
+    public static final String POSTFIX_JPG = ".JPG";
+
 }

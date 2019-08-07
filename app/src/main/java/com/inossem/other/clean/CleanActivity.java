@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.inossem.BaseActivity;
 import com.inossem.R;
 import com.inossem.util.Utils;
-import com.inossem_library.other.clean.utils.CleanUtils;
+import com.inossem_library.other.clean.util.CleanUtils;
 import com.inossem_library.tips.toast.util.ToastUtils;
 
 public class CleanActivity extends BaseActivity {

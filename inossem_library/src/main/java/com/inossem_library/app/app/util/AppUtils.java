@@ -15,7 +15,7 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.inossem_library.app.app.constant.AppConstant;
-import com.inossem_library.exception.ExceptionEnum;
+import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.exception.InossemException;
 
 import java.security.MessageDigest;

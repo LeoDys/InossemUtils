@@ -3,7 +3,7 @@ package com.inossem_library.other.regex.util;
 import android.support.annotation.NonNull;
 import android.support.v4.util.SimpleArrayMap;
 
-import com.inossem_library.exception.ExceptionEnum;
+import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.exception.InossemException;
 import com.inossem_library.other.regex.constant.RegexConstants;
 import com.inossem_library.other.string.util.StringUtils;

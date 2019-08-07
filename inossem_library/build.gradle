@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.LeoDys'
+group = 'com.github.LeoDys'
 android {
     compileSdkVersion config.compileSdkVersion
 
@@ -33,13 +33,26 @@ android {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
+    // Android v7 Design
     api "com.android.support:appcompat-v7:${config.androidSupportVersion}"
+    api "com.android.support:design:${config.androidSupportVersion}"
+    // 图片加载
     api "com.github.bumptech.glide:glide:${config.glide}"
+    // 网络请求
     api "com.squareup.retrofit2:retrofit:${config.retrofit}"
     api "com.squareup.retrofit2:converter-gson:${config.retrofit}"
+    // json解析
     api "com.google.code.gson:gson:${config.gson}"
+    // toast
     api "com.github.johnpersano:supertoasts:${config.superToast}"
+    // logger
     api "com.orhanobut:logger:${config.logger}"
+    // Dialog
     api "com.github.sd6352051:NiftyDialogEffects:${config.niftyDialogEffects}"
-
+    // 屏幕适配
+    api "me.jessyan:autosize:${config.autoSize}"
+    // 时间选择器
+    api "com.jzxiang.pickerview:TimePickerDialog:${config.timePickerDialog}"
+    // tiny ndk压缩框架
+    api "com.zxy.android:tiny:${config.tiny}"
 }

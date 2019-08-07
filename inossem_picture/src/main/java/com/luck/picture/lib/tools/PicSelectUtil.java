@@ -5,8 +5,6 @@ import com.luck.picture.lib.config.InossemPictureConfig;
 import com.luck.picture.lib.constant.PictureSelectContants;
 import com.luck.picture.lib.exception.InossemPictureSelectException;
 
-import static com.luck.picture.lib.constant.PictureSelectContants.DEFAULT_PICTURE_MAX_SIZE;
-
 /**
  * 图片选择二层工具类
  * Created by wen40 on 2019/7/10.
@@ -95,7 +93,7 @@ public class PicSelectUtil {
                 // 裁剪压缩质量 默认100
                 .cropCompressQuality(configBean.getCropCompressQuality())
                 // 小于100kb的图片不压缩
-                .minimumCompressSize(configBean.getMinimumCompressSize())
+                .minimumCompressSize(configBean.getCompressToSize())
                 // 裁剪宽高比，设置如果大于图片本身宽高则无效 TODO
                 // .cropWH()
                 // 裁剪是否可旋转图片

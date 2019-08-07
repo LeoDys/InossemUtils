@@ -377,7 +377,6 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
                     type,
                     outputCameraPath, config.suffixType);
             cameraPath = cameraFile.getAbsolutePath();
-
             // 是否启用自定义相机
             if (config.startCustomCamera) {
                 InossemCustomCamera.getInstance()

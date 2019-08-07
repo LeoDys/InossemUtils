@@ -1,7 +1,7 @@
 # InossemUtils
 
 #### 介绍
-Inossem底层开发库
+Inoosem底层开发库
 
 #### 软件架构
 软件架构说明

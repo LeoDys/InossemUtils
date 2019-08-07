@@ -6,7 +6,7 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 
 import com.inossem_library.app.path.constant.PathConstant;
-import com.inossem_library.exception.ExceptionEnum;
+import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.exception.InossemException;
 
 import java.io.File;

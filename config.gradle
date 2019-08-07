@@ -17,7 +17,10 @@ ext {
             rxandroid            : "2.0.1",
             superToast           : "2.0",
             logger               : "2.2.0",
-            niftyDialogEffects   : "v1.0.3"
+            niftyDialogEffects   : "v1.0.3",
+            autoSize             : "1.1.2",
+            timePickerDialog     : "1.0.1",
+            tiny                 : "1.1.0"
     ]
 
     dependencies = [

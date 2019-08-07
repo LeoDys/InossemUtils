@@ -13,6 +13,8 @@ import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 
+import com.inossem_library.other.compress.config.CompressConfig;
+import com.inossem_library.other.compress.util.CompressUtils;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.config.PictureSelectionConfig;
@@ -244,19 +246,19 @@ public class PictureBaseActivity extends FragmentActivity {
 //                        }
 //                    }).launch();
 //        }
-//        TinyConfig tinyConfig = new TinyConfig(mContext);
-//        tinyConfig.setCompressDirectory(config.compressSavePath);
-//        tinyConfig.setFileSize(config.minimumCompressSize);
-//        tinyConfig.setQuality(config.cropCompressQuality);
-//        TinyCompressUtils.filesCallBack(getFiles(result), tinyConfig, new TinyCompressUtils.TidyCompressFilesListener() {
-//            @Override
-//            public void compressCallBack(List<String> outfiles) {
-//                tinyHandleCompressCallBack(result, outfiles);
-//            }
-//        });
-        if (config.libraryLinstener != null) {
-            tinyHandleCompressCallBack(result, config.libraryLinstener.compressPicCallBack(getFiles(result)));
-        }
+        CompressConfig tinyConfig = new CompressConfig(mContext);
+        tinyConfig.setCompressDirectory(config.compressSavePath);
+        tinyConfig.setCompreeToSize(config.minimumCompressSize);
+        tinyConfig.setQuality(config.cropCompressQuality);
+        CompressUtils.filesCallBack(getFiles(result), tinyConfig, new CompressUtils.TidyCompressFilesListener() {
+            @Override
+            public void compressCallBack(List<String> outfiles) {
+                tinyHandleCompressCallBack(result, outfiles);
+            }
+        });
+//        if (config.libraryLinstener != null) {
+//            tinyHandleCompressCallBack(result, config.libraryLinstener.compressPicCallBack(getFiles(result)));
+//        }
     }
 
     /**

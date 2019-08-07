@@ -1,6 +1,6 @@
 package com.inossem_library.request.socket.util;
 
-import com.inossem_library.exception.ExceptionEnum;
+import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.exception.InossemException;
 import com.inossem_library.other.string.util.StringUtils;
 

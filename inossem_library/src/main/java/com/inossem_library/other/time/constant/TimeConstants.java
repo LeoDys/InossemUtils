@@ -15,6 +15,8 @@ import java.text.SimpleDateFormat;
 
 public class TimeConstants {
 
+
+
     public static final ThreadLocal<SimpleDateFormat> SDF_THREAD_LOCAL = new ThreadLocal<>();
     //判断星座常量
     public static final int[] ZODIAC_FLAGS = {20, 19, 21, 21, 21, 22, 23, 23, 23, 24, 23, 22};
@@ -33,4 +35,5 @@ public class TimeConstants {
     @Retention(RetentionPolicy.SOURCE)
     public @interface Unit {
     }
+
 }

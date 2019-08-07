@@ -17,7 +17,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 
 import com.inossem_library.app.keyboard.constant.KeyboardConstant;
-import com.inossem_library.exception.ExceptionEnum;
+import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.exception.InossemException;
 
 import java.lang.reflect.Field;
