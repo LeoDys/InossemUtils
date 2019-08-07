@@ -25,7 +25,9 @@
         <activity android:name=".crop.UCropActivity" />
         <activity android:name=".crop.PictureMultiCuttingActivity" />
         <activity android:name=".PicturePlayAudioActivity" />
-        <activity android:name=".camera.camera.InossemCameraActivity" />
+        <activity
+            android:name=".camera.camera.InossemCameraActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

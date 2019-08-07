@@ -79,7 +79,7 @@ public class TimerConfig {
         titleStringId = R.string.time_picker_select;
         yearText = R.string.time_picker_select_year;
         monthText = R.string.time_picker_select_month;
-        dayText = R.string.time_picker_select_month;
+        dayText = R.string.time_picker_select_day;
         hourText = R.string.time_picker_select_hour;
         minuteText = R.string.time_picker_select_minute;
         cyclic = false;

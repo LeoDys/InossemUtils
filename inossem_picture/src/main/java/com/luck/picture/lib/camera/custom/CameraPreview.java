@@ -11,9 +11,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 
+import com.inossem_library.app.screen.util.ScreenUtils;
 import com.luck.picture.lib.camera.utils.AutoFocusManager;
 import com.luck.picture.lib.camera.utils.CameraUtils;
-import com.luck.picture.lib.camera.utils.ScreenUtils;
 import com.luck.picture.lib.camera.utils.SensorControler;
 
 import java.util.List;
@@ -129,7 +129,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
      */
     private Camera.Size getOptimalPreviewSize(List<Camera.Size> sizes, int w, int h) {
         final double ASPECT_TOLERANCE = 0.2;
-        double targetRatio = (double) w / h;
+        double targetRatio = (double) h / w;
         if (sizes == null)
             return null;
 
@@ -161,6 +161,28 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         }
         return optimalSize;
     }
+
+    private Camera.Size getProperSize(List<Camera.Size> pictureSizeList, float screenRatio) {
+        Camera.Size result = null;
+        for (Camera.Size size : pictureSizeList) {
+            float currentRatio = ((float) size.width) / size.height;
+            if (currentRatio - screenRatio == 0) {
+                result = size;
+                break;
+            }
+        }
+        if (null == result) {
+            for (Camera.Size size : pictureSizeList) {
+                float curRatio = ((float) size.width) / size.height;
+                if (curRatio == 4f / 3) {// 默认w:h = 4:3
+                    result = size;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
 
     public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
         //因为设置了固定屏幕方向，所以在实际使用中不会触发这个方法

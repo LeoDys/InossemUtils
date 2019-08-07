@@ -57,6 +57,7 @@ public class PictureActivity extends BaseActivity {
                                 InossemPictureConfig configBean = InossemPictureConfig
                                         .getInstance()
                                         .initActivity(PictureActivity.this)
+                                        .setCompress(true)
                                         /*.setLibraryLinstener(new LibraryLinstener() {
                                             @Override
                                             public List<String> compressPicCallBack(List<File> files) {
@@ -94,17 +95,17 @@ public class PictureActivity extends BaseActivity {
                         files.add(new File(media.getPath()));
                     }
 
-                    Log.i("LocalMedia-compress", "内部：" + Thread.currentThread().getId());
+//                    Log.i("LocalMedia-compress", "内部：" + Thread.currentThread().getId());
 
-                    CompressUtils.filesCallBack(files, new CompressConfig(PictureActivity.this), new CompressUtils.TidyCompressFilesListener() {
-                        @Override
-                        public void compressCallBack(List<String> outfiles) {
-                            Log.i("LocalMedia-compress", "内部：" + Thread.currentThread().getId());
-                            Log.e("LocalMedia-compress", outfiles.toString());
-                        }
-                    });
+//                    CompressUtils.filesCallBack(files, new CompressConfig(PictureActivity.this), new CompressUtils.TidyCompressFilesListener() {
+//                        @Override
+//                        public void compressCallBack(List<String> outfiles) {
+//                            Log.i("LocalMedia-compress", "内部：" + Thread.currentThread().getId());
+//                            Log.e("LocalMedia-compress", outfiles.toString());
+//                        }
+//                    });
 
-                    Log.e("LocalMedia-return", "11111111");
+//                    Log.e("LocalMedia-return", "11111111");
 
                     break;
 
