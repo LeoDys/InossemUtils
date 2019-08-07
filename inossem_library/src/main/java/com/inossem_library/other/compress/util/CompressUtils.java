@@ -77,6 +77,9 @@ public class CompressUtils {
      * @param listener 压缩回调
      */
     public static void bitmapCallBack(File file, CompressConfig config, final TidyCompressSingleBitmapListener listener) {
+        if (config == null) {
+            throw new InossemException(ExceptionEnum.NULL_PARAMS, "CompressConfig null,please check");
+        }
         Tiny.BitmapCompressOptions options = new Tiny.BitmapCompressOptions();
         options.config = config.getConfig();
         options.width = config.getMaxWidth();
@@ -101,6 +104,9 @@ public class CompressUtils {
      * @param listener 压缩回调
      */
     public static void fileCallBack(File file, CompressConfig config, final TidyCompressSingleFileListener listener) {
+        if (config == null) {
+            throw new InossemException(ExceptionEnum.NULL_PARAMS, "CompressConfig null,please check");
+        }
         Tiny.FileCompressOptions options = new Tiny.FileCompressOptions();
         CompressConvertUtils.setOptions(config, options);
         Tiny.getInstance().source(file).asFile().withOptions(options).compress(new FileCallback() {
