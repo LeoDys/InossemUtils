@@ -141,17 +141,17 @@ public class HttpActivity extends BaseActivity {
                             //当传入自定义的Dialog, 请求时会自动显示、消失
                             new RetrofitCallback<BaseBean<LogInBean>>(new ProgressDialog(HttpActivity.this)) {
                                 @Override
-                                public void success(Response<BaseBean<LogInBean>> response) {
+                                public void succ(Response<BaseBean<LogInBean>> response) {
                                     ToastUtils.show(HttpActivity.this, response.body().getErrorMsg());
                                 }
 
                                 @Override
-                                public void httpError(Response<BaseBean<LogInBean>> response) {
+                                public void httpE(Response<BaseBean<LogInBean>> response) {
 
                                 }
 
                                 @Override
-                                public void failure(RetrofitCallBackError error) {
+                                public void fail(RetrofitCallBackError error) {
 
                                 }
                             }
@@ -159,17 +159,17 @@ public class HttpActivity extends BaseActivity {
                             //当不传Dialog, 则不会显示
                             new RetrofitCallback<BaseBean<LogInBean>>() {
                                 @Override
-                                public void success(Response<BaseBean<LogInBean>> response) {
+                                public void succ(Response<BaseBean<LogInBean>> response) {
                                     ToastUtils.show(HttpActivity.this, response.body().getErrorMsg());
                                 }
 
                                 @Override
-                                public void httpError(Response<BaseBean<LogInBean>> response) {
+                                public void httpE(Response<BaseBean<LogInBean>> response) {
 
                                 }
 
                                 @Override
-                                public void failure(RetrofitCallBackError error) {
+                                public void fail(RetrofitCallBackError error) {
 
                                 }
                             });
@@ -226,17 +226,17 @@ public class HttpActivity extends BaseActivity {
                             .loginDealWithData(requestBean),
                     new RetrofitCallback<BaseBean<LogInBean>>() {
                         @Override
-                        public void success(Response<BaseBean<LogInBean>> response) {
+                        public void succ(Response<BaseBean<LogInBean>> response) {
                             ToastUtils.show(HttpActivity.this, response.body().getErrorMsg());
                         }
 
                         @Override
-                        public void httpError(Response<BaseBean<LogInBean>> response) {
+                        public void httpE(Response<BaseBean<LogInBean>> response) {
 
                         }
 
                         @Override
-                        public void failure(RetrofitCallBackError error) {
+                        public void fail(RetrofitCallBackError error) {
 
                         }
                     });

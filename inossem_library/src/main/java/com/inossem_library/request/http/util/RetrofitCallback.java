@@ -28,13 +28,13 @@ public abstract class RetrofitCallback<T> implements Callback<T> {
     private Dialog dialog;
 
     //请求成功
-    public abstract void success(Response<T> response);
+    public abstract void succ(Response<T> response);
 
     //404 500等HTTP错误
-    public abstract void httpError(Response<T> response);
+    public abstract void httpE(Response<T> response);
 
     //连接超时等连接错误
-    public abstract void failure(RetrofitCallBackError error);
+    public abstract void fail(RetrofitCallBackError error);
 
     /**
      * 构造方法1
@@ -77,10 +77,10 @@ public abstract class RetrofitCallback<T> implements Callback<T> {
         dialogDismiss();
         if (response.isSuccessful()) {
             //请求成功
-            success(response);
+            succ(response);
         } else {
             //404 500等HTTP错误
-            httpError(response);
+            httpE(response);
         }
     }
 
@@ -112,7 +112,7 @@ public abstract class RetrofitCallback<T> implements Callback<T> {
             errorEnum = RetrofitCallBackErrorEnum.OTHER;
         }
 
-        failure(new RetrofitCallBackError(t, errorEnum.getErrorCode(), errorEnum.getErrorMSgCN(), getErrorMSgUS(t)));
+        fail(new RetrofitCallBackError(t, errorEnum.getErrorCode(), errorEnum.getErrorMSgCN(), getErrorMSgUS(t)));
     }
 
     /**
