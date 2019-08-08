@@ -88,12 +88,12 @@ public class RetrofitLogWriter {
         Boolean isPrintLog = sp.getBoolean(RetrofitConstant.IS_PRINT_LOG, RetrofitConstant.DEFAULT_PRINT_LOG);
         Boolean isSaveLog = sp.getBoolean(RetrofitConstant.IS_SAVE_LOG, RetrofitConstant.DEFAULT_SAVE_LOG);
 
-        if (isPrintLog) {
+        if (isPrintLog != null && isPrintLog) {
             //打印日志
             LogUtils.i(logInformation);
         }
 
-        if (isSaveLog) {
+        if (isSaveLog != null && isSaveLog) {
             //保存日志
 //            LogWriteFile.saveLog(context, type, logInformation);
         }

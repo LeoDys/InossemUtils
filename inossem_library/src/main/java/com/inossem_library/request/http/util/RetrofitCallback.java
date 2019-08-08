@@ -3,6 +3,8 @@ package com.inossem_library.request.http.util;
 import android.app.Dialog;
 import android.support.annotation.NonNull;
 
+import com.inossem_library.exception.InossemException;
+import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.request.http.constant.RetrofitCallBackError;
 import com.inossem_library.request.http.constant.RetrofitCallBackErrorEnum;
 
@@ -50,11 +52,11 @@ public abstract class RetrofitCallback<T> implements Callback<T> {
      *               2. 建议用单例
      * @throws Exception 当设置的弹窗为空时 报异常
      */
-    public RetrofitCallback(Dialog dialog) throws Exception {
+    public RetrofitCallback(Dialog dialog) {
         this.dialog = dialog;
 
         if (null == this.dialog) {
-            throw new Exception("Dialog不能为空");
+            throw new InossemException(ExceptionEnum.NULL_PARAMS, "Dialog不能为空");
         }
 
         //如果dialog没有显示的话 显示dialog
