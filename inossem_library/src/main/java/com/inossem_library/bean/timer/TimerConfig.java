@@ -243,7 +243,7 @@ public class TimerConfig {
 
     public TimerConfig setCurrentMillseconds(Long currentMillseconds) {
         if (currentMillseconds == null || currentMillseconds == 0) {
-            throw new InossemException(ExceptionEnum.NULL_PARAMS, "currentMillseconds can be null or 0");
+            currentMillseconds = System.currentTimeMillis();
         }
         this.currentMillseconds = currentMillseconds;
         return this;
