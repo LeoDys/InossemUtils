@@ -7,6 +7,7 @@ import com.inossem_library.other.time.util.TimeUtils;
 import com.inossem_library.request.http.constant.RetrofitConstant;
 import com.inossem_library.request.http.constant.RetrofitLogConstant;
 import com.inossem_library.tips.logcat.util.LogUtils;
+import com.inossem_library.writelogs.util.LogWriteUtils;
 
 /**
  * 写日志
@@ -90,12 +91,12 @@ public class RetrofitLogWriter {
 
         if (isPrintLog != null && isPrintLog) {
             //打印日志
-            LogUtils.i(logInformation);
+            LogUtils.loggerI(logInformation);
         }
 
         if (isSaveLog != null && isSaveLog) {
             //保存日志
-//            LogWriteFile.saveLog(context, type, logInformation);
+            LogWriteUtils.logRequestI(context, logInformation);
         }
 
     }

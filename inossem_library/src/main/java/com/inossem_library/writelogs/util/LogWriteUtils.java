@@ -199,7 +199,7 @@ public class LogWriteUtils {
      */
     public static void logV(Context context, String type, String message, Throwable throwable) {
         saveLog(context, type, message + LogWriteConstant.NEW_LINE + ExceptionUtil.exceptionToString(throwable));
-        LogUtils.loggerV(message);
+//        LogUtils.loggerV(message);
     }
 
     /**
@@ -223,7 +223,7 @@ public class LogWriteUtils {
      */
     public static void logI(Context context, String type, String message, Throwable throwable) {
         saveLog(context, type, message + LogWriteConstant.NEW_LINE + ExceptionUtil.exceptionToString(throwable));
-        LogUtils.loggerI(message);
+//        LogUtils.loggerI(message);
     }
 
     /**
@@ -247,7 +247,7 @@ public class LogWriteUtils {
      */
     public static void logD(Context context, String type, String message, Throwable throwable) {
         saveLog(context, type, message + LogWriteConstant.NEW_LINE + ExceptionUtil.exceptionToString(throwable));
-        LogUtils.loggerD(message);
+//        LogUtils.loggerD(message);
     }
 
     /**
@@ -271,7 +271,7 @@ public class LogWriteUtils {
      */
     public static void logW(Context context, String type, String message, Throwable throwable) {
         saveLog(context, type, message + LogWriteConstant.NEW_LINE + ExceptionUtil.exceptionToString(throwable));
-        LogUtils.loggerW(message, throwable);
+//        LogUtils.loggerW(message, throwable);
     }
 
     /**
@@ -284,7 +284,7 @@ public class LogWriteUtils {
      */
     public static void logE(Context context, String type, String message, Throwable throwable) {
         saveLog(context, type, message + LogWriteConstant.NEW_LINE + ExceptionUtil.exceptionToString(throwable));
-        LogUtils.loggerE(message, throwable);
+//        LogUtils.loggerE(message, throwable);
     }
 
     /**
