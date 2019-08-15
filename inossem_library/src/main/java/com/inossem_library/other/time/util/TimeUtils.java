@@ -106,7 +106,8 @@ public class TimeUtils {
      */
     public static long string2Millis(@NonNull final String time) throws ParseException {
         if (StringUtils.isEmpty(time)) {
-            throw new InossemException(ExceptionEnum.NULL_PARAMS, "time不能为空！");
+//            throw new InossemException(ExceptionEnum.NULL_PARAMS, "time不能为空！");
+            return -1;
         }
         return string2Millis(time, getDefaultFormat());
     }
@@ -120,7 +121,8 @@ public class TimeUtils {
      */
     public static long string2Millis(@NonNull final String time, @NonNull final String pattern) throws ParseException {
         if (StringUtils.isEmpty(time)) {
-            throw new InossemException(ExceptionEnum.NULL_PARAMS, "time不能为空！");
+//            throw new InossemException(ExceptionEnum.NULL_PARAMS, "time不能为空！");
+            return -1;
         }
         if (StringUtils.isEmpty(pattern)) {
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "pattern不能为空！");
@@ -200,7 +202,8 @@ public class TimeUtils {
      */
     public static String date2String(@NonNull final Date date) {
         if (date == null) {
-            throw new InossemException(ExceptionEnum.NULL_PARAMS, "date不能为空！");
+//            throw new InossemException(ExceptionEnum.NULL_PARAMS, "date不能为空！");
+            return "";
         }
         return date2String(date, getDefaultFormat());
     }
@@ -214,7 +217,8 @@ public class TimeUtils {
      */
     public static String date2String(@NonNull final Date date, @NonNull final String pattern) {
         if (date == null) {
-            throw new InossemException(ExceptionEnum.NULL_PARAMS, "date不能为空！");
+//            throw new InossemException(ExceptionEnum.NULL_PARAMS, "date不能为空！");
+            return "";
         }
         if (StringUtils.isEmpty(pattern)) {
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "pattern不能为空！");
@@ -231,7 +235,8 @@ public class TimeUtils {
      */
     public static String date2String(@NonNull final Date date, @NonNull final DateFormat format) {
         if (date == null) {
-            throw new InossemException(ExceptionEnum.NULL_PARAMS, "date不能为空！");
+//            throw new InossemException(ExceptionEnum.NULL_PARAMS, "date不能为空！");
+            return "";
         }
         if (format == null) {
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "format不能为空！");

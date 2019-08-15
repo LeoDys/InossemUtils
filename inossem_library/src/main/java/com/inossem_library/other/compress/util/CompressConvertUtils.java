@@ -36,12 +36,13 @@ public class CompressConvertUtils {
      * @param config  自定义属性类
      * @param options TIny属性类
      */
-    public static void setOptions(CompressConfig config, Tiny.FileCompressOptions options) {
+    public static Tiny.FileCompressOptions setOptions(CompressConfig config, Tiny.FileCompressOptions options) {
         options.size = config.getCompreeToSize();
         options.width = config.getMaxWidth();
         options.height = config.getMaxHeight();
         options.isKeepSampling = config.isKeepSampling();
         options.quality = config.getQuality();
         options.compressDirectory = config.getCompressDirectory();
+        return options;
     }
 }

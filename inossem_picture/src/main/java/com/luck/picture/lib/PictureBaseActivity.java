@@ -9,12 +9,16 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 
 import com.inossem_library.other.compress.config.CompressConfig;
+import com.inossem_library.other.compress.constant.CompressConstant;
 import com.inossem_library.other.compress.util.CompressUtils;
+import com.luck.picture.lib.compress.Luban;
+import com.luck.picture.lib.compress.OnCompressListener;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.config.PictureSelectionConfig;
@@ -250,15 +254,36 @@ public class PictureBaseActivity extends FragmentActivity {
         tinyConfig.setCompressDirectory(config.compressSavePath);
         tinyConfig.setCompreeToSize(config.minimumCompressSize);
         tinyConfig.setQuality(config.cropCompressQuality);
+
         CompressUtils.filesCallBack(getFiles(result), tinyConfig, new CompressUtils.TidyCompressFilesListener() {
             @Override
             public void compressCallBack(List<String> outfiles) {
                 tinyHandleCompressCallBack(result, outfiles);
             }
         });
-//        if (config.libraryLinstener != null) {
-//            tinyHandleCompressCallBack(result, config.libraryLinstener.compressPicCallBack(getFiles(result)));
-//        }
+//        String path = this.getCacheDir().getPath() + File.separator + config.compressSavePath;
+//
+//        Luban.with(this)
+//                .loadLocalMedia(result)
+//                .ignoreBy(config.minimumCompressSize)
+//                .setTargetDir(null)
+//                .setCompressListener(new OnCompressListener() {
+//                    @Override
+//                    public void onStart() {
+//                    }
+//
+//                    @Override
+//                    public void onSuccess(List<LocalMedia> list) {
+//                        RxBus.getDefault().post(new EventEntity(PictureConfig.CLOSE_PREVIEW_FLAG));
+//                        onResult(list);
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        RxBus.getDefault().post(new EventEntity(PictureConfig.CLOSE_PREVIEW_FLAG));
+//                        onResult(result);
+//                    }
+//                }).launch();
     }
 
     /**

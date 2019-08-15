@@ -58,6 +58,7 @@ public class PictureActivity extends BaseActivity {
                                         .getInstance()
                                         .initActivity(PictureActivity.this)
                                         .setCompress(true)
+                                        .setCompressSavePath("InossemCompress")
                                         /*.setLibraryLinstener(new LibraryLinstener() {
                                             @Override
                                             public List<String> compressPicCallBack(List<File> files) {
@@ -94,7 +95,6 @@ public class PictureActivity extends BaseActivity {
                     for (LocalMedia media : localMedia) {
                         files.add(new File(media.getPath()));
                     }
-
 //                    Log.i("LocalMedia-compress", "内部：" + Thread.currentThread().getId());
 
 //                    CompressUtils.filesCallBack(files, new CompressConfig(PictureActivity.this), new CompressUtils.TidyCompressFilesListener() {

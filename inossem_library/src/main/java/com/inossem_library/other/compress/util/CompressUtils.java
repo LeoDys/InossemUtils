@@ -108,7 +108,7 @@ public class CompressUtils {
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "CompressConfig null,please check");
         }
         Tiny.FileCompressOptions options = new Tiny.FileCompressOptions();
-        CompressConvertUtils.setOptions(config, options);
+        options = CompressConvertUtils.setOptions(config, options);
         Tiny.getInstance().source(file).asFile().withOptions(options).compress(new FileCallback() {
             @Override
             public void callback(boolean isSuccess, String outfile, Throwable t) {
@@ -132,7 +132,7 @@ public class CompressUtils {
         if (fileArray == null) return;
 
         Tiny.FileCompressOptions options = new Tiny.FileCompressOptions();
-        CompressConvertUtils.setOptions(config, options);
+        options = CompressConvertUtils.setOptions(config, options);
         Tiny.getInstance().source(fileArray).batchAsFile().withOptions(options).batchCompress(new FileBatchCallback() {
             @Override
             public void callback(boolean isSuccess, String[] outfiles, Throwable t) {

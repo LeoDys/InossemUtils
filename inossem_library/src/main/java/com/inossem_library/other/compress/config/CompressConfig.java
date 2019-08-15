@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import com.inossem_library.exception.InossemException;
 import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.other.compress.constant.CompressConstant;
+import com.inossem_library.other.compress.util.FileCacheUtil;
 
 import java.io.File;
 
@@ -53,14 +54,22 @@ public class CompressConfig {
         maxHeight = DEFAULT_MAXHEIGHT;
         config = Bitmap.Config.ARGB_8888;
         outfile = Environment.getExternalStorageState().equals(
-                Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory() + File.separator + CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH
+                Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH
                 : context.getCacheDir().getPath() + File.separator + CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH;
+
+//        outfile = FileCacheUtil.getDiskCacheDir(context, CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH);
+
         quality = CompressConstant.DEFAULT_QUALITY_SIZE;
         isKeepSampling = false;
         compreeToSize = CompressConstant.DEFAULT_MAX_SIZE;
+//        compressDirectory = FileCacheUtil.getDiskCacheDir(context, CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH);
         compressDirectory = Environment.getExternalStorageState().equals(
-                Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory() + File.separator + CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH
+                Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH
                 : context.getCacheDir().getPath() + File.separator + CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH;
+        File dir = new File(compressDirectory);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
     }
 
     /**
@@ -155,8 +164,12 @@ public class CompressConfig {
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "compressDirectory can not be null");
         }
         this.compressDirectory = Environment.getExternalStorageState().equals(
-                Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory() + File.separator + compressDirectory
+                Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + compressDirectory
                 : context.getCacheDir().getPath() + File.separator + compressDirectory;
+        File dir = new File(this.compressDirectory);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
         return this;
     }
 
