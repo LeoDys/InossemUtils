@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import com.inossem_library.exception.InossemException;
 import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.other.compress.constant.CompressConstant;
-import com.inossem_library.other.compress.util.FileCacheUtil;
 
 import java.io.File;
 
