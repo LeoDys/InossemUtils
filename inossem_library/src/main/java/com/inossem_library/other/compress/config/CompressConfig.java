@@ -56,12 +56,10 @@ public class CompressConfig {
                 Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH
                 : context.getCacheDir().getPath() + File.separator + CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH;
 
-//        outfile = FileCacheUtil.getDiskCacheDir(context, CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH);
-
         quality = CompressConstant.DEFAULT_QUALITY_SIZE;
         isKeepSampling = false;
         compreeToSize = CompressConstant.DEFAULT_MAX_SIZE;
-//        compressDirectory = FileCacheUtil.getDiskCacheDir(context, CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH);
+
         compressDirectory = Environment.getExternalStorageState().equals(
                 Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH
                 : context.getCacheDir().getPath() + File.separator + CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH;
