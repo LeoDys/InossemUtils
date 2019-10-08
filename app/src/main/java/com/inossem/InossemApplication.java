@@ -3,6 +3,7 @@ package com.inossem;
 import android.app.Application;
 
 import com.inossem_library.tips.logcat.util.LogUtils;
+import com.inossem_library.tips.toast.util.ToastUtils;
 import com.zxy.tiny.Tiny;
 
 import me.jessyan.autosize.AutoSizeConfig;
@@ -21,7 +22,13 @@ public class InossemApplication extends Application {
         LogUtils.initLogger();
         initAutoSize();
         initTiny();
-}
+        initToast();
+
+    }
+
+    private void initToast() {
+        ToastUtils.init(this);
+    }
 
     /**
      * 初始化压缩框架tiny

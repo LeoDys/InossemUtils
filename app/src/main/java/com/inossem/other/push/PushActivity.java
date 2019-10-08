@@ -16,6 +16,7 @@ import com.inossem.other.OtherActivity;
 import com.inossem.util.Utils;
 import com.inossem_library.other.push.constant.PushConstant;
 import com.inossem_library.other.push.util.PushUtils;
+
 /**
  * @author 郭晓龙
  * @time on 2019/7/25
@@ -44,7 +45,8 @@ public class PushActivity extends BaseActivity {
                             @Override
                             public void onClick(View v) {
 //                                PushUtils.getInstance(getApplicationContext()).push(PushConstant.PUSH_TYPE_SYSTEM_NOTICES, "测试标题", "测试内容", R.mipmap.ic_launcher, OtherActivity.class, R.mipmap.ic_launcher);
-                                PushUtils.getInstance(getApplicationContext()).push(PushConstant.PUSH_TYPE_SYSTEM_NOTICES, "测试标题", "测试内容", OtherActivity.class, R.mipmap.ic_launcher);
+                                PushUtils.getInstance(getApplicationContext()).push(PushConstant.PUSH_TYPE_SYSTEM_NOTICES, "测试标题", "测试内容",
+                                        OtherActivity.class, R.mipmap.ic_launcher);
                             }
                         });
                         break;
