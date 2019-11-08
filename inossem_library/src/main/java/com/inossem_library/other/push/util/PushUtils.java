@@ -396,4 +396,12 @@ public class PushUtils {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         return intent;
     }
+
+    /**
+     * 清除所有的通知
+     */
+    private void clearAllNotifications() {
+        mNotificationManager.cancelAll();
+    }
+
 }
