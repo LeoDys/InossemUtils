@@ -400,8 +400,8 @@ public class PushUtils {
     /**
      * 清除所有的通知
      */
-    private void clearAllNotifications() {
-        mNotificationManager.cancelAll();
+    public void clearAllNotifications() {
+        if (mNotificationManager != null)
+            mNotificationManager.cancelAll();
     }
-
 }
