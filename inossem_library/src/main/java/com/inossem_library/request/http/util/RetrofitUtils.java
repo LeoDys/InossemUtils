@@ -262,7 +262,8 @@ public class RetrofitUtils {
      */
     private static Gson getGson() {
         return new GsonBuilder().setDateFormat(RetrofitConstant.FORMAT_LONG).
-                registerTypeAdapter(Date.class, GsonDateErrorAnalysis.getInstance()).create();
+                registerTypeAdapter(Date.class, GsonDateErrorAnalysis.getInstance())
+                .create();
     }
 
     /**

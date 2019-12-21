@@ -37,6 +37,15 @@ public abstract class RetrofitCallback<T> implements Callback<T> {
     public abstract void fail(RetrofitCallBackError error);
 
     /**
+     * 获取网络请求dialog
+     *
+     * @return
+     */
+    public Dialog getDialog() {
+        return dialog;
+    }
+
+    /**
      * 构造方法1
      * <p>
      * 用此方法没有请求时的加载框
