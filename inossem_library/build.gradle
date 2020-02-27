@@ -57,4 +57,7 @@ dependencies {
     api "com.jzxiang.pickerview:TimePickerDialog:${config.timePickerDialog}"
     // tiny ndk压缩框架
     api "com.zxy.android:tiny:${config.tiny}"
+    // 手势锁屏
+    api "com.andrognito.patternlockview:patternlockview:${config.patternlockview}"
+    api "com.andrognito.pinlockview:pinlockview:${config.pinlockview}"
 }

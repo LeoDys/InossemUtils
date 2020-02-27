@@ -1,9 +1,9 @@
 ext {
     config = [
-            compileSdkVersion    : 27,
-            buildToolsVersion    : "27.1.1",
+            compileSdkVersion    : 28,
+            buildToolsVersion    : "28.1.1",
             minSdkVersion        : 19,
-            targetSdkVersion     : 27,
+            targetSdkVersion     : 28,
             versionCode          : 1,
             versionName          : "1.0.1",
 
@@ -20,7 +20,9 @@ ext {
             niftyDialogEffects   : "v1.0.3",
             autoSize             : "1.1.2",
             timePickerDialog     : "1.0.1",
-            tiny                 : "1.1.0"
+            tiny                 : "1.1.0",
+            patternlockview      : "1.0.0",
+            pinlockview          : "2.1.0"
     ]
 
     dependencies = [
