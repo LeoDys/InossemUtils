@@ -24,4 +24,18 @@
     <string name="time_picker_select_hour">时</string>
     <string name="time_picker_select_minute">分</string>
 
+    <string name="pattern_type_must">类型参数必须传递</string>
+    <string name="pattern_no_setting">未设置手势密码</string>
+    <string name="pattern_please_paint">请绘制手势密码</string>
+    <string name="pattern_please_old_pwd">请绘制原始手势密码</string>
+    <string name="pattern_please_input_pwd">请输入手势密码</string>
+    <string name="pattern_please_paint_again">请再次绘制手势密码</string>
+    <string name="pattern_paint_success">手势密码绘制成功</string>
+    <string name="pattern_no_same">两次手势密码不一致,请重试</string>
+    <string name="pattern_old_pwd_error">原始手势密码绘制错误,请重试</string>
+    <string name="pattern_paint_error">手势密码绘制错误,请重试</string>
+    <string name="pattern_shortest_four">手势密码最短4位,请重新绘制</string>
+    <string name="pattern_re_paint">重绘</string>
+    <string name="pattern_sure">确定</string>
+
 </resources>

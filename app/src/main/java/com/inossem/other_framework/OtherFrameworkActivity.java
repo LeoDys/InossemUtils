@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.inossem.BaseActivity;
 import com.inossem.R;
+import com.inossem.other_framework.pattern.PatternActivity;
 import com.inossem.other_framework.picture.PictureActivity;
 import com.inossem.util.Utils;
 
@@ -45,6 +46,15 @@ public class OtherFrameworkActivity extends BaseActivity {
                             @Override
                             public void onClick(View v) {
                                 startActivity(new Intent(OtherFrameworkActivity.this, PictureActivity.class));
+                            }
+                        });
+                        break;
+                    case 1:
+                        button.setText("手势密码");
+                        button.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(OtherFrameworkActivity.this, PatternActivity.class));
                             }
                         });
                         break;

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/pattern_logo" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/logo"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:textColor="@android:color/holo_red_dark" />
+
+    <com.andrognito.patternlockview.PatternLockView
+        android:id="@+id/patternLockView"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_above="@id/bottomLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        app:correctStateColor="@android:color/holo_blue_dark"
+        app:dotCount="3"
+        app:dotNormalSize="10dp"
+        app:dotSelectedSize="20dp"
+        app:normalStateColor="@android:color/holo_blue_light"
+        app:pathWidth="3dp"
+        app:wrongStateColor="@android:color/holo_red_dark" />
+
+    <RelativeLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

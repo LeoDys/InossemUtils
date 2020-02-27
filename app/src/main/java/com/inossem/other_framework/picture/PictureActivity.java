@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.inossem.BaseActivity;
 import com.inossem.R;
 import com.inossem.util.Utils;
+import com.inossem_library.callback.LibraryLinstener;
 import com.inossem_library.other.compress.config.CompressConfig;
 import com.inossem_library.other.compress.util.CompressUtils;
 import com.luck.picture.lib.PictureSelector;
@@ -62,13 +63,6 @@ public class PictureActivity extends BaseActivity {
                                         .initActivity(PictureActivity.this)
                                         .setCompress(true)
                                         .setCompressSavePath("InossemCompress")
-                                        /*.setLibraryLinstener(new LibraryLinstener() {
-                                            @Override
-                                            public List<String> compressPicCallBack(List<File> files) {
-                                                // 压缩
-                                                return CompressSyncUtils.filesCallBack(files, new CompressConfig(PictureActivity.this));
-                                            }
-                                        })*/
                                         .setEnableCrop(true)
                                         .setStartCustomCamera(true);
 

@@ -15,6 +15,7 @@ android {
             res.srcDirs =
                     [
                             'src/main/res/layout/tips',
+                            'src/main/res/layout/pattern',
                             'src/main/res'
                     ]
         }
