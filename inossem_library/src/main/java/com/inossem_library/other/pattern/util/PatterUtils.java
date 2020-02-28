@@ -21,7 +21,7 @@ public class PatterUtils {
      *
      * @param mActivity 上下文对象
      */
-    public static void setPattern(Activity mActivity, Integer icon, LoggingMXBean ...bean) {
+    public static void setPattern(Activity mActivity, Integer icon) {
         Intent intent = new Intent(mActivity, PatternActivity.class);
         intent.putExtra(PatternConstant.KEY_TYPE, PatternConstant.TYPE_SET_PASSWORD);
         intent.putExtra(PatternConstant.KEY_LOGO, icon);

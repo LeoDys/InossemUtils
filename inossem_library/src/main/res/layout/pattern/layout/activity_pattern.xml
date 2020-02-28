@@ -6,22 +6,36 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:src="@drawable/pattern_logo" />
 
     <TextView
         android:id="@+id/message"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/logo"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:gravity="center"
         android:textColor="@android:color/holo_red_dark" />
+
+    <!--
+        app:dotCount="3"                                        // 改变一行(或一列)点数量
+        app:dotNormalSize="12dp"                                // 改变正常状态下圆点的大小
+        app:dotSelectedSize="24dp"                              // 改变选定状态下圆点的大小
+        app:pathWidth="4dp"                                     // 改变路径的宽度
+        app:aspectRatioEnabled="true"                           // 设置视图是否应该尊重自定义的宽高比
+        app:aspectRatio="square"                                // 设置在“square”，“width_bias”，“height_bias”之间 偏宽 偏高 方形
+        app:normalStateColor="@color/white"                     // 将模式视图的颜色设置为正常状态
+        app:correctStateColor="@color/primary"                  // 将模式视图的颜色设置为正确的状态
+        app:wrongStateColor="@color/pomegranate"                // 将模式视图的颜色设置为错误状态
+        app:dotAnimationDuration="200"                          // 改变动画点的持续时间
+        app:pathEndAnimationDuration="100"                      // 改变路径结束动画的持续时间
+    -->
 
     <com.andrognito.patternlockview.PatternLockView
         android:id="@+id/patternLockView"
@@ -30,16 +44,17 @@
         android:layout_above="@id/bottomLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="30dp"
-        app:correctStateColor="@android:color/holo_blue_dark"
+        android:layout_marginBottom="20dp"
+        app:aspectRatioEnabled="true"
+        app:correctStateColor="@android:color/holo_red_light"
         app:dotCount="3"
         app:dotNormalSize="10dp"
         app:dotSelectedSize="20dp"
         app:normalStateColor="@android:color/holo_blue_light"
         app:pathWidth="3dp"
-        app:wrongStateColor="@android:color/holo_red_dark" />
+        app:wrongStateColor="@android:color/black" />
 
     <RelativeLayout
         android:id="@+id/bottomLayout"

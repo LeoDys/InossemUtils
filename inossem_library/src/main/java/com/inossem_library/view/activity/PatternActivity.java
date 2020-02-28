@@ -73,6 +73,8 @@ public class PatternActivity extends Activity implements View.OnClickListener {
      */
     private void initView() {
         mPatternLockView = this.findViewById(R.id.patternLockView);
+        mPatternLockView.setInStealthMode(true);
+        mPatternLockView.setTactileFeedbackEnabled(true);
         img_logo = this.findViewById(R.id.logo);
         tv_message = this.findViewById(R.id.message);
         bottomLayout = this.findViewById(R.id.bottomLayout);
