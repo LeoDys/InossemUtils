@@ -1,9 +1,9 @@
 package com.inossem_library.other.string.util;
 
 import android.content.Context;
-import android.support.annotation.ArrayRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
+import androidx.annotation.ArrayRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 
 import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.exception.InossemException;

@@ -1,1 +1,1 @@
-include ':app', ':inossem_picture', ':inossem_library'
+include ':app'/*, ':inossem_picture'*/, ':inossem_library'

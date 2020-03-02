@@ -1,7 +1,7 @@
 package com.inossem_library.request.http.util;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.inossem_library.request.http.constant.RetrofitConstant;
 import com.inossem_library.request.http.constant.RetrofitLogConstant;

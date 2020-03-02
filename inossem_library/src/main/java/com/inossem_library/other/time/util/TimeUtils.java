@@ -1,7 +1,7 @@
 package com.inossem_library.other.time.util;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.inossem_library.R;
 import com.inossem_library.exception.constant.ExceptionEnum;

@@ -1,7 +1,7 @@
 package com.inossem_library.other.sp.util;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.exception.InossemException;

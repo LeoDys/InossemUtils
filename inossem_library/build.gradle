@@ -31,14 +31,17 @@ android {
     sourceSets.main {
         jniLibs.srcDirs = ['libs']
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     // Android v7 Design
-    api "com.android.support:appcompat-v7:${config.androidSupportVersion}"
-    api "com.android.support:design:${config.androidSupportVersion}"
+    api 'androidx.appcompat:appcompat:1.0.0'
+    api 'com.google.android.material:material:1.0.0'
     // 图片加载
     api "com.github.bumptech.glide:glide:${config.glide}"
     // 网络请求
@@ -61,4 +64,9 @@ dependencies {
     // 手势锁屏
     api "com.andrognito.patternlockview:patternlockview:${config.patternlockview}"
     api "com.andrognito.pinlockview:pinlockview:${config.pinlockview}"
+    // netty推送
+    api "io.netty:netty-all:4.1.9.Final"
+    // 图片选择
+    api "com.github.LuckSiege.PictureSelector:picture_library:v2.4.6+"
+
 }

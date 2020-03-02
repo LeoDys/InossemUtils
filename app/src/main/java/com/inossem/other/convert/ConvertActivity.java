@@ -1,7 +1,5 @@
 package com.inossem.other.convert;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,8 +9,6 @@ import android.widget.TextView;
 
 import com.inossem.BaseActivity;
 import com.inossem.R;
-import com.inossem.other.OtherActivity;
-import com.inossem.other.push.PushActivity;
 import com.inossem.util.Utils;
 import com.inossem_library.other.convert.constant.ConvertConstants;
 import com.inossem_library.other.convert.util.ConvertUtils;

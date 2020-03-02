@@ -3,7 +3,7 @@ package com.inossem_library.tips.toast.util;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,10 +59,10 @@ public class ToastUtils {
      *
      * @param context 上下文
      * @param msg     提示信息
-     * @param icon    图标 默认:R.drawable.warn
+     * @param icon    图标 默认:R.drawable.dialog_warn
      */
     public static void showError(Context context, String msg, Integer icon) {
-        show(context, msg, icon == null ? R.drawable.warn : icon, Color.RED, null, null, null);
+        show(context, msg, icon == null ? R.drawable.dialog_warn : icon, Color.RED, null, null, null);
     }
 
     /***

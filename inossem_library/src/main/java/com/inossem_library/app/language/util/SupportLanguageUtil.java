@@ -2,7 +2,7 @@ package com.inossem_library.app.language.util;
 
 import android.os.Build;
 import android.os.LocaleList;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 
 import com.inossem_library.app.language.constant.SupportLanguageConstant;
 

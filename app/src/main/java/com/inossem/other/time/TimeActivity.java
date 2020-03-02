@@ -1,24 +1,16 @@
 package com.inossem.other.time;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.inossem.BaseActivity;
 import com.inossem.R;
-import com.inossem.other.OtherActivity;
-import com.inossem.other.string.StringActivity;
 import com.inossem.util.Utils;
 import com.inossem_library.bean.timer.TimerConfig;
-import com.inossem_library.other.convert.constant.ConvertConstants;
-import com.inossem_library.other.convert.util.ConvertUtils;
-import com.inossem_library.other.push.constant.PushConstant;
-import com.inossem_library.other.push.util.PushUtils;
 import com.inossem_library.other.time.constant.TimeConstants;
 import com.inossem_library.other.time.util.TimePickUtils;
 import com.inossem_library.other.time.util.TimeUtils;

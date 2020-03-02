@@ -1,17 +1,11 @@
 package com.inossem_library.other.time.util;
 
 import android.content.Context;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 
-import com.inossem_library.R;
 import com.inossem_library.bean.timer.TimerConfig;
 import com.jzxiang.pickerview.TimePickerDialog;
-import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
-import com.jzxiang.pickerview.utils.Utils;
-
-import java.sql.Time;
 
 /**
  * 时间选择

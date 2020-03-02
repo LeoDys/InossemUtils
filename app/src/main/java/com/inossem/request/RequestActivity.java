@@ -1,7 +1,6 @@
 package com.inossem.request;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,13 +9,6 @@ import android.widget.TextView;
 
 import com.inossem.BaseActivity;
 import com.inossem.R;
-import com.inossem.other.OtherActivity;
-import com.inossem.other.convert.ConvertActivity;
-import com.inossem.other.push.PushActivity;
-import com.inossem.other.regex.RegexActivity;
-import com.inossem.other.sp.SPActivity;
-import com.inossem.other.string.StringActivity;
-import com.inossem.other.time.TimeActivity;
 import com.inossem.request.http.HttpActivity;
 import com.inossem.request.socket.SocketActivity;
 import com.inossem.util.Utils;

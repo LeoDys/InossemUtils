@@ -1,9 +1,13 @@
 package com.inossem.other_framework.picture;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,16 +16,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.inossem.BaseActivity;
+import com.inossem.MainActivity;
 import com.inossem.R;
 import com.inossem.util.Utils;
-import com.inossem_library.callback.LibraryLinstener;
-import com.inossem_library.other.compress.config.CompressConfig;
-import com.inossem_library.other.compress.util.CompressUtils;
+import com.inossem_library.app.path.util.PathUtils;
+import com.inossem_library.other.picture.config.InossemPictureConfig;
+import com.inossem_library.other.picture.constant.PictureSelectContants;
+import com.inossem_library.other.picture.util.GlideEngineUtil;
+import com.inossem_library.other.picture.util.PicSelectUtil;
 import com.luck.picture.lib.PictureSelector;
-import com.luck.picture.lib.config.InossemPictureConfig;
-import com.luck.picture.lib.constant.PictureSelectContants;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
-import com.luck.picture.lib.tools.PicSelectUtil;
+import com.luck.picture.lib.listener.OnResultCallbackListener;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -36,6 +43,7 @@ import java.util.List;
  */
 
 public class PictureActivity extends BaseActivity {
+    private static final String TAG = "BaseActivity";
     TextView description;
     private LinearLayout buttonLayout;
 
@@ -62,10 +70,7 @@ public class PictureActivity extends BaseActivity {
                                         .getInstance()
                                         .initActivity(PictureActivity.this)
                                         .setCompress(true)
-                                        .setCompressSavePath("InossemCompress")
-                                        .setEnableCrop(true)
-                                        .setStartCustomCamera(true);
-
+                                        .setCompressSavePath(getPath(PictureActivity.this, Environment.DIRECTORY_PICTURES));
                                 PicSelectUtil.activitySelectPictureActivity(configBean);
                             }
                         });
@@ -81,39 +86,35 @@ public class PictureActivity extends BaseActivity {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case PictureSelectContants.DEFAULT_PICTURE_REQUEST_CODE:
-                    // 图片选择结果回调
-                    // 1.media.getPath(); 为原图path
-                    // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
-                    // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
-                    // 如果裁剪并压缩了，已取压缩路径为准，因为是先裁剪后压缩的
-                    List<LocalMedia> localMedia = PictureSelector.obtainMultipleResult(data);
-                    Log.e("LocalMedia-path", localMedia.toString());
-                    List<File> files = new ArrayList<>();
-                    for (LocalMedia media : localMedia) {
-                        files.add(new File(media.getPath()));
-                        String compressPath = media.getCompressPath();
-                        Log.e("LocalMedia-path", compressPath);
-                    }
 
+                    List<String> compressPath = PicSelectUtil.getCompressPath(requestCode, data);
+
+                    List<File> files = new ArrayList<>();
+                    for (String media : compressPath) {
+                        files.add(new File(media));
+                        Log.e("LocalMedia-path", media);
+                    }
                     ImageView imageView = new ImageView(PictureActivity.this);
-                    Bitmap bitmap = BitmapFactory.decodeFile(localMedia.get(0).getCompressPath());
+                    Bitmap bitmap = BitmapFactory.decodeFile(compressPath.get(0));
                     imageView.setImageBitmap(bitmap);
                     buttonLayout.addView(imageView);
-//                    Log.i("LocalMedia-compress", "内部：" + Thread.currentThread().getId());
-
-//                    CompressUtils.filesCallBack(files, new CompressConfig(PictureActivity.this), new CompressUtils.TidyCompressFilesListener() {
-//                        @Override
-//                        public void compressCallBack(List<String> outfiles) {
-//                            Log.i("LocalMedia-compress", "内部：" + Thread.currentThread().getId());
-//                            Log.e("LocalMedia-compress", outfiles.toString());
-//                        }
-//                    });
-
-//                    Log.e("LocalMedia-return", "11111111");
-
                     break;
-
             }
         }
     }
+
+    /**
+     * 获取保存文件路径 （增加Q版本判断）
+     */
+    public static String getPath(Context context, String environmentType) {
+        // Environment.DIRECTORY_DOCUMENTS  ， DIRECTORY_DCIM  ，DIRECTORY_DOWNLOADS ， DIRECTORY_MOVIES
+        String path;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            path = context.getExternalFilesDir(environmentType) + File.separator;
+        } else {
+            path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "InossemTest";
+        }
+        return path;
+    }
+
 }

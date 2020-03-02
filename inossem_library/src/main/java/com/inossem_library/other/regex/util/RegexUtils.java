@@ -1,7 +1,7 @@
 package com.inossem_library.other.regex.util;
 
-import android.support.annotation.NonNull;
-import android.support.v4.util.SimpleArrayMap;
+import androidx.annotation.NonNull;
+import androidx.collection.SimpleArrayMap;
 
 import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.exception.InossemException;

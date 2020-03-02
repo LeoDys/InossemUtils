@@ -3,7 +3,7 @@ package com.inossem_library.other.permission.util;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.text.TextUtils;
 
 import com.inossem_library.exception.constant.ExceptionEnum;

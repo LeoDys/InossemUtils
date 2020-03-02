@@ -13,7 +13,7 @@
         android:id="@+id/img"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:src="@drawable/ico_error"
+        android:src="@drawable/dialog_ico_error"
         android:layout_marginLeft="10dp"/>
 
     <TextView

@@ -1,32 +1,18 @@
 package com.inossem.other_framework.pattern;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.inossem.BaseActivity;
 import com.inossem.R;
-import com.inossem.other_framework.picture.PictureActivity;
 import com.inossem.util.Utils;
 import com.inossem_library.other.pattern.util.PatterUtils;
 import com.inossem_library.tips.toast.util.ToastUtils;
-import com.luck.picture.lib.PictureSelector;
-import com.luck.picture.lib.config.InossemPictureConfig;
-import com.luck.picture.lib.constant.PictureSelectContants;
-import com.luck.picture.lib.entity.LocalMedia;
-import com.luck.picture.lib.tools.PicSelectUtil;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 手势密码

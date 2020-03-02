@@ -1,15 +1,15 @@
 ext {
     config = [
-            compileSdkVersion    : 28,
-            buildToolsVersion    : "28.1.1",
+            compileSdkVersion    : 29,
+            buildToolsVersion    : "29.0.2",
             minSdkVersion        : 19,
-            targetSdkVersion     : 28,
+            targetSdkVersion     : 29,
             versionCode          : 1,
             versionName          : "1.0.1",
 
             //open version control
-            androidSupportVersion: "27.1.1",
-            glide                : "4.5.0",
+            androidSupportVersion: "29.0.2",
+            glide                : "4.10.0",
             rxjava               : "2.0.5",
             rxandroid            : "2.0.1",
             retrofit             : "2.6.0",
@@ -26,8 +26,6 @@ ext {
     ]
 
     dependencies = [
-            "rxandroid2": "io.reactivex.rxjava2:rxandroid:${config["rxandroid"]}",
-            "rxjava2"   : "io.reactivex.rxjava2:rxjava:${config["rxjava"]}",
     ]
 
 }

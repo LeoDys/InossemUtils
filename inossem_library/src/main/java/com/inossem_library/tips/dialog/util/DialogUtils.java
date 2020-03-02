@@ -232,24 +232,24 @@ public class DialogUtils {
         switch (dialogTypeEnum) {
             case INFO:
                 if (mIcon == null) {
-                    mIcon = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.ico_info);
+                    mIcon = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.dialog_ico_info);
                 }
                 break;
             case WARMING:
                 if (mIcon == null) {
-                    mIcon = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.ico_warning);
+                    mIcon = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.dialog_ico_warning);
                 }
 //                effectstype = Effectstype.Shake;
                 break;
             case ERROR:
                 if (mIcon == null) {
-                    mIcon = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.ico_error);
+                    mIcon = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.dialog_ico_error);
                 }
 //                effectstype = Effectstype.Shake;
                 break;
             case JUDGE:
                 if (mIcon == null) {
-                    mIcon = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.ico_judge);
+                    mIcon = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.dialog_ico_judge);
                 }
                 cancel.setVisibility(View.VISIBLE);
                 cancel.setText(mContext.getResources().getString(R.string.common_cancel));

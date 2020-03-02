@@ -1,6 +1,5 @@
 package com.inossem.other.string;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,14 +9,7 @@ import android.widget.TextView;
 
 import com.inossem.BaseActivity;
 import com.inossem.R;
-import com.inossem.other.OtherActivity;
-import com.inossem.other.sp.SPActivity;
 import com.inossem.util.Utils;
-import com.inossem_library.other.convert.constant.ConvertConstants;
-import com.inossem_library.other.convert.util.ConvertUtils;
-import com.inossem_library.other.push.constant.PushConstant;
-import com.inossem_library.other.push.util.PushUtils;
-import com.inossem_library.other.regex.util.RegexUtils;
 import com.inossem_library.other.string.util.StringUtils;
 /**
  * @author 郭晓龙

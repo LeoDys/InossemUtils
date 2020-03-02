@@ -106,10 +106,10 @@
                 android:layout_marginRight="40dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:background="@drawable/button_selector_background"
+                android:background="@drawable/dailog_button_selector_background"
                 android:gravity="center"
                 android:minHeight="45dp"
-                android:textColor="@drawable/button_selector_color"
+                android:textColor="@drawable/dailog_button_selector_color"
                 android:visibility="gone" />
 
             <Button
@@ -121,10 +121,10 @@
                 android:layout_marginRight="40dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:background="@drawable/button_selector_background"
+                android:background="@drawable/dailog_button_selector_background"
                 android:gravity="center"
                 android:minHeight="45dp"
-                android:textColor="@drawable/button_selector_color"
+                android:textColor="@drawable/dailog_button_selector_color"
                 android:visibility="gone" />
 
         </LinearLayout>

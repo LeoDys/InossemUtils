@@ -1,6 +1,6 @@
 package com.inossem_library.request.http.util.dealWithData;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.google.gson.TypeAdapter;
 

@@ -3,7 +3,8 @@ package com.inossem_library.app.path.util;
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import com.inossem_library.app.path.constant.PathConstant;
 import com.inossem_library.exception.constant.ExceptionEnum;
@@ -202,9 +203,9 @@ public class PathUtils {
     }
 
     /**
-     * 获取外存通知路径 /storage/emulated/0/Pictures.
+     * 获取外存通知路径 /storage/emulated/0/Notifications
      *
-     * @return 外存通知路径 /storage/emulated/0/Pictures
+     * @return 外存通知路径 /storage/emulated/0/Notifications
      */
     public static String getExternalNotificationsPath() {
         if (isExternalStorageDisable()) return "";
@@ -212,9 +213,9 @@ public class PathUtils {
     }
 
     /**
-     * 获取外存图片路径 /storage/emulated/0/Movies.
+     * 获取外存图片路径 /storage/emulated/0/Pictures
      *
-     * @return 外存图片路径 /storage/emulated/0/Movies
+     * @return 外存图片路径 /storage/emulated/0/Pictures
      */
     public static String getExternalPicturesPath() {
         if (isExternalStorageDisable()) return "";
@@ -222,9 +223,9 @@ public class PathUtils {
     }
 
     /**
-     * 获取外存影片路径 /storage/emulated/0/Download.
+     * 获取外存影片路径 /storage/emulated/0/Movies
      *
-     * @return 外存影片路径 /storage/emulated/0/Download
+     * @return 外存影片路径 /storage/emulated/0/Movies
      */
     public static String getExternalMoviesPath() {
         if (isExternalStorageDisable()) return "";
@@ -451,6 +452,11 @@ public class PathUtils {
         return getAbsolutePath(context.getObbDir());
     }
 
+    /**
+     * 是否挂在外存储
+     *
+     * @return true 未挂载 false挂载
+     */
     private static boolean isExternalStorageDisable() {
         return !Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
     }
