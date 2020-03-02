@@ -95,7 +95,7 @@ public class PictureActivity extends BaseActivity {
                         Log.e("LocalMedia-path", media);
                     }
                     ImageView imageView = new ImageView(PictureActivity.this);
-                    Bitmap bitmap = BitmapFactory.decodeFile(compressPath.get(0));
+                     Bitmap bitmap = BitmapFactory.decodeFile(compressPath.get(0));
                     imageView.setImageBitmap(bitmap);
                     buttonLayout.addView(imageView);
                     break;
@@ -110,7 +110,7 @@ public class PictureActivity extends BaseActivity {
         // Environment.DIRECTORY_DOCUMENTS  ， DIRECTORY_DCIM  ，DIRECTORY_DOWNLOADS ， DIRECTORY_MOVIES
         String path;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            path = context.getExternalFilesDir(environmentType) + File.separator;
+            path = context.getExternalFilesDir(environmentType) + File.separator + "InossemTest";
         } else {
             path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "InossemTest";
         }

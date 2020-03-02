@@ -12,6 +12,7 @@ import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -325,6 +326,10 @@ public class InossemPictureConfig {
         if (TextUtils.isEmpty(compressSavePath) || compressSavePath.trim().length() == 0) {
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "compressSavePath can not be null");
         }
+        File file = new File(compressSavePath);
+        if (!file.exists()) {
+            file.mkdir();
+        }
         this.compressSavePath = compressSavePath;
         return this;
     }
@@ -407,7 +412,8 @@ public class InossemPictureConfig {
      * @param takedImmediatelyReturnBack
      * @return
      */
-    public InossemPictureConfig setTakedImmediatelyReturnBack(boolean takedImmediatelyReturnBack) {
+    public InossemPictureConfig setTakedImmediatelyReturnBack(
+            boolean takedImmediatelyReturnBack) {
         this.takedImmediatelyReturnBack = takedImmediatelyReturnBack;
         return this;
     }
