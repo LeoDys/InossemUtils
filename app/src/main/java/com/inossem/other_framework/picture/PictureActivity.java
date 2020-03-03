@@ -10,7 +10,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,6 +34,11 @@ import com.luck.picture.lib.listener.OnResultCallbackListener;
 import com.luck.picture.lib.tools.PictureFileUtils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,6 +74,15 @@ public class PictureActivity extends BaseActivity {
                 switch (position) {
                     case 0:
                         button.setText("图片选择");
+
+//                        button.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                Intent albumIntent = new Intent(Intent.ACTION_PICK);
+//                                albumIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+//                                startActivityForResult(albumIntent, 1001);
+//                            }
+//                        });
                         button.setOnClickListener(v -> {
                             /**
                              * 图片选择使用方法
@@ -91,19 +107,13 @@ public class PictureActivity extends BaseActivity {
                                         Log.i(TAG, "原图路径:" + media.getOriginalPath());
                                         Log.i(TAG, "Android Q 特有Path:" + media.getAndroidQToPath());
 
-                                        String path = media.getPath();
-                                        Uri uri = Uri.parse(path);
-                                        if (uri != null && ContentResolver.SCHEME_CONTENT.equals(uri.getScheme())) {
-                                            path = PictureFileUtils.getPath(getApplicationContext(), uri);
-                                            Log.i(TAG, " Uri parse Path:" + path);
-                                        }
                                         CompressConfig compressConfig = new CompressConfig(PictureActivity.this);
                                         compressConfig.setCompressDirectory(PathUtils.getLegalPath(activity, Environment.DIRECTORY_PICTURES) + "InossemTest");
                                         compressConfig.setCompreeToSize(200);
                                         compressConfig.setArgbConfig(Bitmap.Config.RGB_565);
                                         compressConfig.setKeepSampling(true);
                                         compressConfig.setQuality(100);
-                                        CompressUtils.fileCallBack(new File(path), compressConfig, outfile -> {
+                                        CompressUtils.fileCallBack(new File(""), compressConfig, outfile -> {
                                             Log.i(TAG, "Tiny压缩:" + outfile);
                                             ImageView imageView = new ImageView(PictureActivity.this);
                                             Bitmap bitmap = BitmapFactory.decodeFile(outfile);
@@ -137,6 +147,10 @@ public class PictureActivity extends BaseActivity {
                     Bitmap bitmap = BitmapFactory.decodeFile(compressPath.get(0));
                     imageView.setImageBitmap(bitmap);
                     buttonLayout.addView(imageView);
+                    break;
+                case 1001:
+                    Uri uri = data.getData();
+                    Log.e(TAG, uri.toString());
                     break;
             }
         }
