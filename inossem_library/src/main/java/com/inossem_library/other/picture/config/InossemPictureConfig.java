@@ -1,8 +1,10 @@
 package com.inossem_library.other.picture.config;
 
 import android.app.Activity;
+import android.os.Environment;
 import android.text.TextUtils;
 
+import com.inossem_library.app.path.util.PathUtils;
 import com.inossem_library.callback.LibraryLinstener;
 import com.inossem_library.exception.InossemException;
 import com.inossem_library.exception.constant.ExceptionEnum;
@@ -13,7 +15,6 @@ import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -123,7 +124,7 @@ public class InossemPictureConfig {
         }
         this.jumpType = 0;
         this.activity = activity;
-        init();
+        init(activity);
         return this;
     }
 
@@ -139,14 +140,16 @@ public class InossemPictureConfig {
         }
         this.jumpType = 1;
         this.fragment = fragment;
-        init();
+        init(fragment.getActivity());
         return this;
     }
 
     /**
      * 编辑配置项的默认值
+     *
+     * @param activity 上下文对象
      */
-    private void init() {
+    private void init(Activity activity) {
         this.requestCode = PictureSelectContants.DEFAULT_PICTURE_REQUEST_CODE;
         this.maxSelect = PictureSelectContants.DEFAULT_PICTURE_MAX_SIZE;
         this.enableCrop = false;
@@ -162,7 +165,11 @@ public class InossemPictureConfig {
         this.isCamera = true;
         this.imageFormat = PictureMimeType.JPEG;
         this.outputCameraPath = PictureSelectContants.DEFAULT_PICTURE_INOSSEM_CAMERA;
-        this.compressSavePath = CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH;
+
+        this.compressSavePath = PathUtils.getLegalPath(activity, Environment.DIRECTORY_PICTURES) + CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH;
+        // 创建目录
+        FileIOUtils.judgeExistsMkdirs(compressSavePath);
+
         this.isGif = false;
         this.circleDimmedLayer = false;
         this.openClickSound = false;
@@ -335,7 +342,6 @@ public class InossemPictureConfig {
         if (FileIOUtils.judgeExistsMkdirs(compressSavePath)) {
             this.compressSavePath = compressSavePath;
         }
-        this.compressSavePath = compressSavePath;
         return this;
     }
 

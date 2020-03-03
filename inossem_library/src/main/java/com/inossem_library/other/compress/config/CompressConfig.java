@@ -56,6 +56,7 @@ public class CompressConfig {
         isKeepSampling = false;
         compreeToSize = CompressConstant.DEFAULT_MAX_SIZE;
         compressDirectory = PathUtils.getLegalPath(context, Environment.DIRECTORY_PICTURES) + CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH;
+        // 创建目录
         FileIOUtils.judgeExistsMkdirs(compressDirectory);
     }
 

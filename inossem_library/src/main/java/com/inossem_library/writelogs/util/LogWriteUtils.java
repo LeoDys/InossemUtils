@@ -199,7 +199,6 @@ public class LogWriteUtils {
      */
     public static void logV(Context context, String type, String message, Throwable throwable) {
         saveLog(context, type, message + LogWriteConstant.NEW_LINE + ExceptionUtil.exceptionToString(throwable));
-//        LogUtils.loggerV(message);
     }
 
     /**

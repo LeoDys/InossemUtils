@@ -57,46 +57,44 @@ public class PictureActivity extends BaseActivity {
                 switch (position) {
                     case 0:
                         button.setText("图片选择");
-                        button.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                /**
-                                 * 图片选择使用方法
-                                 */
-                                InossemPictureConfig configBean = InossemPictureConfig
-                                        .getInstance()
-                                        .initActivity(PictureActivity.this)
-                                        .setCompress(true)
-                                        .setCompressSavePath(PathUtils.getLegalPath(PictureActivity.this, Environment.DIRECTORY_PICTURES) + "InossemTest");
-                                PicSelectUtil.activitySelectPictureActivity(configBean, new OnResultCallbackListener() {
-                                    @Override
-                                    public void onResult(List<LocalMedia> result) {
-                                        for (LocalMedia media : result) {
+                        button.setOnClickListener(v -> {
+                            /**
+                             * 图片选择使用方法
+                             */
+                            InossemPictureConfig configBean = InossemPictureConfig
+                                    .getInstance()
+                                    .initActivity(PictureActivity.this)
+                                    .setCompress(true)
+                                    .setCompressSavePath(PathUtils.getLegalPath(PictureActivity.this, Environment.DIRECTORY_PICTURES) + "InossemTest");
 
-                                            Log.i(TAG, "是否压缩:" + media.isCompressed());
-                                            Log.i(TAG, "压缩:" + media.getCompressPath());
-                                            Log.i(TAG, "原图:" + media.getPath());
-                                            Log.i(TAG, "是否裁剪:" + media.isCut());
-                                            Log.i(TAG, "裁剪:" + media.getCutPath());
-                                            Log.i(TAG, "是否开启原图:" + media.isOriginal());
-                                            Log.i(TAG, "原图路径:" + media.getOriginalPath());
-                                            Log.i(TAG, "Android Q 特有Path:" + media.getAndroidQToPath());
+                            PicSelectUtil.activitySelectPictureActivity(configBean, new OnResultCallbackListener() {
+                                @Override
+                                public void onResult(List<LocalMedia> result) {
+                                    for (LocalMedia media : result) {
+
+                                        Log.i(TAG, "是否压缩:" + media.isCompressed());
+                                        Log.i(TAG, "压缩:" + media.getCompressPath());
+                                        Log.i(TAG, "原图:" + media.getPath());
+                                        Log.i(TAG, "是否裁剪:" + media.isCut());
+                                        Log.i(TAG, "裁剪:" + media.getCutPath());
+                                        Log.i(TAG, "是否开启原图:" + media.isOriginal());
+                                        Log.i(TAG, "原图路径:" + media.getOriginalPath());
+                                        Log.i(TAG, "Android Q 特有Path:" + media.getAndroidQToPath());
 
 
-                                            CompressConfig compressConfig = new CompressConfig(PictureActivity.this);
-//                                            compressConfig.setCompressDirectory(PathUtils.getLegalPath(activity, Environment.DIRECTORY_PICTURES) + "InossemTest");
-                                            compressConfig.setCompreeToSize(200);
-                                            compressConfig.setArgbConfig(Bitmap.Config.RGB_565);
-                                            compressConfig.setKeepSampling(true);
-                                            compressConfig.setQuality(100);
+                                        CompressConfig compressConfig = new CompressConfig(PictureActivity.this);
+                                        compressConfig.setCompressDirectory(PathUtils.getLegalPath(activity, Environment.DIRECTORY_PICTURES) + "InossemTest");
+                                        compressConfig.setCompreeToSize(200);
+                                        compressConfig.setArgbConfig(Bitmap.Config.RGB_565);
+                                        compressConfig.setKeepSampling(true);
+                                        compressConfig.setQuality(100);
 
-                                            CompressUtils.fileCallBack(new File(media.getPath()), compressConfig, outfile ->
-                                                    Log.i(TAG, "Tiny压缩:" + outfile));
+                                        CompressUtils.fileCallBack(new File(media.getPath()), compressConfig, outfile ->
+                                                Log.i(TAG, "Tiny压缩:" + outfile));
 
-                                        }
                                     }
-                                });
-                            }
+                                }
+                            });
                         });
                         break;
                 }

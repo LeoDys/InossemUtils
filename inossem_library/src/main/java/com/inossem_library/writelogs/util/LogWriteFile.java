@@ -7,6 +7,8 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Environment;
 
+import com.inossem_library.app.path.util.PathUtils;
+import com.inossem_library.other.file.util.FileIOUtils;
 import com.inossem_library.writelogs.constant.LogWriteConstant;
 import com.jzxiang.pickerview.utils.Utils;
 
@@ -21,6 +23,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 写入目录  txt类
+ *
+ * @author LeoDys E-mail:changwen.sun@inossem.com 2020/3/3 11:26
+ * @version 1.0.8
+ * @since 1.0.8
+ */
 public class LogWriteFile {
 
     /**
@@ -29,8 +38,8 @@ public class LogWriteFile {
      * @return 日志根目录
      * @author leij
      */
-    static String getRootPath() {
-        String rootPath = Environment.getExternalStorageDirectory().getAbsolutePath()
+    static String getRootPath(Context context) {
+        String rootPath = PathUtils.getLegalPath(context, Environment.DIRECTORY_DOCUMENTS)
                 + File.separator + LogWriteConstant.LOG_ROOT_PATH;
         return rootPath;
     }
@@ -42,8 +51,8 @@ public class LogWriteFile {
      * @return 指定类型日志根目录
      * @author leij
      */
-    private static String getTypePath(String type) {
-        String typePath = getRootPath() + File.separator + type + File.separator;
+    private static String getTypePath(Context context, String type) {
+        String typePath = getRootPath(context) + File.separator + type + File.separator;
         return typePath;
     }
 
@@ -66,7 +75,7 @@ public class LogWriteFile {
             // 外置sd卡是否存在
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                 // 向SD卡中存日志 获取指定类型日志根目录
-                path = getTypePath(type);
+                path = getTypePath(context, type);
                 // 目录不存在就新建立文件夹
                 File dir = new File(path);
                 if (!dir.exists()) {
