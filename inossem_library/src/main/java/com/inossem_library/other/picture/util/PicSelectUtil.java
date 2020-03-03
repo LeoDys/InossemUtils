@@ -24,42 +24,43 @@ import java.util.List;
  */
 
 public class PicSelectUtil {
-    /**
-     * 将默认值赋予框架本身
-     *
-     * @param configBean 自定义参数配置类  有默认参数  activity
-     */
-    public static void activitySelectPictureActivity(InossemPictureConfig configBean) {
-        if (configBean == null) {
-            new InossemException(ExceptionEnum.NULL_PARAMS, "InossemPictureConfig null,please check");
-        }
-        PictureSelector pictureSelector = createSelectionModle(configBean);
-        PictureSelectionModel openTypeModle = pictureSelector
-                // 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
-                .openGallery(configBean.getOpenGallery());
-        PictureSelectionModel sameConfigModle = getPictureSelectionModel(configBean, openTypeModle);
-        sameConfigModle
-                .forResult(configBean.getRequestCode());
-    }
 
     /**
      * 将默认值赋予框架本身
      *
      * @param configBean 自定义参数配置类  有默认参数  activity
      */
-    public static void activitySelectPictureCallBack(InossemPictureConfig configBean, OnResultCallbackListener callbackListener) {
+    public static void activitySelectPictureActivity(InossemPictureConfig configBean, OnResultCallbackListener... callbackListener) {
         if (configBean == null) {
             new InossemException(ExceptionEnum.NULL_PARAMS, "InossemPictureConfig null,please check");
         }
-        // configBean.getJumpType() 区分是fragment跳转进来的  还是activity
         PictureSelector pictureSelector = createSelectionModle(configBean);
         PictureSelectionModel openTypeModle = pictureSelector
                 // 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
                 .openGallery(configBean.getOpenGallery());
         PictureSelectionModel sameConfigModle = getPictureSelectionModel(configBean, openTypeModle);
-        sameConfigModle.forResult(result -> {
-            callbackListener.onResult(result);
-        });
+        resultCallBack(configBean, sameConfigModle, callbackListener);
+
+    }
+
+    /**
+     * 回调给调用放
+     *
+     * @param configBean       参数配置类
+     * @param sameConfigModle  统一配置config
+     * @param callbackListener 回调接口
+     */
+    private static void resultCallBack(InossemPictureConfig configBean, PictureSelectionModel sameConfigModle, OnResultCallbackListener[] callbackListener) {
+        // 是否启用了接口回调的模式
+        if (callbackListener != null && callbackListener.length > 0) {
+            // 接口回调返回结果
+            sameConfigModle.forResult(result -> {
+                callbackListener[0].onResult(result);
+            });
+        } else {
+            // 正常onAcyivityResult回调结果
+            sameConfigModle.forResult(configBean.getRequestCode());
+        }
     }
 
     /**
@@ -67,7 +68,7 @@ public class PicSelectUtil {
      *
      * @param configBean 自定义参数配置类  有默认参数  activity
      */
-    public static void takePhoto(InossemPictureConfig configBean) {
+    public static void takePhoto(InossemPictureConfig configBean, OnResultCallbackListener... callbackListener) {
         if (configBean == null) {
             new InossemException(ExceptionEnum.NULL_PARAMS, "InossemPictureConfig null,please check");
         }
@@ -77,7 +78,9 @@ public class PicSelectUtil {
                 // 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
                 .openCamera(configBean.getOpenGallery());
         PictureSelectionModel sameConfigModle = getPictureSelectionModel(configBean, openTypeModle);
-        sameConfigModle.forResult(configBean.getRequestCode());
+
+        // 是否启用了接口回调的模式
+        resultCallBack(configBean, sameConfigModle, callbackListener);
     }
 
     /**

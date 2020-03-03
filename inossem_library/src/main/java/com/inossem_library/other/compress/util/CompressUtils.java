@@ -1,10 +1,12 @@
 package com.inossem_library.other.compress.util;
 
 import android.graphics.Bitmap;
+import android.os.FileUtils;
 
 import com.inossem_library.exception.InossemException;
 import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.other.compress.config.CompressConfig;
+import com.inossem_library.other.file.util.FileIOUtils;
 import com.zxy.tiny.Tiny;
 import com.zxy.tiny.callback.BitmapCallback;
 import com.zxy.tiny.callback.FileBatchCallback;
@@ -16,9 +18,10 @@ import java.util.List;
 
 /**
  * 图片压缩工具类
- * @author      Leo E-mail:changwen.sun@inossem.com 2019/8/7 10:18
- * @version     1.0.8
- * @since       1.0.8
+ *
+ * @author Leo E-mail:changwen.sun@inossem.com 2019/8/7 10:18
+ * @version 1.0.8
+ * @since 1.0.8
  */
 public class CompressUtils {
     /**
@@ -80,8 +83,13 @@ public class CompressUtils {
         if (config == null) {
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "CompressConfig null,please check");
         }
+
+        if (!FileIOUtils.isFileExists(file)) {
+            throw new InossemException(ExceptionEnum.NULL_PARAMS, "file null,please check");
+        }
+
         Tiny.BitmapCompressOptions options = new Tiny.BitmapCompressOptions();
-        options.config = config.getConfig();
+        options.config = config.getArgbConfig();
         options.width = config.getMaxWidth();
         options.height = config.getMaxHeight();
         Tiny.getInstance().source(file).asBitmap().withOptions(options).compress(new BitmapCallback() {
@@ -107,6 +115,11 @@ public class CompressUtils {
         if (config == null) {
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "CompressConfig null,please check");
         }
+
+        if (!FileIOUtils.isFileExists(file)) {
+            throw new InossemException(ExceptionEnum.NULL_PARAMS, "file null,please check");
+        }
+
         Tiny.FileCompressOptions options = new Tiny.FileCompressOptions();
         options = CompressConvertUtils.setOptions(config, options);
         Tiny.getInstance().source(file).asFile().withOptions(options).compress(new FileCallback() {
@@ -128,6 +141,11 @@ public class CompressUtils {
         if (config == null) {
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "CompressConfig null,please check");
         }
+
+        if (files == null || files.isEmpty()) {
+            throw new InossemException(ExceptionEnum.NULL_PARAMS, "files null,please check");
+        }
+
         File[] fileArray = CompressConvertUtils.getFilesArray(files);
         if (fileArray == null) return;
 

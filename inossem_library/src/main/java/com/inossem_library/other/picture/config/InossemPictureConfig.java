@@ -7,6 +7,7 @@ import com.inossem_library.callback.LibraryLinstener;
 import com.inossem_library.exception.InossemException;
 import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.other.compress.constant.CompressConstant;
+import com.inossem_library.other.file.util.FileIOUtils;
 import com.inossem_library.other.picture.constant.PictureSelectContants;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -18,11 +19,14 @@ import java.util.List;
 
 import androidx.fragment.app.Fragment;
 
+
 /**
  * 图片选择配置默认值及set自定义值的类
- * Created by wen40 on 2019/7/10.
+ *
+ * @author LeoDys E-mail:changwen.sun@inossem.com 2020/3/3 9:20
+ * @version 1.0.8
+ * @since 1.0.8
  */
-
 public class InossemPictureConfig {
 
     private static InossemPictureConfig instance = null;
@@ -39,7 +43,6 @@ public class InossemPictureConfig {
     private boolean compress;
     // 同步true或异步false 压缩 默认同步
     private boolean synOrAsy;
-
     // 选取类别 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
     private int openGallery;
     // 多选:PictureConfig.MULTIPLE  单选:PictureConfig.SINGLE
@@ -55,7 +58,7 @@ public class InossemPictureConfig {
     // 自定义拍照保存路径
     @Deprecated
     private String outputCameraPath;
-    // 压缩图片保存地址
+    // 压缩图片保存地址 全路径
     private String compressSavePath;
     // 是否显示gif图片
     private boolean isGif;
@@ -76,8 +79,10 @@ public class InossemPictureConfig {
     // 是否拍照的时候显示裁剪框
     private boolean cameraTakingCrop;
     // 拍照的时候显示裁剪框占屏幕宽度 (0,1) 左闭右闭
+    @Deprecated
     private float cameraTakingCropWidth;
     // 拍照的时候显示裁剪框占屏幕高度 (0,1) 左闭右闭
+    @Deprecated
     private float cameraTakingCropHeight;
     // 是否拍照后 调整亮度
     private boolean cameraAdjustLight;
@@ -85,6 +90,7 @@ public class InossemPictureConfig {
     // 拍照后不再图片选择页面直接返回  不涉及压缩和裁剪  设置失效
     private boolean takedImmediatelyReturnBack;
 
+    @Deprecated
     private LibraryLinstener libraryLinstener;
 
     /**
@@ -317,7 +323,7 @@ public class InossemPictureConfig {
     }
 
     /**
-     * 压缩图片保存文件夹名称
+     * 压缩图片保存文件夹名称 要求传递全路径
      *
      * @param compressSavePath
      * @return
@@ -326,9 +332,8 @@ public class InossemPictureConfig {
         if (TextUtils.isEmpty(compressSavePath) || compressSavePath.trim().length() == 0) {
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "compressSavePath can not be null");
         }
-        File file = new File(compressSavePath);
-        if (!file.exists()) {
-            file.mkdir();
+        if (FileIOUtils.judgeExistsMkdirs(compressSavePath)) {
+            this.compressSavePath = compressSavePath;
         }
         this.compressSavePath = compressSavePath;
         return this;

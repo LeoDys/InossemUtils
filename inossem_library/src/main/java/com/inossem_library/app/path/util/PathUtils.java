@@ -465,4 +465,28 @@ public class PathUtils {
         if (file == null) return "";
         return file.getAbsolutePath();
     }
+
+    /**
+     * 获取合法的路径  适配是否挂载sd卡以及Android10
+     *
+     * @param context         上下文对象
+     * @param environmentType 沙盒文件夹的类型
+     * @return 合法的路径根目录
+     * @see Environment PICTURE/DIRECTORY_DCIM/DIRECTORY_DOWNLOADS/DIRECTORY_MOVIES 详见Environment类中的文件类型
+     */
+    public static String getLegalPath(Context context, String environmentType) {
+        if (isExternalStorageDisable()) {
+            // 未挂载外部存储
+            return getInternalAppCachePath(context) + File.separator;
+        } else {
+            // 已挂载外部存储
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                // Android 10获取沙盒文件夹
+                return context.getExternalFilesDir(environmentType) + File.separator;
+            } else {
+                // 非Android10可以直接过去外部存储根目录
+                return Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator;
+            }
+        }
+    }
 }

@@ -1,5 +1,9 @@
 package com.inossem_library.other.file.util;
 
+import android.text.TextUtils;
+
+import com.inossem_library.exception.InossemException;
+import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.other.file.constant.FileIOConstant;
 
 import java.io.BufferedOutputStream;
@@ -59,7 +63,7 @@ public final class FileIOUtils {
      * {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}读文件权限
      * {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}写文件权限
      *
-     * @param file 文件
+     * @param file 待写入文件
      * @param is   输入流
      * @return True成功 False错误
      */
@@ -336,7 +340,7 @@ public final class FileIOUtils {
             fc = new FileOutputStream(file, append).getChannel();
             MappedByteBuffer mbb = fc.map(FileChannel.MapMode.READ_WRITE, fc.size(), bytes.length);
             mbb.put(bytes);
-             /*
+            /*
              * Force
              * force方法会把所有未写磁盘的数据都强制写入磁盘.
              * 这是因为在操作系统中出于性能考虑回把数据放入缓冲区,所以不能保证数据在调用write写入文件通道后就及时写到磁盘上了,除非手动调用force方法.
@@ -807,7 +811,7 @@ public final class FileIOUtils {
      * @param file 文件
      * @return 是否存在
      */
-    private static boolean isFileExists(final File file) {
+    public static boolean isFileExists(final File file) {
         return file != null && file.exists();
     }
 
@@ -862,5 +866,25 @@ public final class FileIOUtils {
                 e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * 检查目录是否存在  不存在创建目录
+     *
+     * @param path 创建目录的路径
+     * @return 是否存在或者创建成功
+     */
+    public static boolean judgeExistsMkdirs(String path) {
+        //        if (TextUtils.isEmpty(path))
+//            throw new InossemException(ExceptionEnum.NULL_PARAMS, "创建路径不能为空");
+//        File fileByPath = getFileByPath(path);
+//        if (isFileExists(fileByPath)) {
+//            return true;
+//        }
+//        return fileByPath.mkdirs();
+        if (TextUtils.isEmpty(path))
+            throw new InossemException(ExceptionEnum.NULL_PARAMS, "创建路径不能为空");
+        File fileByPath = getFileByPath(path);
+        return createOrExistsDir(fileByPath);
     }
 }

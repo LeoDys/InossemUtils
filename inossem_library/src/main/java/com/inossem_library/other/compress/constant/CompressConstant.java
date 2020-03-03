@@ -14,7 +14,8 @@ public class CompressConstant {
     public static final Bitmap.CompressFormat COMPRESS_FORMAT = Bitmap.CompressFormat.JPEG;
     // 默认质量值
     public static final int DEFAULT_QUALITY_SIZE = 100;
-    public static final int DEFAULT_MAX_SIZE = 200; // 压缩后的最大大小
+    // 压缩后的最大大小
+    public static final int DEFAULT_MAX_SIZE = 200;
     //目标存储路径
     public static final String INOSSEM_DEFAULT_COMPRESS_TAGPATH = "InossemCompress";
     // 高质量尺寸

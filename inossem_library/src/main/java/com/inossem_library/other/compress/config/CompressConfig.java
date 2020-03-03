@@ -5,9 +5,11 @@ import android.graphics.Bitmap;
 import android.os.Environment;
 import android.text.TextUtils;
 
+import com.inossem_library.app.path.util.PathUtils;
 import com.inossem_library.exception.InossemException;
 import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.other.compress.constant.CompressConstant;
+import com.inossem_library.other.file.util.FileIOUtils;
 
 import java.io.File;
 
@@ -30,16 +32,14 @@ public class CompressConfig {
     // 压缩后最大高度
     private int maxHeight;
     // 压缩后的 Bitmap.ARGB 值 Bitmap.Config.ARGB_4444 Bitmap.Config.ARGB_8888 Bitmap.Config.RGB_565
-    private Bitmap.Config config;
-    // ？
-    private String outfile;
+    private Bitmap.Config argbConfig;
     // 压缩质量
     private int quality;
     // 压缩后是否保存
     private boolean isKeepSampling;
     // 压缩后file的大小 kb
     private int compreeToSize;
-    // 压缩后存储的路径
+    // 压缩后存储的路径 全路径
     private String compressDirectory;
 
     /**
@@ -51,22 +51,12 @@ public class CompressConfig {
         this.context = context;
         maxWidth = DEFAULT_MAXWIDTH;
         maxHeight = DEFAULT_MAXHEIGHT;
-        config = Bitmap.Config.ARGB_8888;
-        outfile = Environment.getExternalStorageState().equals(
-                Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH
-                : context.getCacheDir().getPath() + File.separator + CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH;
-
+        argbConfig = Bitmap.Config.ARGB_8888;
         quality = CompressConstant.DEFAULT_QUALITY_SIZE;
         isKeepSampling = false;
         compreeToSize = CompressConstant.DEFAULT_MAX_SIZE;
-
-        compressDirectory = Environment.getExternalStorageState().equals(
-                Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH
-                : context.getCacheDir().getPath() + File.separator + CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH;
-        File dir = new File(compressDirectory);
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
+        compressDirectory = PathUtils.getLegalPath(context, Environment.DIRECTORY_PICTURES) + CompressConstant.INOSSEM_DEFAULT_COMPRESS_TAGPATH;
+        FileIOUtils.judgeExistsMkdirs(compressDirectory);
     }
 
     /**
@@ -108,24 +98,13 @@ public class CompressConfig {
     /**
      * 压缩的ARGB
      *
-     * @param config Bitmap.Config.ARGB_8888 Bitmap.Config.RGB_565  Bitmap.Config.ARGB_4444
+     * @param argbConfig Bitmap.Config.ARGB_8888 Bitmap.Config.RGB_565  Bitmap.Config.ARGB_4444
      * @return 当前类
      */
-    public CompressConfig setConfig(Bitmap.Config config) {
-        this.config = config;
+    public CompressConfig setArgbConfig(Bitmap.Config argbConfig) {
+        this.argbConfig = argbConfig;
         return this;
     }
-
-    /**
-     * 暂未确定参数
-     *
-     * @param outfile
-     * @return 当前类
-     */
-//    public CompressConfig setOutfile(String outfile) {
-//        this.outfile = outfile;
-//        return this;
-//    }
 
     /**
      * 是否保持原有尺寸压缩
@@ -160,12 +139,8 @@ public class CompressConfig {
         if (TextUtils.isEmpty(compressDirectory) || compressDirectory.trim().length() == 0) {
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "compressDirectory can not be null");
         }
-        this.compressDirectory = Environment.getExternalStorageState().equals(
-                Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + compressDirectory
-                : context.getCacheDir().getPath() + File.separator + compressDirectory;
-        File dir = new File(this.compressDirectory);
-        if (!dir.exists()) {
-            dir.mkdirs();
+        if (FileIOUtils.judgeExistsMkdirs(compressDirectory)) {
+            this.compressDirectory = compressDirectory;
         }
         return this;
     }
@@ -202,12 +177,8 @@ public class CompressConfig {
      *
      * @return Bitmap.ARGB值
      */
-    public Bitmap.Config getConfig() {
-        return config;
-    }
-
-    public String getOutfile() {
-        return outfile;
+    public Bitmap.Config getArgbConfig() {
+        return argbConfig;
     }
 
     /**
