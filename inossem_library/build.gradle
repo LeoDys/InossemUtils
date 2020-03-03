@@ -16,6 +16,7 @@ android {
                     [
                             'src/main/res/layout/tips',
                             'src/main/res/layout/pattern',
+                            'src/main/res/layout/camera',
                             'src/main/res'
                     ]
         }

@@ -37,4 +37,8 @@
     <string name="pattern_re_paint">重绘</string>
     <string name="pattern_sure">确定</string>
 
+    <!--camera-->
+    <string name="touch_to_focus">触摸屏幕对焦</string>
+    <string name="crop_fail">裁剪失败</string>
+
 </resources>

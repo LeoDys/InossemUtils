@@ -1,13 +1,16 @@
 package com.inossem.other_framework.picture;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,13 +20,16 @@ import com.inossem.BaseActivity;
 import com.inossem.R;
 import com.inossem.util.Utils;
 import com.inossem_library.app.path.util.PathUtils;
+import com.inossem_library.other.camera.constant.CameraConstant;
 import com.inossem_library.other.compress.config.CompressConfig;
 import com.inossem_library.other.compress.util.CompressUtils;
+import com.inossem_library.other.permission.util.RequestApplicationDangerPermissonsUtils;
 import com.inossem_library.other.picture.config.InossemPictureConfig;
 import com.inossem_library.other.picture.constant.PictureSelectContants;
 import com.inossem_library.other.picture.util.PicSelectUtil;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.listener.OnResultCallbackListener;
+import com.luck.picture.lib.tools.PictureFileUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -48,6 +54,10 @@ public class PictureActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         activity = this;
         setContentView(R.layout.activity_main);
+
+        RequestApplicationDangerPermissonsUtils.checkPermissionFirst(this,
+                CameraConstant.PERMISSION_CODE_FIRST, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE
+                        , Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA});
 
         description = findViewById(R.id.description);
         buttonLayout = findViewById(R.id.buttonLayout);
@@ -81,16 +91,25 @@ public class PictureActivity extends BaseActivity {
                                         Log.i(TAG, "原图路径:" + media.getOriginalPath());
                                         Log.i(TAG, "Android Q 特有Path:" + media.getAndroidQToPath());
 
-
+                                        String path = media.getPath();
+                                        Uri uri = Uri.parse(path);
+                                        if (uri != null && ContentResolver.SCHEME_CONTENT.equals(uri.getScheme())) {
+                                            path = PictureFileUtils.getPath(getApplicationContext(), uri);
+                                            Log.i(TAG, " Uri parse Path:" + path);
+                                        }
                                         CompressConfig compressConfig = new CompressConfig(PictureActivity.this);
                                         compressConfig.setCompressDirectory(PathUtils.getLegalPath(activity, Environment.DIRECTORY_PICTURES) + "InossemTest");
                                         compressConfig.setCompreeToSize(200);
                                         compressConfig.setArgbConfig(Bitmap.Config.RGB_565);
                                         compressConfig.setKeepSampling(true);
                                         compressConfig.setQuality(100);
-
-                                        CompressUtils.fileCallBack(new File(media.getPath()), compressConfig, outfile ->
-                                                Log.i(TAG, "Tiny压缩:" + outfile));
+                                        CompressUtils.fileCallBack(new File(path), compressConfig, outfile -> {
+                                            Log.i(TAG, "Tiny压缩:" + outfile);
+                                            ImageView imageView = new ImageView(PictureActivity.this);
+                                            Bitmap bitmap = BitmapFactory.decodeFile(outfile);
+                                            imageView.setImageBitmap(bitmap);
+                                            buttonLayout.addView(imageView);
+                                        });
 
                                     }
                                 }

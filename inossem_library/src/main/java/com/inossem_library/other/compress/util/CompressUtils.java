@@ -2,6 +2,7 @@ package com.inossem_library.other.compress.util;
 
 import android.graphics.Bitmap;
 import android.os.FileUtils;
+import android.util.Log;
 
 import com.inossem_library.exception.InossemException;
 import com.inossem_library.exception.constant.ExceptionEnum;
@@ -125,6 +126,8 @@ public class CompressUtils {
         Tiny.getInstance().source(file).asFile().withOptions(options).compress(new FileCallback() {
             @Override
             public void callback(boolean isSuccess, String outfile, Throwable t) {
+                if (t != null)
+                    Log.i("BaseActivity Throwable", t.getMessage());
                 listener.compressCallBack(outfile);
             }
         });

@@ -10,10 +10,12 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -766,7 +768,7 @@ public final class FileIOUtils {
      * @param filePath 文件路径
      * @return 文件
      */
-    private static File getFileByPath(final String filePath) {
+    public static File getFileByPath(final String filePath) {
         return isSpace(filePath) ? null : new File(filePath);
     }
 
@@ -778,7 +780,7 @@ public final class FileIOUtils {
      * @param file 文件
      * @return 是否存在
      */
-    private static boolean createOrExistsFile(final File file) throws Throwable {
+    public static boolean createOrExistsFile(final File file) throws Throwable {
         if (file == null) {
             return false;
         }
@@ -869,19 +871,31 @@ public final class FileIOUtils {
     }
 
     /**
+     * 关闭IO
+     *
+     * @param closeables closeable 多个io流
+     */
+    public static void closeIO(Closeable... closeables) {
+        if (closeables == null)
+            return;
+        try {
+            for (Closeable closeable : closeables) {
+                if (closeable != null) {
+                    closeable.close();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * 检查目录是否存在  不存在创建目录
      *
      * @param path 创建目录的路径
      * @return 是否存在或者创建成功
      */
     public static boolean judgeExistsMkdirs(String path) {
-        //        if (TextUtils.isEmpty(path))
-//            throw new InossemException(ExceptionEnum.NULL_PARAMS, "创建路径不能为空");
-//        File fileByPath = getFileByPath(path);
-//        if (isFileExists(fileByPath)) {
-//            return true;
-//        }
-//        return fileByPath.mkdirs();
         if (TextUtils.isEmpty(path))
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "创建路径不能为空");
         File fileByPath = getFileByPath(path);
