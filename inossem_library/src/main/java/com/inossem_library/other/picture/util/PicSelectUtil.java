@@ -1,6 +1,7 @@
 package com.inossem_library.other.picture.util;
 
 import android.content.Intent;
+import android.os.Build;
 
 import com.inossem_library.R;
 import com.inossem_library.exception.InossemException;
@@ -193,7 +194,11 @@ public class PicSelectUtil {
         }
         List<String> pathList = new ArrayList<>();
         for (LocalMedia media : localMedia) {
-            pathList.add(media.getPath());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                pathList.add(media.getAndroidQToPath());
+            } else {
+                pathList.add(media.getPath());
+            }
         }
         return pathList;
     }

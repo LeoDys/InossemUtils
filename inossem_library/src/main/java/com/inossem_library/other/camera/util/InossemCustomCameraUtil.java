@@ -4,11 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Environment;
-import android.text.TextUtils;
 
 import com.inossem_library.app.path.util.PathUtils;
-import com.inossem_library.exception.InossemException;
-import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.other.camera.constant.CameraConstant;
 import com.inossem_library.other.file.util.FileIOUtils;
 import com.inossem_library.view.activity.InossemCameraActivity;
@@ -21,7 +18,11 @@ import java.util.UUID;
 import androidx.fragment.app.Fragment;
 
 /**
- * Desc	  自定义相机
+ * 自定义相机 配置工具类
+ *
+ * @author LeoDys E-mail:changwen.sun@inossem.com 2020/3/3 17:27
+ * @version 1.0.8
+ * @since 1.0.8
  */
 public class InossemCustomCameraUtil {
 
@@ -45,6 +46,11 @@ public class InossemCustomCameraUtil {
     private InossemCustomCameraUtil() {
     }
 
+    /**
+     * 单例获取对象
+     *
+     * @return
+     */
     public static InossemCustomCameraUtil getInstance() {
         if (instance == null) {
             instance = new InossemCustomCameraUtil();
@@ -66,6 +72,9 @@ public class InossemCustomCameraUtil {
         return this;
     }
 
+    /**
+     * 初始化
+     */
     private void init() {
         this.suffix = Bitmap.CompressFormat.JPEG;
         this.isCropBox = false;
