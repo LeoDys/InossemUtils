@@ -100,7 +100,7 @@ public class InossemCustomCameraUtil {
      *
      * @param requestCode 请求码
      */
-    private void openCamera(int requestCode) {
+    public void openCamera(int requestCode) {
         Intent intent;
         if (activity != null) {
             intent = new Intent(activity, InossemCameraActivity.class);
@@ -124,7 +124,7 @@ public class InossemCustomCameraUtil {
      */
     private String getPhotoPathName() {
         String name = CameraConstant.PREFIX_PHOTO_NAME.concat(UUID.randomUUID().toString());
-        return saveDirPath + File.separator + name;
+        return saveDirPath + File.separator + name + "." + this.suffix;
     }
 }
 

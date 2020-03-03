@@ -23,6 +23,7 @@ import com.inossem.R;
 import com.inossem.util.Utils;
 import com.inossem_library.app.path.util.PathUtils;
 import com.inossem_library.other.camera.constant.CameraConstant;
+import com.inossem_library.other.camera.util.InossemCustomCameraUtil;
 import com.inossem_library.other.compress.config.CompressConfig;
 import com.inossem_library.other.compress.util.CompressUtils;
 import com.inossem_library.other.permission.util.RequestApplicationDangerPermissonsUtils;
@@ -74,8 +75,7 @@ public class PictureActivity extends BaseActivity {
                 switch (position) {
                     case 0:
                         button.setText("图片选择");
-
-//                        button.setOnClickListener(new View.OnClickListener() {
+                        //                        button.setOnClickListener(new View.OnClickListener() {
 //                            @Override
 //                            public void onClick(View v) {
 //                                Intent albumIntent = new Intent(Intent.ACTION_PICK);
@@ -126,6 +126,17 @@ public class PictureActivity extends BaseActivity {
                             });
                         });
                         break;
+                    case 1:
+                        button.setText("自定义相机");
+                        button.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                InossemCustomCameraUtil.getInstance()
+                                        .initActivity(activity)
+                                        .openCamera(10123);
+                            }
+                        });
+                        break;
                 }
             }
         });
@@ -151,6 +162,9 @@ public class PictureActivity extends BaseActivity {
                 case 1001:
                     Uri uri = data.getData();
                     Log.e(TAG, uri.toString());
+                    break;
+                case 10123:
+
                     break;
             }
         }
