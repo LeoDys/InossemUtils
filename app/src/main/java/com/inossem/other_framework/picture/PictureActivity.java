@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -104,7 +105,13 @@ public class PictureActivity extends BaseActivity {
                                         compressConfig.setArgbConfig(Bitmap.Config.RGB_565);
                                         compressConfig.setKeepSampling(true);
                                         compressConfig.setQuality(100);
-                                        CompressUtils.fileCallBack(new File(""), compressConfig, outfile -> {
+
+                                        String path = media.getPath();
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                                            path = media.getAndroidQToPath();
+                                        }
+
+                                        CompressUtils.fileCallBack(new File(path), compressConfig, outfile -> {
                                             Log.i(TAG, "Tiny压缩:" + outfile);
                                             ImageView imageView = new ImageView(PictureActivity.this);
                                             Bitmap bitmap = BitmapFactory.decodeFile(outfile);
