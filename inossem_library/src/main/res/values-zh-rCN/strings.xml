@@ -13,6 +13,7 @@
     <string name="time_constants_before_min">%d分钟前</string>
     <string name="time_constants_before_hour">今天%tR</string>
     <string name="time_constants_before_day">昨天%tR</string>
+
     <string name="common_sure">确定</string>
     <string name="common_cancel">取消</string>
 
@@ -24,4 +25,8 @@
     <string name="time_picker_select_hour">时</string>
     <string name="time_picker_select_minute">分</string>
 
+    <string name="request_time_out">超时</string>
+    <string name="request_connect_error">连接错误</string>
+    <string name="request_not_find_server">未找到主机</string>
+    <string name="request_other_error">其它未知错误</string>
 </resources>

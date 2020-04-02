@@ -2,23 +2,31 @@
 <resources>
     <string name="app_name">inossem_library</string>
 
-    <string name="time_constants_string_msec">毫秒</string>
-    <string name="time_constants_string_sec">秒</string>
-    <string name="time_constants_string_min">分钟</string>
-    <string name="time_constants_string_hour">小时</string>
-    <string name="time_constants_string_day">天</string>
+    <string name="time_constants_string_msec">millisecond</string>
+    <string name="time_constants_string_sec">second</string>
+    <string name="time_constants_string_min">minute</string>
+    <string name="time_constants_string_hour">hour</string>
+    <string name="time_constants_string_day">day</string>
 
-    <string name="time_constants_before_msec">刚刚</string>
-    <string name="time_constants_before_sec">%d秒前</string>
-    <string name="time_constants_before_min">%d分钟前</string>
-    <string name="time_constants_before_hour">今天%tR</string>
-    <string name="time_constants_before_day">昨天%tR</string>
-    <string name="common_sure">确定</string>
-    <string name="common_cancel">取消</string>
-    <string name="time_picker_select">时间选择</string>
+    <string name="time_constants_before_msec">just now</string>
+    <string name="time_constants_before_sec">%d second ago</string>
+    <string name="time_constants_before_min">%d minute ago</string>
+    <string name="time_constants_before_hour">today %tR</string>
+    <string name="time_constants_before_day">yesterday %tR</string>
+
+    <string name="common_sure">Sure</string>
+    <string name="common_cancel">Cancel</string>
+
+    <string name="time_picker_select">TimerSelecter</string>
+
     <string name="time_picker_select_year">year</string>
     <string name="time_picker_select_month">month</string>
     <string name="time_picker_select_day">day</string>
     <string name="time_picker_select_hour">hour</string>
     <string name="time_picker_select_minute">minute</string>
+
+    <string name="request_time_out">time out</string>
+    <string name="request_connect_error">connect error</string>
+    <string name="request_not_find_server">not find server</string>
+    <string name="request_other_error">other error</string>
 </resources>
