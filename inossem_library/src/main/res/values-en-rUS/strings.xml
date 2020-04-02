@@ -27,6 +27,6 @@
 
     <string name="request_time_out">time out</string>
     <string name="request_connect_error">connect error</string>
-    <string name="request_not_find_server">not find server</string>
+    <string name="request_not_find_server">can not find server</string>
     <string name="request_other_error">other error</string>
 </resources>
