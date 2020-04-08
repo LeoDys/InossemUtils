@@ -110,6 +110,9 @@
         <activity
             android:name=".other.clean.CleanActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".other_framework.version.VersionActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="design_width_in_dp"

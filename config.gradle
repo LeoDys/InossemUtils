@@ -24,8 +24,10 @@ ext {
     ]
 
     dependencies = [
-            "rxandroid2": "io.reactivex.rxjava2:rxandroid:${config["rxandroid"]}",
-            "rxjava2"   : "io.reactivex.rxjava2:rxjava:${config["rxjava"]}",
+            // 加载loading
+            "numberprogressbar": 'com.daimajia.numberprogressbar:library:1.4@aar',
+            // okgo
+            "okgo"             : 'com.lzy.net:okgo:3.0.4',
     ]
 
 }

@@ -31,6 +31,11 @@ android {
         jniLibs.srcDirs = ['libs']
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
@@ -57,4 +62,41 @@ dependencies {
     api "com.jzxiang.pickerview:TimePickerDialog:${config.timePickerDialog}"
     // tiny ndk压缩框架
     api "com.zxy.android:tiny:${config.tiny}"
+    // 应用升级
+    api('com.github.AlexLiuSheng:CheckVersionLib:2.3.3.1_appcompat') {
+        exclude module: 'support-annotations'
+        exclude module: 'appcompat-v7'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'design'
+        exclude module: 'support-v4'
+        exclude module: 'okhttp'
+    }
+    // numberprogressbar
+    api(rootProject.ext.dependencies["numberprogressbar"]) {
+        exclude module: 'support-annotations'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'rxjava'
+        exclude module: 'dagger'
+        exclude module: 'rxandroid'
+        exclude module: 'rxlifecycle'
+        exclude module: 'okhttp'
+        exclude module: 'retrofit'
+        exclude module: 'okio'
+    }
+    // okgo
+    api(rootProject.ext.dependencies["okgo"]) {
+        exclude module: 'support-annotations'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'rxjava'
+        exclude module: 'dagger'
+        exclude module: 'rxandroid'
+        exclude module: 'rxlifecycle'
+        exclude module: 'okhttp'
+        exclude module: 'retrofit'
+        exclude module: 'okio'
+    }
 }

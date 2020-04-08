@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.inossem.BaseActivity;
 import com.inossem.R;
 import com.inossem.other_framework.picture.PictureActivity;
+import com.inossem.other_framework.version.VersionActivity;
 import com.inossem.util.Utils;
 
 /**
@@ -45,6 +46,15 @@ public class OtherFrameworkActivity extends BaseActivity {
                             @Override
                             public void onClick(View v) {
                                 startActivity(new Intent(OtherFrameworkActivity.this, PictureActivity.class));
+                            }
+                        });
+                        break;
+                    case 1:
+                        button.setText("版本升级");
+                        button.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(OtherFrameworkActivity.this, VersionActivity.class));
                             }
                         });
                         break;

@@ -29,4 +29,25 @@
     <string name="request_not_find_server">未找到主机</string>
     <string name="request_other_error">其它未知错误</string>
 
+    <string name="update_module_tips">更新提示</string>
+    <string name="update_module_downloading">下载中</string>
+    <string name="update_module_error_md5">MD5校验失败</string>
+    <string name="update_module">升级</string>
+    <string name="update_module_reload">重新下载</string>
+    <string name="update_module_exit_app">退出应用</string>
+    <string name="update_module_connectting_server">正在连接服务器</string>
+    <string name="update_module_downloaded_install">下载完成,请点击安装</string>
+    <string name="update_module_error_server_error">服务器数据错误</string>
+    <string name="update_module_error_internet_error">网络不可用,请检查网络</string>
+    <string name="update_module_error_storage_readwrite_error">存储卡错误,请检查存储卡</string>
+    <string name="update_module_error_stroage_space_error">存储空间不足</string>
+    <string name="update_module_error_download_outtime_error">下载超时</string>
+    <string name="update_module_error_notfind_server_error">找不到服务器</string>
+    <string name="update_module_error_url_error">URL地址错误</string>
+    <string name="update_module_error_socket_error">Socket连接超时</string>
+    <string name="update_module_error_unkown_error">未知错误</string>
+    <string name="update_module_install">安 装</string>
+    <string name="update_module_md5_not_null">md5已启用,不能为空</string>
+    <string name="update_module_url_not_null">下载地址不能为空</string>
+
 </resources>
