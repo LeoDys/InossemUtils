@@ -1,14 +1,10 @@
 package com.inossem_library.other.version;
 
-import android.app.ActivityManager;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Point;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.Window;
@@ -21,12 +17,12 @@ import com.inossem_library.R;
 import com.inossem_library.other.convert.util.ConvertUtils;
 import com.inossem_library.other.version.bean.UpdateAppBean;
 import com.inossem_library.other.version.constant.VersionConstant;
-import com.inossem_library.other.version.utils.BaseDialogUtil;
-import com.inossem_library.other.version.utils.NoDoubleClickListener;
-import com.inossem_library.other.version.utils.OkGoUpdateHttpUtil;
 import com.inossem_library.other.version.service.DownloadService;
 import com.inossem_library.other.version.utils.AppUpdateDownloadUtil;
 import com.inossem_library.other.version.utils.AppUpdateUtils;
+import com.inossem_library.other.version.utils.BaseDialogUtil;
+import com.inossem_library.other.version.utils.NoDoubleClickListener;
+import com.inossem_library.other.version.utils.OkGoUpdateHttpUtil;
 import com.inossem_library.other.version.utils.VersionUtils;
 import com.inossem_library.tips.toast.util.ToastUtils;
 
@@ -97,7 +93,7 @@ public class AppUpdate {
      * @param versionName 版本名称
      * @param fileName    下载后文件命名
      * @param md5         服务器返回的apkmd5
-     * @param isCheckMD5
+     * @param isCheckMD5  是否检查md5
      */
     public static void appUpdateOnlyDownload(Context context, ViewHolder viewHolder,
                                              String downloadUrl, String token, String versionName,
@@ -164,12 +160,16 @@ public class AppUpdate {
     }
 
     /**
-     * @param context       上下文
-     * @param size          apk大小
-     * @param versionName   版本名
-     * @param versionRemark 更新日志
-     * @param url           下载地址
-     * @param md5           apk md5值
+     * @param context         上下文
+     * @param size            apk大小
+     * @param versionName     版本名
+     * @param versionRemark   更新日志
+     * @param url             下载地址
+     * @param token           本地保存的token
+     * @param md5             apk md5值
+     * @param isForce         是否强制升级
+     * @param isCheckMD5      是否检查MD5
+     * @param exitAppListener 退出应用的回调
      * @return
      */
     public static Dialog defaultUpgradeVersionDialog(final Context context, String size, String versionName,
@@ -223,7 +223,6 @@ public class AppUpdate {
         return baseDialog;
     }
 
-    @NonNull
     private static ViewHolder initView(View view) {
         ViewHolder viewHolder = new ViewHolder();
         viewHolder.prompt = view.findViewById(R.id.prompt);
