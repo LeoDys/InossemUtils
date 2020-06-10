@@ -35,6 +35,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * 图片选择 压缩 裁剪
  *
@@ -85,11 +87,10 @@ public class PictureActivity extends BaseActivity {
                                     .setCompress(true)
                                     .setCompressSavePath(PathUtils.getLegalPath(PictureActivity.this, Environment.DIRECTORY_PICTURES) + "InossemTest");
 
-                            PicSelectUtil.activitySelectPictureActivity(configBean, new OnResultCallbackListener() {
+                            PicSelectUtil.activitySelectPictureActivity(configBean, new OnResultCallbackListener<LocalMedia>() {
                                 @Override
                                 public void onResult(List<LocalMedia> result) {
                                     for (LocalMedia media : result) {
-
                                         Log.i(TAG, "是否压缩:" + media.isCompressed());
                                         Log.i(TAG, "压缩:" + media.getCompressPath());
                                         Log.i(TAG, "原图:" + media.getPath());
@@ -120,6 +121,11 @@ public class PictureActivity extends BaseActivity {
                                         });
 
                                     }
+                                }
+
+                                @Override
+                                public void onCancel() {
+
                                 }
                             });
                         });

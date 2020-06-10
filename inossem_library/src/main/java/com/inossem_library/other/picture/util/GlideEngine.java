@@ -13,7 +13,7 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.inossem_library.R;
 import com.luck.picture.lib.engine.ImageEngine;
-import com.luck.picture.lib.listener.ImageCompleteCallback;
+import com.luck.picture.lib.listener.OnImageCompleteCallback;
 import com.luck.picture.lib.tools.MediaUtils;
 import com.luck.picture.lib.widget.longimage.ImageSource;
 import com.luck.picture.lib.widget.longimage.ImageViewState;
@@ -31,14 +31,14 @@ import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
  * @version 1.0.8
  * @since 1.0.8
  */
-public class GlideEngineUtil implements ImageEngine {
+public class GlideEngine implements ImageEngine {
 
     /**
      * 加载图片
      *
-     * @param context   上下文
-     * @param url       图片url
-     * @param imageView 图片view
+     * @param context
+     * @param url
+     * @param imageView
      */
     @Override
     public void loadImage(@NonNull Context context, @NonNull String url, @NonNull ImageView imageView) {
@@ -51,16 +51,16 @@ public class GlideEngineUtil implements ImageEngine {
      * 加载网络图片适配长图方案
      * # 注意：此方法只有加载网络图片才会回调
      *
-     * @param context       上下文
-     * @param url           图片url
-     * @param imageView     图片view
-     * @param longImageView 长途view
-     * @param callback      网络图片加载回调监听
+     * @param context
+     * @param url
+     * @param imageView
+     * @param longImageView
+     * @param callback      网络图片加载回调监听 {link after version 2.5.1 Please use the #OnImageCompleteCallback#}
      */
     @Override
     public void loadImage(@NonNull Context context, @NonNull String url,
                           @NonNull ImageView imageView,
-                          SubsamplingScaleImageView longImageView, ImageCompleteCallback callback) {
+                          SubsamplingScaleImageView longImageView, OnImageCompleteCallback callback) {
         Glide.with(context)
                 .asBitmap()
                 .load(url)
@@ -114,9 +114,9 @@ public class GlideEngineUtil implements ImageEngine {
      * 加载网络图片适配长图方案
      * # 注意：此方法只有加载网络图片才会回调
      *
-     * @param context       上下文
-     * @param url           图片url
-     * @param imageView     图片view
+     * @param context
+     * @param url
+     * @param imageView
      * @param longImageView
      * @ 已废弃
      */
@@ -217,16 +217,16 @@ public class GlideEngineUtil implements ImageEngine {
     }
 
 
-    private GlideEngineUtil() {
+    private GlideEngine() {
     }
 
-    private static GlideEngineUtil instance;
+    private static GlideEngine instance;
 
-    public static GlideEngineUtil createGlideEngine() {
+    public static GlideEngine createGlideEngine() {
         if (null == instance) {
-            synchronized (GlideEngineUtil.class) {
+            synchronized (GlideEngine.class) {
                 if (null == instance) {
-                    instance = new GlideEngineUtil();
+                    instance = new GlideEngine();
                 }
             }
         }

@@ -55,8 +55,19 @@ public class PicSelectUtil {
         // 是否启用了接口回调的模式
         if (callbackListener != null && callbackListener.length > 0) {
             // 接口回调返回结果
-            sameConfigModle.forResult(result -> {
-                callbackListener[0].onResult(result);
+//            sameConfigModle.forResult(result -> {
+//
+//            });
+            sameConfigModle.forResult(configBean.getRequestCode(), new OnResultCallbackListener() {
+                @Override
+                public void onResult(List result) {
+                    callbackListener[0].onResult(result);
+                }
+
+                @Override
+                public void onCancel() {
+
+                }
             });
         } else {
             // 正常onAcyivityResult回调结果
@@ -111,7 +122,7 @@ public class PicSelectUtil {
     private static PictureSelectionModel getPictureSelectionModel(InossemPictureConfig configBean, PictureSelectionModel openTypeModle) {
         return openTypeModle
                 // 外部传入图片加载引擎，必传项
-                .loadImageEngine(GlideEngineUtil.createGlideEngine())
+                .imageEngine(GlideEngine.createGlideEngine())
                 // 主题样式设置 具体参考 values/styles   用法：R.style.picture.white.style
                 .theme(R.style.picture_white_style)
                 // 最大图片选择数量
