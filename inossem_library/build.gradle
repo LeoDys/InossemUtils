@@ -68,6 +68,6 @@ dependencies {
     // netty推送
     api "io.netty:netty-all:4.1.9.Final"
     // 图片选择
-    api "com.github.LuckSiege.PictureSelector:picture_library:v2.4.6+"
+    api "com.github.LuckSiege.PictureSelector:picture_library:v2.5.8"
 
 }
