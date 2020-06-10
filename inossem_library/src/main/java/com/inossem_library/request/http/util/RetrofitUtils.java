@@ -12,6 +12,7 @@ import com.inossem_library.request.http.constant.RetrofitConstant;
 import com.inossem_library.request.http.util.dealWithData.InossemConverterFactory;
 import com.inossem_library.request.http.util.dealWithData.InossemRequestConverterListener;
 import com.inossem_library.request.http.util.dealWithData.InossemResponseConverterListener;
+import com.inossem_library.request.http.util.gsonadapter.MineTypeAdapterFactory;
 
 import java.io.IOException;
 import java.util.Date;
@@ -261,8 +262,9 @@ public class RetrofitUtils {
      * @return Gson实例
      */
     private static Gson getGson() {
-        return new GsonBuilder().setDateFormat(RetrofitConstant.FORMAT_LONG).
-                registerTypeAdapter(Date.class, GsonDateErrorAnalysis.getInstance())
+        return new GsonBuilder().setDateFormat(RetrofitConstant.FORMAT_LONG)
+                .registerTypeAdapter(Date.class, GsonDateErrorAnalysis.getInstance())
+//                .registerTypeAdapterFactory(new MineTypeAdapterFactory())
                 .create();
     }
 

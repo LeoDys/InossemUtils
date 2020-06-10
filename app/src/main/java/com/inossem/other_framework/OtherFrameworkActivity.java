@@ -2,8 +2,6 @@ package com.inossem.other_framework;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -48,6 +46,8 @@ public class OtherFrameworkActivity extends BaseActivity {
                                 startActivity(new Intent(OtherFrameworkActivity.this, PictureActivity.class));
                             }
                         });
+//                        TestBean testBean = getGson().fromJson(Str.Str, TestBean.class);
+//                        System.out.println("OtherFrameworkActivity getStorageCellType: " + testBean);
                         break;
                     case 1:
                         button.setText("版本升级");
@@ -62,4 +62,5 @@ public class OtherFrameworkActivity extends BaseActivity {
             }
         });
     }
+
 }

@@ -1,13 +1,10 @@
 package com.inossem.other_framework.picture;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -60,8 +57,8 @@ public class PictureActivity extends BaseActivity {
                                 InossemPictureConfig configBean = InossemPictureConfig
                                         .getInstance()
                                         .initActivity(PictureActivity.this)
-                                        .setCompress(true)
-                                        .setCompressSavePath("InossemCompress")
+                                        .setCompress(false)
+//                                        .setCompressSavePath("InossemCompress")
                                         /*.setLibraryLinstener(new LibraryLinstener() {
                                             @Override
                                             public List<String> compressPicCallBack(List<File> files) {
@@ -69,8 +66,9 @@ public class PictureActivity extends BaseActivity {
                                                 return CompressSyncUtils.filesCallBack(files, new CompressConfig(PictureActivity.this));
                                             }
                                         })*/
-                                        .setEnableCrop(true)
-                                        .setStartCustomCamera(true);
+//                                        .setEnableCrop(true)
+//                                        .setStartCustomCamera(true)
+                                        ;
 
                                 PicSelectUtil.activitySelectPictureActivity(configBean);
                             }
@@ -101,22 +99,16 @@ public class PictureActivity extends BaseActivity {
                         Log.e("LocalMedia-path", compressPath);
                     }
 
-                    ImageView imageView = new ImageView(PictureActivity.this);
-                    Bitmap bitmap = BitmapFactory.decodeFile(localMedia.get(0).getCompressPath());
-                    imageView.setImageBitmap(bitmap);
-                    buttonLayout.addView(imageView);
-//                    Log.i("LocalMedia-compress", "内部：" + Thread.currentThread().getId());
 
-//                    CompressUtils.filesCallBack(files, new CompressConfig(PictureActivity.this), new CompressUtils.TidyCompressFilesListener() {
-//                        @Override
-//                        public void compressCallBack(List<String> outfiles) {
-//                            Log.i("LocalMedia-compress", "内部：" + Thread.currentThread().getId());
-//                            Log.e("LocalMedia-compress", outfiles.toString());
-//                        }
-//                    });
+                    Log.i("LocalMedia-compress", "内部：" + Thread.currentThread().getId());
 
-//                    Log.e("LocalMedia-return", "11111111");
-
+                    CompressUtils.filesCallBack(files, new CompressConfig(PictureActivity.this), new CompressUtils.TidyCompressFilesListener() {
+                        @Override
+                        public void compressCallBack(List<String> outfiles) {
+                            Log.i("LocalMedia-compress", "内部：" + Thread.currentThread().getId());
+                            Log.e("LocalMedia-compress", outfiles.toString());
+                        }
+                    });
                     break;
 
             }

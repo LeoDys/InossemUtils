@@ -3,6 +3,7 @@ package com.inossem_library.request.http.util;
 import android.app.Dialog;
 import android.support.annotation.NonNull;
 
+import com.google.gson.JsonSyntaxException;
 import com.inossem_library.exception.InossemException;
 import com.inossem_library.exception.constant.ExceptionEnum;
 import com.inossem_library.request.http.constant.RetrofitCallBackError;
@@ -116,6 +117,9 @@ public abstract class RetrofitCallback<T> implements Callback<T> {
         } else if (t instanceof UnknownError) {
             //未找到主机
             errorEnum = RetrofitCallBackErrorEnum.FIND_NULL;
+        } else if (t instanceof JsonSyntaxException) {
+            // json解析错误
+            errorEnum = RetrofitCallBackErrorEnum.PARSE_ERROR;
         } else {
             //其它错误
             errorEnum = RetrofitCallBackErrorEnum.OTHER;
