@@ -134,11 +134,9 @@ public class PicSelectUtil {
                 // 多选 or 单选
                 .selectionMode(configBean.getSelectionMode())
                 // 是否可预览图片
-                .previewImage(true)
+                .isPreviewImage(true)
                 // 是否可预览视频
-                .previewVideo(true)
-                // 是否可播放音频
-                .enablePreviewAudio(true)
+                .isPreviewVideo(true)
                 // 是否显示拍照按钮
                 .isCamera(configBean.isCamera())
                 // 图片列表点击 缩放效果 默认true TODO
@@ -146,9 +144,9 @@ public class PicSelectUtil {
                 // 拍照保存图片格式后缀,默认jpeg
                 .imageFormat(configBean.getImageFormat())
                 // 是否裁剪
-                .enableCrop(configBean.isEnableCrop())
+                .isEnableCrop(configBean.isEnableCrop())
                 // 是否压缩
-                .compress(configBean.isCompress())
+                .isCompress(configBean.isCompress())
                 // 同步true或异步false 压缩 默认同步
                 .synOrAsy(configBean.isSynOrAsy())
                 // 压缩图片保存地址
@@ -166,15 +164,15 @@ public class PicSelectUtil {
                 // 是否显示裁剪矩形网格 圆形裁剪时建议设为false
                 .showCropGrid(configBean.isCircleDimmedLayer() ? false : true)
                 // 是否开启点击声音
-                .openClickSound(configBean.isOpenClickSound())
+                .isOpenClickSound(configBean.isOpenClickSound())
                 // 是否传入已选图片
-                .selectionMedia(configBean.getSelectionMedia())
+                .selectionData(configBean.getSelectionMedia())
                 // 是否可拖动裁剪框(固定) TODO
                 // .isDragFrame(true)
                 // .videoMaxSecond(3)
                 // .videoMinSecond(10)
                 // 预览图片时 是否增强左右滑动图片体验(图片滑动一半即可看到上一张是否选中)
-                .previewEggs(true)
+                .isPreviewEggs(true)
                 // 裁剪压缩质量 默认100
                 .cutOutQuality(configBean.getCropCompressQuality())
                 // 小于compressToSize kb的图片不压缩

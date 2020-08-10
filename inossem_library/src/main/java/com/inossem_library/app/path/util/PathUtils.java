@@ -486,7 +486,7 @@ public class PathUtils {
             } else {
                 // 非Android10可以直接过去外部存储根目录
                 return Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator;
-            }
+        }
         }
     }
 }
