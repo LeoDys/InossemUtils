@@ -41,7 +41,7 @@ android {
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     // Android v7 Design
-    api 'androidx.appcompat:appcompat:1.0.0'
+    api 'androidx.appcompat:appcompat:1.1.0'
     api 'com.google.android.material:material:1.0.0'
     // 图片加载
     api "com.github.bumptech.glide:glide:${config.glide}"
