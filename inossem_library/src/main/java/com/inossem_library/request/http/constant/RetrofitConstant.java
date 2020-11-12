@@ -29,6 +29,10 @@ public class RetrofitConstant {
     public final static String IS_PRINT_LOG = "is_print_log";
     //是否保存日志
     public final static String IS_SAVE_LOG = "is_save_log";
+    //是否启用SSL
+    public final static String IS_SSL = "is_SSL";
+    //SSL文件全称
+    public final static String SSL_NAME = "SSL_NAME";
 
     /*
     时间格式相关

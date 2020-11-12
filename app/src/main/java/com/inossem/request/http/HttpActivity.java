@@ -2,7 +2,6 @@ package com.inossem.request.http;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -16,12 +15,12 @@ import com.inossem.request.http.bean.BaseBean;
 import com.inossem.request.http.bean.LogInBean;
 import com.inossem.request.http.bean.LogInRequestBean;
 import com.inossem.util.Utils;
+import com.inossem_library.other.compress.util.GZIPUtils;
 import com.inossem_library.request.http.constant.RetrofitCallBackError;
 import com.inossem_library.request.http.constant.RetrofitConstant;
 import com.inossem_library.request.http.util.RetrofitCallback;
 import com.inossem_library.request.http.util.RetrofitManager;
 import com.inossem_library.request.http.util.RetrofitUtils;
-import com.inossem_library.other.compress.util.GZIPUtils;
 import com.inossem_library.request.http.util.dealWithData.InossemRequestConverterListener;
 import com.inossem_library.request.http.util.dealWithData.InossemResponseConverterListener;
 import com.inossem_library.tips.toast.util.ToastUtils;
@@ -30,6 +29,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -122,7 +122,7 @@ public class HttpActivity extends BaseActivity {
         header.put("RS", "1");
         header.put("Authorization", "");
         try {
-            RetrofitUtils.set(this, "https://www.wanandroid.com/", header, 20_000L, 20_000L, 20_000L, true, true);
+            RetrofitUtils.set(this, "https://www.wanandroid.com/", header, 20_000L, 20_000L, 20_000L, true, true, false);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -191,7 +191,7 @@ public class HttpActivity extends BaseActivity {
         header.put("RS", "1");
         header.put("Authorization", "");
         try {
-            RetrofitUtils.set(this, "http://192.168.3.102:8080/HttpTest/", header, 20_000L, 20_000L, 20_000L, true, true);
+            RetrofitUtils.set(this, "http://192.168.3.102:8080/HttpTest/", header, 20_000L, 20_000L, 20_000L, true, true, false);
         } catch (Exception e) {
             e.printStackTrace();
         }
