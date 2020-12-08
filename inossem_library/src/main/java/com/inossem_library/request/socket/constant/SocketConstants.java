@@ -14,6 +14,8 @@ public class SocketConstants {
     public static final int SLEEPTIME = 500;
     //断线重连时间10秒
     public static final int RECONNECT_TIME = 1000*10;
+    //10分钟自动重连
+    public static final int AUTO_TIME = 1000 * 60 * 10;
     //mina拦截器类型
     public static final String CODEC = "codec";
     //数据分发广播Action
