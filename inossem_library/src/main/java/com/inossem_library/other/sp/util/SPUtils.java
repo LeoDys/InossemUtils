@@ -85,9 +85,6 @@ public final class SPUtils {
         if (context == null) {
             throw new InossemException(ExceptionEnum.NULL_PARAMS, "context不能为空！");
         }
-        if (StringUtils.isEmpty(spName)) {
-            throw new InossemException(ExceptionEnum.NULL_PARAMS, "spName不能为空！");
-        }
         if (StringUtils.isSpace(spName)) {
             spName = SPConstants.DEFUALT_NAME;
         }

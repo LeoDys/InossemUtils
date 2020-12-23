@@ -1,6 +1,7 @@
 ########### Default
 
 *.iml
+.idea
 .gradle
 /local.properties
 /.idea/workspace.xml
