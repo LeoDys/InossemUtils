@@ -1,4 +1,4 @@
-package com.inossem.encrypt;
+package com.inossem.security;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,8 @@ import android.widget.TextView;
 
 import com.inossem.BaseActivity;
 import com.inossem.R;
-import com.inossem.encrypt.en_decrypt.DecryptActivity;
+import com.inossem.security.en_decrypt.DecryptActivity;
+import com.inossem.security.en_decrypt.NewDecryptActivity;
 import com.inossem.util.Utils;
 
 public class EncryptActivity extends BaseActivity {
@@ -25,17 +26,17 @@ public class EncryptActivity extends BaseActivity {
             public void onCreated(Button button, int position) {
                 switch (position) {
                     case 0:
-                        button.setText("编码解码?");
+                        button.setText("新版加解密");
                         button.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-//                                startActivity(new Intent(EncryptActivity.this, null));
+                                startActivity(new Intent(EncryptActivity.this, NewDecryptActivity.class));
                             }
                         });
                         break;
 
                     case 1:
-                        button.setText("加密解密");
+                        button.setText("加解密");
                         button.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {

@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Github-InossemUtils.iml" filepath="$PROJECT_DIR$/Github-InossemUtils.iml" group="InossemUtils" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/InossemUtils.iml" filepath="$PROJECT_DIR$/.idea/InossemUtils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/InossemUtils-app.iml" filepath="$PROJECT_DIR$/app/InossemUtils-app.iml" group="InossemUtils/app" />
-      <module fileurl="file://$PROJECT_DIR$/inossem_library/InossemUtils-inossem_library.iml" filepath="$PROJECT_DIR$/inossem_library/InossemUtils-inossem_library.iml" group="InossemUtils/inossem_library" />
+      <module fileurl="file://$PROJECT_DIR$/InossemUtils.iml" filepath="$PROJECT_DIR$/InossemUtils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/InossemUtils-app.iml" filepath="$PROJECT_DIR$/app/InossemUtils-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inossem_library/InossemUtils-inossem_library.iml" filepath="$PROJECT_DIR$/inossem_library/InossemUtils-inossem_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/inossem_library/inossem_library.iml" filepath="$PROJECT_DIR$/inossem_library/inossem_library.iml" />
     </modules>

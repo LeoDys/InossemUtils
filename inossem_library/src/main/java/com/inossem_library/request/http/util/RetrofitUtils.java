@@ -1,10 +1,8 @@
 package com.inossem_library.request.http.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-
-import androidx.annotation.NonNull;
-
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
@@ -16,12 +14,19 @@ import com.inossem_library.request.http.util.dealWithData.InossemRequestConverte
 import com.inossem_library.request.http.util.dealWithData.InossemResponseConverterListener;
 
 import java.io.IOException;
-import java.security.KeyStore;
+import java.lang.reflect.Field;
+import java.security.SecureRandom;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
+import androidx.annotation.NonNull;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -285,8 +290,9 @@ public class RetrofitUtils {
      */
     private static OkHttpClient getClient(Context context, String android, String java, String module, String function) {
         final SharedPreferences sp = getSettingSp(context);
-        if (sp.getBoolean(RetrofitConstant.IS_SSL,false)) {
-            return new OkHttpClient.Builder()
+        if (sp.getBoolean(RetrofitConstant.IS_SSL, false)) {
+
+            OkHttpClient client = new OkHttpClient.Builder()
                     //连接时间
                     .connectTimeout(sp.getLong(RetrofitConstant.CONT_TIMEOUT, RetrofitConstant.DEFAULT_CONNECT), TimeUnit.MILLISECONDS)
                     //读取时间
@@ -300,11 +306,13 @@ public class RetrofitUtils {
                     //设置接收拦截器
                     .addInterceptor(new ReceiveLogInterceptor(context, android, java, module, function))
                     //再原有分装添加
-                    .sslSocketFactory(HttpsUtils.createSSLSocketFactory(HttpsUtils.createTrustCustomTrustManager(HttpsUtils.getInputStreamFromAsset(context,sp.getString(RetrofitConstant.SSL_NAME,"instock.cer"))))
-                            , HttpsUtils.createTrustCustomTrustManager(HttpsUtils.getInputStreamFromAsset(context,sp.getString(RetrofitConstant.SSL_NAME,"instock.cer"))))
+                    .sslSocketFactory(HttpsUtils.createSSLSocketFactory(HttpsUtils.createTrustCustomTrustManager(HttpsUtils.getInputStreamFromAsset(context, sp.getString(RetrofitConstant.SSL_NAME, "instock.cer"))))
+                            , HttpsUtils.createTrustCustomTrustManager(HttpsUtils.getInputStreamFromAsset(context, sp.getString(RetrofitConstant.SSL_NAME, "instock.cer"))))
                     .hostnameVerifier(new HttpsUtils.TrustAllHostnameVerifier())
                     //创建
                     .build();
+
+            return getSSLClient(client);
         }
 
         return new OkHttpClient.Builder()
@@ -322,6 +330,47 @@ public class RetrofitUtils {
                 .addInterceptor(new ReceiveLogInterceptor(context, android, java, module, function))
                 //创建
                 .build();
+    }
+
+    private static OkHttpClient getSSLClient(OkHttpClient sClient) {
+        SSLContext sc = null;
+        try {
+            sc = SSLContext.getInstance("SSL");
+            sc.init(null, new TrustManager[]{new X509TrustManager() {
+                @Override
+                public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws java.security.cert.CertificateException {
+
+                }
+
+                @Override
+                public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws java.security.cert.CertificateException {
+
+                }
+
+                @Override
+                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+            }}, new SecureRandom());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        HostnameVerifier hv1 = (hostname, session) -> true;
+
+        String workerClassName = "okhttp3.OkHttpClient";
+        try {
+            Class workerClass = Class.forName(workerClassName);
+            Field hostnameVerifier = workerClass.getDeclaredField("hostnameVerifier");
+            hostnameVerifier.setAccessible(true);
+            hostnameVerifier.set(sClient, hv1);
+
+            Field sslSocketFactory = workerClass.getDeclaredField("sslSocketFactory");
+            sslSocketFactory.setAccessible(true);
+            sslSocketFactory.set(sClient, sc.getSocketFactory());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sClient;
     }
 
     /**

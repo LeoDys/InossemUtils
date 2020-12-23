@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">inossem_library</string>
+    <string name="app_name">InossemUtils</string>
 
     <string name="time_constants_string_msec">毫秒</string>
     <string name="time_constants_string_sec">秒</string>

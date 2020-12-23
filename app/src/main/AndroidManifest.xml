@@ -102,10 +102,13 @@
             android:name=".tips.TipsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".encrypt.en_decrypt.DecryptActivity"
+            android:name=".security.EncryptActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".encrypt.EncryptActivity"
+            android:name=".security.en_decrypt.DecryptActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".security.en_decrypt.NewDecryptActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".other.clean.CleanActivity"

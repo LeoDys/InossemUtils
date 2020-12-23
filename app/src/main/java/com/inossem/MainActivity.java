@@ -8,10 +8,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.inossem.app.PhoneRelatedActivity;
-import com.inossem.encrypt.EncryptActivity;
 import com.inossem.other.OtherActivity;
 import com.inossem.other_framework.OtherFrameworkActivity;
 import com.inossem.request.RequestActivity;
+import com.inossem.security.EncryptActivity;
 import com.inossem.tips.TipsActivity;
 import com.inossem.util.Utils;
 
