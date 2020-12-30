@@ -11,6 +11,7 @@ import com.inossem.BaseActivity;
 import com.inossem.R;
 import com.inossem.other.clean.CleanActivity;
 import com.inossem.other.convert.ConvertActivity;
+import com.inossem.other.mmkv.InossemMMKVActivity;
 import com.inossem.other.permission.PermissionActivity;
 import com.inossem.other.push.PushActivity;
 import com.inossem.other.regex.RegexActivity;
@@ -119,6 +120,15 @@ public class OtherActivity extends BaseActivity {
                             @Override
                             public void onClick(View v) {
 //                                startActivity(new Intent(OtherActivity.this, CleanActivity.class));
+                            }
+                        });
+                        break;
+                    case 9:
+                        button.setText("MMKV");
+                        button.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(OtherActivity.this, InossemMMKVActivity.class));
                             }
                         });
                         break;

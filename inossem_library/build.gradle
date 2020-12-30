@@ -70,5 +70,19 @@ dependencies {
     api "io.netty:netty-all:4.1.9.Final"
     // 图片选择
     api "com.github.LuckSiege.PictureSelector:picture_library:v2.5.8"
+    //MMKV
+    api('com.tencent:mmkv-static:1.2.1') {
+        exclude module: 'support-annotations'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'rxjava'
+        exclude module: 'dagger'
+        exclude module: 'rxandroid'
+        exclude module: 'rxlifecycle'
+        exclude module: 'okhttp'
+        exclude module: 'retrofit'
+        exclude module: 'okio'
+    }
 
 }

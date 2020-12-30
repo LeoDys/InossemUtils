@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/InossemUtils.iml" filepath="$PROJECT_DIR$/InossemUtils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/InossemUtils-app.iml" filepath="$PROJECT_DIR$/app/InossemUtils-app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/inossem_library/InossemUtils-inossem_library.iml" filepath="$PROJECT_DIR$/inossem_library/InossemUtils-inossem_library.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/inossem_library/inossem_library.iml" filepath="$PROJECT_DIR$/inossem_library/inossem_library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/InossemUtils.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/InossemUtils.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/inossem_library/InossemUtils.inossem_library.iml" filepath="$PROJECT_DIR$/.idea/modules/inossem_library/InossemUtils.inossem_library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/workspase.InossemUtils.iml" filepath="$PROJECT_DIR$/.idea/modules/workspase.InossemUtils.iml" />
     </modules>
   </component>
 </project>
