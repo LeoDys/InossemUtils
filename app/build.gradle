@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion config.compileSdkVersion
@@ -27,23 +28,16 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    //数据库实体文件有修改要记得增加版本号
+    greendao {
+        schemaVersion 1
+        targetGenDir 'src/main/java'
+        daoPackage 'com.inossem.greendao.dao_package'
+    }
 
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     api project(':inossem_library')
-    api('com.tencent:mmkv-static:1.2.1') {
-        exclude module: 'support-annotations'
-        exclude module: 'appcompat-v7'
-        exclude module: 'support-v4'
-        exclude module: 'recyclerview-v7'
-        exclude module: 'rxjava'
-        exclude module: 'dagger'
-        exclude module: 'rxandroid'
-        exclude module: 'rxlifecycle'
-        exclude module: 'okhttp'
-        exclude module: 'retrofit'
-        exclude module: 'okio'
-    }
 }

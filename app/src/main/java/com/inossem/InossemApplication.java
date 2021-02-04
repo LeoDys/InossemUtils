@@ -2,6 +2,7 @@ package com.inossem;
 
 import android.app.Application;
 
+import com.inossem.other.greendao.DaoManager;
 import com.inossem_library.crash_exception.CrashExceptionUtils;
 import com.inossem_library.tips.logcat.util.LogUtils;
 import com.inossem_library.tips.toast.util.ToastUtils;
@@ -28,6 +29,7 @@ public class InossemApplication extends Application {
         MMKV.initialize(getApplicationContext());
         // 初始化异常捕获
         CrashExceptionUtils.initCrashException(this, null);
+        DaoManager.getInstance().init(this);
     }
 
     private void initToast() {

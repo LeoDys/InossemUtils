@@ -122,6 +122,9 @@
         <activity
             android:name=".other.mmkv.InossemMMKVActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".other.greendao.GreenDaoActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="design_width_in_dp"

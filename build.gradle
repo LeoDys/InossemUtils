@@ -18,6 +18,7 @@ buildscript {
 
         // Github maven
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
 
     }
 }

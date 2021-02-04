@@ -84,5 +84,7 @@ dependencies {
         exclude module: 'retrofit'
         exclude module: 'okio'
     }
+    //greenDao
+    api 'org.greenrobot:greendao:3.3.0'
 
 }

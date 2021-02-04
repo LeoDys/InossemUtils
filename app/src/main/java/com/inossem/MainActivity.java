@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.inossem.app.PhoneRelatedActivity;
 import com.inossem.crash_exception.CrashExceptionActivity;
+import com.inossem.other.greendao.GreenDaoActivity;
 import com.inossem.other.OtherActivity;
 import com.inossem.other_framework.OtherFrameworkActivity;
 import com.inossem.request.RequestActivity;
@@ -109,6 +110,15 @@ public class MainActivity extends BaseActivity {
                             @Override
                             public void onClick(View v) {
                                 startActivity(new Intent(MainActivity.this, CrashExceptionActivity.class));
+                            }
+                        });
+                        break;
+                    case 8:
+                        button.setText("GreenDAO");
+                        button.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(MainActivity.this, GreenDaoActivity.class));
                             }
                         });
                         break;
