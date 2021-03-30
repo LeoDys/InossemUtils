@@ -86,5 +86,33 @@ dependencies {
     }
     //greenDao
     api 'org.greenrobot:greendao:3.3.0'
+    // numberprogressbar
+    api(rootProject.ext.dependencies["numberprogressbar"]) {
+        exclude module: 'support-annotations'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'rxjava'
+        exclude module: 'dagger'
+        exclude module: 'rxandroid'
+        exclude module: 'rxlifecycle'
+        exclude module: 'okhttp'
+        exclude module: 'retrofit'
+        exclude module: 'okio'
+    }
+    // okgo
+    api(rootProject.ext.dependencies["okgo"]) {
+        exclude module: 'support-annotations'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'rxjava'
+        exclude module: 'dagger'
+        exclude module: 'rxandroid'
+        exclude module: 'rxlifecycle'
+        exclude module: 'okhttp'
+        exclude module: 'retrofit'
+        exclude module: 'okio'
+    }
 
 }

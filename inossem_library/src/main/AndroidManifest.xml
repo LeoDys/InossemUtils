@@ -13,9 +13,17 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+
     <application>
         <activity android:name=".view.activity.PatternActivity" />
         <activity android:name=".view.activity.InossemCameraActivity" />
+
         <service android:name=".request.socket.util.SocketService" />
 
         <meta-data
@@ -24,5 +32,16 @@
         <meta-data
             android:name="design_height_in_dp"
             android:value="1920" />
+
+        <service android:name=".other.version.service.DownloadService" />
+        <provider
+            android:name=".other.version.provider.UpdateFileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/new_app_file_paths" />
+        </provider>
     </application>
 </manifest>

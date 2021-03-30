@@ -36,4 +36,26 @@
     <string name="pattern_re_paint">重绘</string>
     <string name="pattern_sure">确定</string>
 
+    <string name="update_module_tips">Update Notification</string>
+    <string name="update_module_downloading">Downloading…</string>
+    <string name="update_module_error_md5">MD5 verification failed.</string>
+    <string name="update_module">Upgrade</string>
+    <string name="update_module_reload">Download again</string>
+    <string name="update_module_exit_app">Exit App</string>
+    <string name="update_module_connectting_server">Connecting to server…</string>
+    <string name="update_module_downloaded_install">Download finished. Click to install.</string>
+    <string name="update_module_error_server_error">Server bizStockTaskReqVos error.</string>
+    <string name="update_module_error_internet_error">Network not available. Please check it.</string>
+    <string name="update_module_error_storage_readwrite_error">Storage card error. Please check it.</string>
+    <string name="update_module_error_stroage_space_error">Low storage space.</string>
+    <string name="update_module_error_download_outtime_error">Download timed out.</string>
+    <string name="update_module_error_notfind_server_error">Server not found.</string>
+    <string name="update_module_error_url_error">Wrong URL.</string>
+    <string name="update_module_error_socket_error">Socket connection timed out.</string>
+    <string name="update_module_error_unkown_error">Unknown error.</string>
+    <string name="update_module_install">Install</string>
+    <string name="update_module_md5_not_null">MD5 enabled and cannot be empty.</string>
+    <string name="update_module_url_not_null">Download address cannot be empty.</string>
+
+
 </resources>
