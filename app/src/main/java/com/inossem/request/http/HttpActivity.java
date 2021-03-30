@@ -122,7 +122,7 @@ public class HttpActivity extends BaseActivity {
         header.put("RS", "1");
         header.put("Authorization", "");
         try {
-            RetrofitUtils.set(this, "https://www.wanandroid.com/", header, 20_000L, 20_000L, 20_000L, true, true);
+//            RetrofitUtils.set(this, "https://www.wanandroid.com/", header, 20_000L, 20_000L, 20_000L, true, true);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -191,7 +191,7 @@ public class HttpActivity extends BaseActivity {
         header.put("RS", "1");
         header.put("Authorization", "");
         try {
-            RetrofitUtils.set(this, "http://192.168.3.102:8080/HttpTest/", header, 20_000L, 20_000L, 20_000L, true, true);
+//            RetrofitUtils.set(this, "http://192.168.3.102:8080/HttpTest/", header, 20_000L, 20_000L, 20_000L, true, true);
         } catch (Exception e) {
             e.printStackTrace();
         }

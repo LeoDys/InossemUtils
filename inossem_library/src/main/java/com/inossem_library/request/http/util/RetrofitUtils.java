@@ -12,13 +12,19 @@ import com.inossem_library.request.http.constant.RetrofitConstant;
 import com.inossem_library.request.http.util.dealWithData.InossemConverterFactory;
 import com.inossem_library.request.http.util.dealWithData.InossemRequestConverterListener;
 import com.inossem_library.request.http.util.dealWithData.InossemResponseConverterListener;
-import com.inossem_library.request.http.util.gsonadapter.MineTypeAdapterFactory;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.security.SecureRandom;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -49,7 +55,7 @@ public class RetrofitUtils {
      * @throws Exception 异常
      */
     public static void set(Context context, String url, Map<String, String> header, Long connectTimeout,
-                           Long readTimeout, Long writeTimeout, Boolean isPrintLog, Boolean isSaveLog) throws Exception {
+                           Long readTimeout, Long writeTimeout, Boolean isPrintLog, Boolean isSaveLog, Boolean isSSL) throws Exception {
         if (null == context) throw new Exception("context can`t null");
         SharedPreferences.Editor editor = getSettingSp(context).edit();
         if (!TextUtils.isEmpty(url)) {
@@ -84,6 +90,10 @@ public class RetrofitUtils {
             //[是否保存日志]不为空时 保存[是否保存日志]
             editor.putBoolean(RetrofitConstant.IS_SAVE_LOG, isSaveLog);
         }
+        if (null != isSSL) {
+            //[是否启用SSL]不为空时 保存[是否启用SSL]
+            editor.putBoolean(RetrofitConstant.IS_SSL, isSSL);
+        }
         editor.apply();
     }
 
@@ -95,7 +105,7 @@ public class RetrofitUtils {
      * @throws Exception 异常
      */
     public static void setUrl(Context context, String url) throws Exception {
-        set(context, url, null, null, null, null, null, null);
+        set(context, url, null, null, null, null, null, null, false);
     }
 
     /**
@@ -106,7 +116,7 @@ public class RetrofitUtils {
      * @throws Exception
      */
     public static void setHeader(Context context, Map<String, String> header) throws Exception {
-        set(context, null, header, null, null, null, null, null);
+        set(context, null, header, null, null, null, null, null, false);
     }
 
     /**
@@ -117,7 +127,7 @@ public class RetrofitUtils {
      * @throws Exception 异常
      */
     public static void setConnectTimeout(Context context, Long connectTimeout) throws Exception {
-        set(context, null, null, connectTimeout, null, null, null, null);
+        set(context, null, null, connectTimeout, null, null, null, null, false);
     }
 
     /**
@@ -128,7 +138,7 @@ public class RetrofitUtils {
      * @throws Exception 异常
      */
     public static void setRadTimeout(Context context, Long readTimeout) throws Exception {
-        set(context, null, null, null, readTimeout, null, null, null);
+        set(context, null, null, null, readTimeout, null, null, null, false);
     }
 
     /**
@@ -139,7 +149,7 @@ public class RetrofitUtils {
      * @throws Exception 异常
      */
     public static void setWriteTimeout(Context context, Long writeTimeout) throws Exception {
-        set(context, null, null, null, null, writeTimeout, null, null);
+        set(context, null, null, null, null, writeTimeout, null, null, false);
     }
 
     /**
@@ -150,7 +160,7 @@ public class RetrofitUtils {
      * @throws Exception 异常
      */
     public static void setIsPrintLog(Context context, Boolean isPrintLog) throws Exception {
-        set(context, null, null, null, null, null, isPrintLog, null);
+        set(context, null, null, null, null, null, isPrintLog, null, false);
     }
 
     /**
@@ -161,7 +171,7 @@ public class RetrofitUtils {
      * @throws Exception 异常
      */
     public static void setIsSaveLog(Context context, Boolean isSaveLog) throws Exception {
-        set(context, null, null, null, null, null, isSaveLog, null);
+        set(context, null, null, null, null, null, isSaveLog, null, false);
     }
 
     /**
@@ -262,9 +272,8 @@ public class RetrofitUtils {
      * @return Gson实例
      */
     private static Gson getGson() {
-        return new GsonBuilder().setDateFormat(RetrofitConstant.FORMAT_LONG)
-                .registerTypeAdapter(Date.class, GsonDateErrorAnalysis.getInstance())
-//                .registerTypeAdapterFactory(new MineTypeAdapterFactory())
+        return new GsonBuilder().setDateFormat(RetrofitConstant.FORMAT_LONG).
+                registerTypeAdapter(Date.class, GsonDateErrorAnalysis.getInstance())
                 .create();
     }
 
@@ -280,6 +289,31 @@ public class RetrofitUtils {
      */
     private static OkHttpClient getClient(Context context, String android, String java, String module, String function) {
         final SharedPreferences sp = getSettingSp(context);
+        if (sp.getBoolean(RetrofitConstant.IS_SSL, false)) {
+
+            OkHttpClient client = new OkHttpClient.Builder()
+                    //连接时间
+                    .connectTimeout(sp.getLong(RetrofitConstant.CONT_TIMEOUT, RetrofitConstant.DEFAULT_CONNECT), TimeUnit.MILLISECONDS)
+                    //读取时间
+                    .readTimeout(sp.getLong(RetrofitConstant.READ_TIMEOUT, RetrofitConstant.DEFAULT_READ), TimeUnit.MILLISECONDS)
+                    //写入时间
+                    .writeTimeout(sp.getLong(RetrofitConstant.WRITE_TIMEOUT, RetrofitConstant.DEFAULT_WRITE), TimeUnit.MILLISECONDS)
+                    //设置请求头
+                    .addInterceptor(setHeader(context))
+                    //设置请求拦截器
+                    .addInterceptor(new RequestLogInterceptor(context, android, java, module, function))
+                    //设置接收拦截器
+                    .addInterceptor(new ReceiveLogInterceptor(context, android, java, module, function))
+                    //再原有分装添加
+                    .sslSocketFactory(HttpsUtils.createSSLSocketFactory(HttpsUtils.createTrustCustomTrustManager(HttpsUtils.getInputStreamFromAsset(context, sp.getString(RetrofitConstant.SSL_NAME, "instock.cer"))))
+                            , HttpsUtils.createTrustCustomTrustManager(HttpsUtils.getInputStreamFromAsset(context, sp.getString(RetrofitConstant.SSL_NAME, "instock.cer"))))
+                    .hostnameVerifier(new HttpsUtils.TrustAllHostnameVerifier())
+                    //创建
+                    .build();
+
+            return getSSLClient(client);
+        }
+
         return new OkHttpClient.Builder()
                 //连接时间
                 .connectTimeout(sp.getLong(RetrofitConstant.CONT_TIMEOUT, RetrofitConstant.DEFAULT_CONNECT), TimeUnit.MILLISECONDS)
@@ -295,6 +329,47 @@ public class RetrofitUtils {
                 .addInterceptor(new ReceiveLogInterceptor(context, android, java, module, function))
                 //创建
                 .build();
+    }
+
+    private static OkHttpClient getSSLClient(OkHttpClient sClient) {
+        SSLContext sc = null;
+        try {
+            sc = SSLContext.getInstance("SSL");
+            sc.init(null, new TrustManager[]{new X509TrustManager() {
+                @Override
+                public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws java.security.cert.CertificateException {
+
+                }
+
+                @Override
+                public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws java.security.cert.CertificateException {
+
+                }
+
+                @Override
+                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+            }}, new SecureRandom());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        HostnameVerifier hv1 = (hostname, session) -> true;
+
+        String workerClassName = "okhttp3.OkHttpClient";
+        try {
+            Class workerClass = Class.forName(workerClassName);
+            Field hostnameVerifier = workerClass.getDeclaredField("hostnameVerifier");
+            hostnameVerifier.setAccessible(true);
+            hostnameVerifier.set(sClient, hv1);
+
+            Field sslSocketFactory = workerClass.getDeclaredField("sslSocketFactory");
+            sslSocketFactory.setAccessible(true);
+            sslSocketFactory.set(sClient, sc.getSocketFactory());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sClient;
     }
 
     /**

@@ -11,7 +11,6 @@ public enum RetrofitCallBackErrorEnum {
     TIME_OUT(991, "超时"),
     CONNECT_FAIL(992, "连接错误"),
     FIND_NULL(993, "未找到主机"),
-    PARSE_ERROR(994, "json解析错误"),
     OTHER(999, "其它未知错误");
 
     //错误码

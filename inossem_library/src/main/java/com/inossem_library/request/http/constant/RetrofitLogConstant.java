@@ -28,8 +28,4 @@ public class RetrofitLogConstant {
     //请求/响应
     public static final String REQUEST = "Request";
     public static final String RESPONSE = "Response";
-
-    // json数据类型错误日志
-    public static final String JSON_PARSE_ERROR = "InStockJsonParseError";
-
 }

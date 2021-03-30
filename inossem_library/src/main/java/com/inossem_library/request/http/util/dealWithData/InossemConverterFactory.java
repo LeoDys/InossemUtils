@@ -33,7 +33,7 @@ public class InossemConverterFactory extends Converter.Factory {
      * @param gson 自定义Gson
      * @return InossemConverterFactory
      */
-    public static InossemConverterFactory create(Gson gson,InossemRequestConverterListener requestConverterListener, InossemResponseConverterListener responseConverterListener) {
+    public static InossemConverterFactory create(Gson gson, InossemRequestConverterListener requestConverterListener, InossemResponseConverterListener responseConverterListener) {
         return new InossemConverterFactory(gson,  requestConverterListener,  responseConverterListener);
     }
 
