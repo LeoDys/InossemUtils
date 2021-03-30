@@ -1,14 +1,19 @@
 package com.inossem_library.other.version.service;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Color;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import com.inossem_library.R;
 import com.inossem_library.other.version.utils.HttpManager;
 import com.inossem_library.other.version.bean.UpdateAppBean;
 import com.inossem_library.other.version.utils.AppUpdateUtils;
@@ -20,7 +25,7 @@ import java.io.File;
  * 后台下载
  */
 public class DownloadService extends Service {
-
+    private static final String CHANNEL_ID = "DownloadService";
     public static boolean isRunning = false;
     private DownloadBinder binder = new DownloadBinder();
 
@@ -33,6 +38,40 @@ public class DownloadService extends Service {
         }
         context.bindService(intent, connection, Context.BIND_AUTO_CREATE);
         isRunning = true;
+    }
+
+    private void createNotificationChannel() {
+        // API 26以上要在后台启动service 但是前台要告诉用户有service正在运行
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            NotificationChannel Channel = new NotificationChannel(CHANNEL_ID, "downloading", NotificationManager.IMPORTANCE_HIGH);
+            Channel.enableLights(true);//设置提示灯
+            Channel.setLightColor(Color.RED);//设置提示灯颜色
+            Channel.setShowBadge(true);//显示logo
+            Channel.setDescription("");//设置描述
+            Channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC); //设置锁屏可见 VISIBILITY_PUBLIC=可见
+            manager.createNotificationChannel(Channel);
+
+            Notification notification = new Notification.Builder(this)
+                    .setChannelId(CHANNEL_ID)
+                    //标题
+                    .setContentTitle("downloading")
+                    //内容
+                    .setContentText("running")
+                    .setWhen(System.currentTimeMillis())
+                    //小图标一定需要设置,否则会报错(如果不设置它启动服务前台化不会报错,但是你会发现这个通知不会启动),如果是普通通知,不设置必然报错
+                    .setSmallIcon(R.drawable.ico_warning)
+//                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                    .build();
+            //服务前台化只能使用startForeground()方法,不能使用 notificationManager.notify(1,notification); 这个只是启动通知使用的,使用这个方法你只需要等待几秒就会发现报错了
+            startForeground(1, notification);
+        }
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        createNotificationChannel();
+        return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
